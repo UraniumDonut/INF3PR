@@ -13,8 +13,11 @@ public class Start
 {
   public Start()
   {
-  
+    Fenster frm = new Fenster("mein tolles erstes Fenster");
+    frm.registerEvents();
+    frm.setVisible(true);
   }
+  
 
   public static void main(String[] args) 
   {
