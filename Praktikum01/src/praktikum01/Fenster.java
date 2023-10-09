@@ -12,7 +12,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 /**
  *
@@ -44,15 +43,13 @@ public class Fenster extends JFrame implements MouseListener, WindowListener
 
   @Override
   public void mouseReleased(MouseEvent evt){
-    int rot = gibZufalls255Wert();
-    int gruen = gibZufalls255Wert();
-    int blau = gibZufalls255Wert();
+    float rot = (float)Math.random();
+    float gruen = (float)Math.random();
+    float blau = (float)Math.random();
     this.getContentPane().setBackground(new Color(rot,gruen,blau));
   }
 
-private int gibZufalls255Wert(){
-  return (int)Math.floor(Math.random()* (255-0+1)+0);
-}
+
 
   @Override
   public void mouseEntered(MouseEvent e)
@@ -72,7 +69,7 @@ private int gibZufalls255Wert(){
   @Override
   public void windowClosing(WindowEvent evt)
   {
-    int ans = JOptionPane.showConfirmDialog(this,"Willst du das Fenster wirklich schließen?", "Obacht!", YES_NO_OPTION);
+    int ans = JOptionPane.showConfirmDialog(this,"Willst du das Fenster wirklich schließen?", "Obacht!", JOptionPane.YES_NO_OPTION);
     if(ans == JOptionPane.YES_OPTION)
     {
       System.exit(0);
