@@ -5,8 +5,11 @@
 
 package praktikum02;
 
-import java.text.NumberFormat;
+import praktikum02.View.Fenster;
 import java.util.Locale;
+import praktikum02.Controller.CMController;
+import praktikum02.Controller.ZollController;
+import praktikum02.Model.Model;
 
 /**
  *
@@ -17,8 +20,13 @@ public class Start
   public Start()
   {
     Fenster frm = new Fenster();
+    Model model = new Model();
+    CMController cmController = new CMController(frm,model);
+    ZollController zollController = new ZollController(frm, model);
+    cmController.registerEvents();
+    zollController.registerEvents();
     frm.setVisible(true);
-    frm.registerEvents();
+    //frm.registerEvents();
   }
 
   public static void main(String[] args) 

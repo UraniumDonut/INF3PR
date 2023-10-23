@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package praktikum02;
+package praktikum02.View;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -22,9 +22,9 @@ import javax.swing.JTextField;
  *
  * @author Leon
  */
-public class Fenster extends JFrame implements ActionListener
+public class Fenster extends JFrame
 {
-  static final Double UMRECHNUNGSFAKTOR = 2.54;
+  //static final Double UMRECHNUNGSFAKTOR = 2.54;
   private JButton btnLinks;
 	private JButton btnRechts;
   private JLabel lblZoll;
@@ -62,11 +62,9 @@ public class Fenster extends JFrame implements ActionListener
     
 	}
   
-  public void registerEvents()
+  /*public void registerEvents()
 	{
 		btnLinks.addActionListener(this);
-		btnRechts.addActionListener(this);
-    tfZoll.addActionListener(this::zollZuCM);
     tfCM.addActionListener(this::cmZuZoll);
 	}
   
@@ -75,14 +73,30 @@ public class Fenster extends JFrame implements ActionListener
 	{
 		Object src = evt.getSource();
 		if (src == btnRechts){
-      zollZuCM();
+      //zollZuCM();
 		}
 		else if (src == btnLinks){
       cmZuZoll();
 		}
 	}
+  */
+  public JTextField getTfCM()
+  {
+          return tfCM;
+  }
+  public JTextField getTfZoll()
+  {
+          return tfZoll;
+  }
   
-  public void zollZuCM(ActionEvent... evt){
+  public JButton getbtnLinks(){
+    return btnLinks;
+  }
+  public JButton getbtnRechts(){
+    return btnRechts;
+  }
+  
+ /* public void zollZuCM(ActionEvent... evt){
     double zollWert = getNumber(0);
     String cmText = "";
     System.out.println("ZollWert = " + zollWert);
@@ -118,5 +132,5 @@ public class Fenster extends JFrame implements ActionListener
     }
     return zahlenWert;
   }
-  
+  */
 }
