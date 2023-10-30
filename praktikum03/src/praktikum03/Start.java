@@ -4,6 +4,8 @@
  */
 package praktikum03;
 
+import praktikum03.View.Fenster;
+
 /**
  *
  * @author basti
@@ -15,6 +17,8 @@ public class Start {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Fenster frm = new Fenster();
+        frm.setVisible(true);
     }
     
 }
