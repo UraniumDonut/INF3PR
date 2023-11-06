@@ -21,11 +21,11 @@ public class Controller implements ActionListener
   private AdressverwaltungModel model;
   private CommandInvoker invoker;
   
-  public Controller(Fenster view, AdressverwaltungModel model, CommandInvoker invoker)
+  public Controller(Fenster view, AdressverwaltungModel model)
   {
     this.view = view;
     this.model = model;
-    this.invoker = invoker;
+    this.invoker = new CommandInvoker();
   }
 
   @Override

@@ -23,8 +23,7 @@ public class Start {
     public void Start() {
         Fenster frm = new Fenster();
         AdressverwaltungModel model = new AdressverwaltungModel();
-        CommandInvoker commandInvoker = new CommandInvoker();
-        Controller controller = new Controller(frm, model, commandInvoker);
+        Controller controller = new Controller(frm, model);
         frm.setVisible(true);
     }
 
