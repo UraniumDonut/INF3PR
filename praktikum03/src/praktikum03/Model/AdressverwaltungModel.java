@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package adressverwaltung.model;
+package praktikum03.Model;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
