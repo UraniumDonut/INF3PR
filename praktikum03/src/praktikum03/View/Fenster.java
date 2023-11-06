@@ -6,7 +6,7 @@ package praktikum03.View;
 
 /**
  *
- * @author basti
+ * @author Sebastian Mayer und Leon Bartle
  */
 public class Fenster extends javax.swing.JFrame {
 
