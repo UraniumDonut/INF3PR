@@ -28,8 +28,17 @@ public class Controller implements ActionListener
     this.invoker = new CommandInvoker();
   }
 
+  
+  public void registerEvents(){
+    view.getOpen().addActionListener(this);
+  }
+  
+  public void registerCommands(){
+    
+  }
   @Override
   public void actionPerformed(ActionEvent e)
   {
+    
   }
 }

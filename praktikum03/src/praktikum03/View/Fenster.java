@@ -4,6 +4,12 @@
  */
 package praktikum03.View;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JTable;
+
 /**
  *
  * @author Sebastian Mayer und Leon Bartle
@@ -324,4 +330,90 @@ public class Fenster extends javax.swing.JFrame {
   private javax.swing.JTable jTable1;
   private javax.swing.JToolBar jToolBar1;
   // End of variables declaration//GEN-END:variables
+
+  public JMenuItem getAdd()
+  {
+    return Add;
+  }
+
+  public JMenuItem getAddEntry()
+  {
+    return AddEntry;
+  }
+
+  public JMenuItem getClearAll()
+  {
+    return ClearAll;
+  }
+
+  public JMenu getEdit()
+  {
+    return Edit;
+  }
+
+  public JMenuItem getEditEntry()
+  {
+    return EditEntry;
+  }
+
+  public JMenuItem getExit()
+  {
+    return Exit;
+  }
+
+  public JMenu getFile()
+  {
+    return File;
+  }
+
+  public JLabel getFileName()
+  {
+    return FileName;
+  }
+
+  public JMenuItem getOpen()
+  {
+    return Open;
+  }
+
+  public JMenuItem getRemove()
+  {
+    return Remove;
+  }
+
+  public JMenuItem getSave()
+  {
+    return Save;
+  }
+
+  public JMenuItem getSaveAs()
+  {
+    return SaveAs;
+  }
+
+  public JButton getjButton1()
+  {
+    return jButton1;
+  }
+
+  public JButton getjButton2()
+  {
+    return jButton2;
+  }
+
+  public JButton getjButton3()
+  {
+    return jButton3;
+  }
+
+  public JButton getjButton4()
+  {
+    return jButton4;
+  }
+
+  public JTable getjTable1()
+  {
+    return jTable1;
+  }
+
 }
