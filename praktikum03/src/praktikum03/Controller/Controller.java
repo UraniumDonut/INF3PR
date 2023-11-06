@@ -5,6 +5,7 @@
 
 package praktikum03.Controller;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import praktikum03.Controller.Commands.CommandInvoker;
@@ -38,8 +39,9 @@ public class Controller implements ActionListener
     invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
   }
   @Override
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(ActionEvent evt)
   {
-    
+    Component key = (Component)evt.getSource();
+    invoker.executeCommand(key);
   }
 }
