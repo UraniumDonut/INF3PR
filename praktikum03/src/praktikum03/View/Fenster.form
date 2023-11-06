@@ -29,7 +29,7 @@
         </MenuItem>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JFileChooser" name="jFileChooser1">
+    <Component class="javax.swing.JFileChooser" name="jFileChooser">
     </Component>
     <Menu class="javax.swing.JMenuBar" name="Hauptmenu">
       <SubComponents>

@@ -4,15 +4,23 @@
  */
 package praktikum03.Controller.Commands;
 
+import praktikum03.Model.AdressverwaltungModel;
+import praktikum03.View.Fenster;
+
 /**
  *
  * @author basti
  */
 public class OpenCommand implements CommandInterface{
-
+    Fenster view;
+    AdressverwaltungModel model;
+    public void OpenCommand(Fenster frm, AdressverwaltungModel m){
+        view = frm;
+        model = m;
+    }
     @Override
-    public void execute() {                                       
-        //jFileChooser1.showOpenDialog(Open);
+    public void execute() {    
+        //view.getjFileChooser().showOpenDialog(Open);
     }
 
     @Override
