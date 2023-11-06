@@ -14,13 +14,14 @@ import praktikum03.View.Fenster;
 public class OpenCommand implements CommandInterface{
     Fenster view;
     AdressverwaltungModel model;
+    
     public OpenCommand(Fenster frm, AdressverwaltungModel m){
         view = frm;
         model = m;
     }
     @Override
     public void execute() {    
-        //view.getjFileChooser().showOpenDialog(Open);
+        view.getjFileChooser().showOpenDialog(view);
     }
 
     @Override
