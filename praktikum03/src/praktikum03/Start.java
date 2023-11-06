@@ -24,7 +24,9 @@ public class Start {
         Fenster frm = new Fenster();
         AdressverwaltungModel model = new AdressverwaltungModel();
         Controller controller = new Controller(frm, model);
-        frm.setVisible(true);
+        //frm.setVisible(true);
+        controller.registerEvents();
+        controller.registerCommands();
     }
 
     public static void main(String[] args) {

@@ -218,9 +218,7 @@ public class Fenster extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RemoveActionPerformed
 
-    
 
-    
     private void FileMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FileMouseReleased
     }//GEN-LAST:event_FileMouseReleased
 
@@ -231,22 +229,22 @@ public class Fenster extends javax.swing.JFrame {
 
   private void SaveAsMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_SaveAsMouseReleased
   {//GEN-HEADEREND:event_SaveAsMouseReleased
-    jFileChooser.showOpenDialog(Open);
+
   }//GEN-LAST:event_SaveAsMouseReleased
 
   private void ExitMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_ExitMouseReleased
   {//GEN-HEADEREND:event_ExitMouseReleased
-    System.exit(0);
+      System.exit(0);
   }//GEN-LAST:event_ExitMouseReleased
 
   private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
   {//GEN-HEADEREND:event_jButton3ActionPerformed
-    // TODO add your handling code here:
+      // TODO add your handling code here:
   }//GEN-LAST:event_jButton3ActionPerformed
 
   private void AddEntryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_AddEntryActionPerformed
   {//GEN-HEADEREND:event_AddEntryActionPerformed
-    // TODO add your handling code here:
+      // TODO add your handling code here:
   }//GEN-LAST:event_AddEntryActionPerformed
 
     /**
@@ -309,94 +307,76 @@ public class Fenster extends javax.swing.JFrame {
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
-  public JMenuItem getAdd()
-  {
-    return Add;
-  }
+    public JMenuItem getAdd() {
+        return Add;
+    }
 
-  public JMenuItem getAddEntry()
-  {
-    return AddEntry;
-  }
+    public JMenuItem getAddEntry() {
+        return AddEntry;
+    }
 
-  public JMenuItem getClearAll()
-  {
-    return ClearAll;
-  }
+    public JMenuItem getClearAll() {
+        return ClearAll;
+    }
 
-  public JMenu getEdit()
-  {
-    return Edit;
-  }
+    public JMenu getEdit() {
+        return Edit;
+    }
 
-  public JMenuItem getEditEntry()
-  {
-    return EditEntry;
-  }
+    public JMenuItem getEditEntry() {
+        return EditEntry;
+    }
 
-  public JMenuItem getExit()
-  {
-    return Exit;
-  }
+    public JMenuItem getExit() {
+        return Exit;
+    }
 
-  public JMenu getFile()
-  {
-    return File;
-  }
+    public JMenu getFile() {
+        return File;
+    }
 
-  public JLabel getFileName()
-  {
-    return FileName;
-  }
+    public JLabel getFileName() {
+        return FileName;
+    }
 
-  public JMenuItem getOpen()
-  {
-    return Open;
-  }
+    public JMenuItem getOpen() {
+        return Open;
+    }
 
-  public JMenuItem getRemove()
-  {
-    return Remove;
-  }
+    public JMenuItem getRemove() {
+        return Remove;
+    }
 
-  public JMenuItem getSave()
-  {
-    return Save;
-  }
+    public JMenuItem getSave() {
+        return Save;
+    }
 
-  public JMenuItem getSaveAs()
-  {
-    return SaveAs;
-  }
+    public JMenuItem getSaveAs() {
+        return SaveAs;
+    }
 
-  public JButton getjButton1()
-  {
-    return jButton1;
-  }
+    public JButton getjButton1() {
+        return jButton1;
+    }
 
-  public JButton getjButton2()
-  {
-    return jButton2;
-  }
+    public JButton getjButton2() {
+        return jButton2;
+    }
 
-  public JButton getjButton3()
-  {
-    return jButton3;
-  }
+    public JButton getjButton3() {
+        return jButton3;
+    }
 
-  public JButton getjButton4()
-  {
-    return jButton4;
-  }
+    public JButton getjButton4() {
+        return jButton4;
+    }
 
-  public JTable getjTable1()
-  {
-    return jTable1;
-  }
+    public JTable getjTable1() {
+        return jTable1;
+    }
 
     public JFileChooser getjFileChooser() {
         return jFileChooser;
     }
-  
-  
+
 }
