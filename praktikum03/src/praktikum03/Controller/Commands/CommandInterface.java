@@ -9,5 +9,7 @@ package praktikum03.Controller.Commands;
  * @author basti
  */
 public interface CommandInterface {
-    public void 
+  public void execute();
+  public void undo();
+  public boolean isUndoable();
 }
