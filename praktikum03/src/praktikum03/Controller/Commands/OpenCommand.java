@@ -14,7 +14,7 @@ import praktikum03.View.Fenster;
 public class OpenCommand implements CommandInterface{
     Fenster view;
     AdressverwaltungModel model;
-    public void OpenCommand(Fenster frm, AdressverwaltungModel m){
+    public OpenCommand(Fenster frm, AdressverwaltungModel m){
         view = frm;
         model = m;
     }
