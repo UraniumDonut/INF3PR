@@ -7,6 +7,9 @@ package praktikum03.Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import praktikum03.Controller.Commands.CommandInvoker;
+import praktikum03.Model.AdressverwaltungModel;
+import praktikum03.View.Fenster;
 
 /**
  *
@@ -14,9 +17,15 @@ import java.awt.event.ActionListener;
  */
 public class Controller implements ActionListener
 {
-  public Controller()
-  {
+  private Fenster view;
+  private AdressverwaltungModel model;
+  private CommandInvoker invoker;
   
+  public Controller(Fenster view, AdressverwaltungModel model, CommandInvoker invoker)
+  {
+    this.view = view;
+    this.model = model;
+    this.invoker = invoker;
   }
 
   @Override
