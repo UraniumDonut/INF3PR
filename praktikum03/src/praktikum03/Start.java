@@ -20,7 +20,7 @@ public class Start {
     /**
      * @param args the command line arguments
      */
-    public void Start() {
+    public Start() {
         Fenster frm = new Fenster();
         AdressverwaltungModel model = new AdressverwaltungModel();
         Controller controller = new Controller(frm, model);
