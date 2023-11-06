@@ -8,6 +8,6 @@ package praktikum03.Controller.Commands;
  *
  * @author basti
  */
-public interface Command {
-    
+public interface CommandInterface {
+    public void 
 }
