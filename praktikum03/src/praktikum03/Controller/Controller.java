@@ -8,6 +8,7 @@ package praktikum03.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import praktikum03.Controller.Commands.CommandInvoker;
+import praktikum03.Controller.Commands.OpenCommand;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -34,7 +35,7 @@ public class Controller implements ActionListener
   }
   
   public void registerCommands(){
-    
+    invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent e)
