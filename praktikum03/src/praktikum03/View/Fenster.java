@@ -242,7 +242,6 @@ public class Fenster extends javax.swing.JFrame {
   private void OpenMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_OpenMouseReleased
   {//GEN-HEADEREND:event_OpenMouseReleased
 
-    jFileChooser1.showOpenDialog(Open);
   }//GEN-LAST:event_OpenMouseReleased
 
   private void SaveAsMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_SaveAsMouseReleased
