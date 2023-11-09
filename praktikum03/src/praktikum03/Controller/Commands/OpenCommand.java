@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import static javax.swing.JFileChooser.APPROVE_OPTION;
 import static javax.swing.JFileChooser.ERROR_OPTION;
 import praktikum03.Model.AdressverwaltungModel;
@@ -20,14 +21,18 @@ import praktikum03.View.Fenster;
 public class OpenCommand implements CommandInterface{
     Fenster view;
     AdressverwaltungModel model;
+    Preferences pref;
     
     public OpenCommand(Fenster frm, AdressverwaltungModel m){
         view = frm;
         model = m;
+        pref = Preferences.userNodeForPackage(this.getClass());
     }
     @Override
     public void execute() {
+        view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
         int ret = view.getjFileChooser().showOpenDialog(view);
+        pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
         if (ret == ERROR_OPTION){
             //throw new Exception("Open failed.");
         }
