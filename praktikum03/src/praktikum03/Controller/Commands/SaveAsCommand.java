@@ -12,7 +12,6 @@ import java.util.prefs.Preferences;
 import static javax.swing.JFileChooser.APPROVE_OPTION;
 import static javax.swing.JFileChooser.ERROR_OPTION;
 import static javax.swing.JFileChooser.FILES_AND_DIRECTORIES;
-import static javax.swing.JFileChooser.FILES_ONLY;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -20,47 +19,54 @@ import praktikum03.View.Fenster;
  *
  * @author basti
  */
-public class OpenCommand implements CommandInterface{
+public class SaveAsCommand implements CommandInterface{
     private Fenster view;
     private AdressverwaltungModel model;
     private Preferences pref;
     
-    public OpenCommand(Fenster frm, AdressverwaltungModel m){
-        view = frm;
+    public SaveAsCommand(Fenster v, AdressverwaltungModel m){
+        view = v;
         model = m;
         pref = Preferences.userNodeForPackage(this.getClass());
     }
+
     @Override
     public void execute() {
         view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
-        view.getjFileChooser().setFileSelectionMode(FILES_ONLY);
-        int ret = view.getjFileChooser().showOpenDialog(view);
+        int ret = view.getjFileChooser().showSaveDialog(view);
         pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
         if (ret == ERROR_OPTION){
             //throw new Exception("Open failed.");
         }
         else if (ret == APPROVE_OPTION){
             File file = view.getjFileChooser().getSelectedFile();
+            if(!file.exists()){
+                System.out.println("Existiert nicht!");
+                try {
+                    file.createNewFile();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveAsCommand.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             try {
-                model.datenLesen(file);
-                pref.put("CURRENT_FILE", file.getPath());
+                model.datenSpeichern(file);
+                pref.put("CURRENT_FILE", file.toString());
                 view.getFileName().setText(file.getPath());
             } catch (IOException ex) {
                 Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }           
+        } 
+        
     }
 
     @Override
     public void undo() {
-        throw new UnsupportedOperationException("Command not redoable."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean isUndoable() {
         return false;
     }
-    
+//    jFileChooser.showOpenDialog();
 }

@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
-import static javax.swing.JFileChooser.APPROVE_OPTION;
-import static javax.swing.JFileChooser.ERROR_OPTION;
-import static javax.swing.JFileChooser.FILES_AND_DIRECTORIES;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -20,34 +17,32 @@ import praktikum03.View.Fenster;
  * @author basti
  */
 public class SaveCommand implements CommandInterface{
-    Fenster view;
-    AdressverwaltungModel model;
-    Preferences pref;
+    private AdressverwaltungModel model;
+    private Fenster view;
+    private Preferences pref;
+    private SaveAsCommand saveAsCmd;
     
     public SaveCommand(Fenster v, AdressverwaltungModel m){
-        view = v;
         model = m;
+        view = v;
         pref = Preferences.userNodeForPackage(this.getClass());
     }
-
     @Override
     public void execute() {
-        view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
-        view.getjFileChooser().setFileSelectionMode(FILES_AND_DIRECTORIES);
-        int ret = view.getjFileChooser().showSaveDialog(view);
-        pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
-        if (ret == ERROR_OPTION){
-            //throw new Exception("Open failed.");
+        String s = pref.get("CURRENT_FILE", "");
+        File file = new File(s);
+        if(!file.exists()){
+            saveAsCmd = new SaveAsCommand(view, model);
+            saveAsCmd.execute();
         }
-        else if (ret == APPROVE_OPTION){
-            File file = view.getjFileChooser().getSelectedFile();
-            try {
+        else{
+        try {
                 model.datenSpeichern(file);
+                view.getFileName().setText(file.getPath());
             } catch (IOException ex) {
                 Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-        
+        }
     }
 
     @Override
@@ -57,7 +52,7 @@ public class SaveCommand implements CommandInterface{
 
     @Override
     public boolean isUndoable() {
-        return false;
+       return false;
     }
-//    jFileChooser.showOpenDialog();
+    
 }

@@ -13,6 +13,7 @@ import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
 import praktikum03.Controller.Commands.OpenCommand;
 import praktikum03.Controller.Commands.RemoveEntryCommand;
+import praktikum03.Controller.Commands.SaveAsCommand;
 import praktikum03.Controller.Commands.SaveCommand;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
@@ -56,11 +57,13 @@ public class Controller implements ActionListener
   public void registerCommands(){
     invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
     invoker.addCommand(view.getExit(), new ExitCommand(view,model));
-    invoker.addCommand(view.getSaveAs(), new SaveCommand(view, model));
+    invoker.addCommand(view.getSaveAs(), new SaveAsCommand(view, model));
     invoker.addCommand(view.getAddEntry(), new AddEntryCommand(view,model));
     invoker.addCommand(view.getjButton3(), new AddEntryCommand(view,model));
     invoker.addCommand(view.getRemoveEntry(), new RemoveEntryCommand(view,model));
     invoker.addCommand(view.getjButton4(), new RemoveEntryCommand(view,model));
+    invoker.addCommand(view.getSave(), new SaveCommand(view, model));
+    invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)
