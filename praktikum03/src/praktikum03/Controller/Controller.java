@@ -8,6 +8,8 @@ package praktikum03.Controller;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
 import praktikum03.Controller.Commands.OpenCommand;
@@ -44,6 +46,21 @@ public class Controller implements ActionListener
     view.getjButton4().addActionListener(this);
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
+  }
+  
+  public void setupTable(){
+    DefaultTableModel tablemodel = (DefaultTableModel)view.getjTable1().getModel();
+    int rows = model.getRowCount();
+    int col = model.getColumnCount();
+    for(int i = 0; i<col; i++){
+      System.out.println(model.getColumnName(i));
+      tablemodel.addColumn(model.getColumnName(i));
+    }
+    
+    Vector row = new Vector();
+    row.add("hey");
+    row.add("hi");
+    tablemodel.addRow(row);
   }
   
   public void registerCommands(){
