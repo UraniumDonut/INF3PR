@@ -53,14 +53,15 @@ public class Controller implements ActionListener
     int rows = model.getRowCount();
     int col = model.getColumnCount();
     for(int i = 0; i<col; i++){
-      System.out.println(model.getColumnName(i));
       tablemodel.addColumn(model.getColumnName(i));
     }
-    
-    Vector row = new Vector();
-    row.add("hey");
-    row.add("hi");
+    for(int i = 0; i<rows; i++){
+      Vector row = new Vector();
+      for(int j = 0; j<col; j++){
+        row.add(model.getValueAt(i,j));
+      }
     tablemodel.addRow(row);
+    }
   }
   
   public void registerCommands(){
