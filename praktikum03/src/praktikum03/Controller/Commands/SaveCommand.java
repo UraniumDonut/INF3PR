@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import static javax.swing.JFileChooser.APPROVE_OPTION;
 import static javax.swing.JFileChooser.ERROR_OPTION;
+import static javax.swing.JFileChooser.FILES_AND_DIRECTORIES;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -32,6 +33,7 @@ public class SaveCommand implements CommandInterface{
     @Override
     public void execute() {
         view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
+        view.getjFileChooser().setFileSelectionMode(FILES_AND_DIRECTORIES);
         int ret = view.getjFileChooser().showSaveDialog(view);
         pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
         if (ret == ERROR_OPTION){
