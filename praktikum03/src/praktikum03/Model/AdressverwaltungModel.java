@@ -17,7 +17,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import praktikum03.View.Fenster;
 
 /**
  *
@@ -142,7 +145,28 @@ public class AdressverwaltungModel extends AbstractTableModel
     this.fireTableDataChanged();
     // evtl. this.fireTableStructureChanged();
   }
+  
+  
+  public void updateTable(Fenster view){
+    DefaultTableModel tablemodel = (DefaultTableModel)view.getjTable1().getModel();
+    tablemodel.setRowCount(0);
+    tablemodel.setColumnCount(0);
+    int rows = this.getRowCount();
+    int col = this.getColumnCount();
+    for(int i = 0; i<col; i++){
+      tablemodel.addColumn(this.getColumnName(i));
+    }
+    for(int i = 0; i<rows; i++){
+      var row = new Vector();
+      for(int j = 0; j<col; j++){
+        row.add(this.getValueAt(i,j));
+      }
+    tablemodel.addRow(row);
+    }
+  }
 }
+
+
 
 /**
  * unvollständig! TODO ergänzen!

@@ -8,11 +8,11 @@ package praktikum03.Controller;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
+import praktikum03.Controller.Commands.AddEntryCommand;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
 import praktikum03.Controller.Commands.OpenCommand;
+import praktikum03.Controller.Commands.RemoveEntryCommand;
 import praktikum03.Controller.Commands.SaveCommand;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
@@ -48,26 +48,19 @@ public class Controller implements ActionListener
     view.getRemoveEntry().addActionListener(this);
   }
   
-  public void setupTable(){
-    DefaultTableModel tablemodel = (DefaultTableModel)view.getjTable1().getModel();
-    int rows = model.getRowCount();
-    int col = model.getColumnCount();
-    for(int i = 0; i<col; i++){
-      tablemodel.addColumn(model.getColumnName(i));
-    }
-    for(int i = 0; i<rows; i++){
-      Vector row = new Vector();
-      for(int j = 0; j<col; j++){
-        row.add(model.getValueAt(i,j));
-      }
-    tablemodel.addRow(row);
-    }
+  public void startApp(){
+    model.updateTable(view);
+    
   }
   
   public void registerCommands(){
     invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
     invoker.addCommand(view.getExit(), new ExitCommand(view,model));
     invoker.addCommand(view.getSaveAs(), new SaveCommand(view, model));
+    invoker.addCommand(view.getAddEntry(), new AddEntryCommand(view,model));
+    invoker.addCommand(view.getjButton3(), new AddEntryCommand(view,model));
+    invoker.addCommand(view.getRemoveEntry(), new RemoveEntryCommand(view,model));
+    invoker.addCommand(view.getjButton4(), new RemoveEntryCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)
