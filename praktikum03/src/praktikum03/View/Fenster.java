@@ -406,4 +406,8 @@ public class Fenster extends javax.swing.JFrame {
     public JFileChooser getjFileChooser() {
         return jFileChooser;
     } 
+
+    public JButton getjButton5() {
+        return jButton5;
+    }
 }

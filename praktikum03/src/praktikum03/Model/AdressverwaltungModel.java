@@ -95,8 +95,9 @@ public class AdressverwaltungModel extends AbstractTableModel
   
   public void deleteRowData(int row)
   {
-    daten.remove(row);
+    ArrayList<String> rowData = daten.remove(row);
     this.fireTableDataChanged();
+    //undoData.putRowEntry(rowData);
   }
 
   public void leerenAdressEintragAnhaengen()
@@ -131,6 +132,7 @@ public class AdressverwaltungModel extends AbstractTableModel
     oos.writeObject(adressEintraegeNamen);
     oos.flush();
     oos.close();
+    //undoData.clearUndoDataHolder();
   }
   
   public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException
@@ -144,6 +146,7 @@ public class AdressverwaltungModel extends AbstractTableModel
     ois.close();
     this.fireTableDataChanged();
     // evtl. this.fireTableStructureChanged();
+    //undoData.clearUndoDataHolder();
   }
   
   
@@ -164,6 +167,10 @@ public class AdressverwaltungModel extends AbstractTableModel
     tablemodel.addRow(row);
     }
   }
+
+    public ArrayList<String> getRowData() {
+        return undoData.getRowEntry();
+    }
 }
 
 
@@ -185,5 +192,17 @@ class UndoDataHolder
   public UndoDataHolder()
   {
     stackFuerGeloeschteDatensaetze = new ArrayDeque<>();
+  }
+  
+  public void putRowEntry(ArrayList<String> str){
+    stackFuerGeloeschteDatensaetze.push(str);
+  }
+  
+  public ArrayList<String> getRowEntry(){
+    return stackFuerGeloeschteDatensaetze.pop();
+  }
+  
+  public void clearUndoDataHolder(){
+    stackFuerGeloeschteDatensaetze.clear();
   }
 }

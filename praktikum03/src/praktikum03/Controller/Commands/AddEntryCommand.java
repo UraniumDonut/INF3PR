@@ -35,7 +35,7 @@ public class AddEntryCommand implements CommandInterface
   @Override
   public void undo()
   {
-    //do stuff here! 
+      //Do stuff
   }
 
   @Override

@@ -51,6 +51,7 @@ public class Controller implements ActionListener, KeyListener
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
     view.getjTable1().addKeyListener(this);
+    view.getjButton5().addActionListener(this::undo);
   }
   
   public void startApp(){
@@ -93,5 +94,8 @@ public class Controller implements ActionListener, KeyListener
     System.out.println("key released!");
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
+  }
+  public void undo(ActionEvent evt){
+    invoker.undoCommand();     
   }
 }

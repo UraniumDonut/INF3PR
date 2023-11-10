@@ -40,6 +40,9 @@ public class CommandInvoker {
     {
       undoStack.push(command);
     }
+    else{
+      undoStack.clear();
+    }        
   }
   
   public void undoCommand()
