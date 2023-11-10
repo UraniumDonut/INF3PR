@@ -8,6 +8,8 @@ package praktikum03.Controller;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import praktikum03.Controller.Commands.AddEntryCommand;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
@@ -15,6 +17,7 @@ import praktikum03.Controller.Commands.OpenCommand;
 import praktikum03.Controller.Commands.RemoveEntryCommand;
 import praktikum03.Controller.Commands.SaveAsCommand;
 import praktikum03.Controller.Commands.SaveCommand;
+import praktikum03.Controller.Commands.finishEditCommand;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -22,7 +25,7 @@ import praktikum03.View.Fenster;
  *
  * @author Leon
  */
-public class Controller implements ActionListener
+public class Controller implements ActionListener, KeyListener
 {
   private Fenster view;
   private AdressverwaltungModel model;
@@ -47,6 +50,7 @@ public class Controller implements ActionListener
     view.getjButton4().addActionListener(this);
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
+    view.getjTable1().addKeyListener(this);
   }
   
   public void startApp(){
@@ -64,10 +68,29 @@ public class Controller implements ActionListener
     invoker.addCommand(view.getjButton4(), new RemoveEntryCommand(view,model));
     invoker.addCommand(view.getSave(), new SaveCommand(view, model));
     invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
+    invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)
   {
+    Component key = (Component)evt.getSource();
+    invoker.executeCommand(key);
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e)
+  {
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e)
+  {
+  }
+
+  @Override
+  public void keyReleased(KeyEvent evt)
+  {
+    System.out.println("key released!");
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
   }
