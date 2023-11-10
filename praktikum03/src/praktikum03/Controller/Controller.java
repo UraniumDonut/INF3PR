@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import praktikum03.Controller.Commands.AddEntryCommand;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
@@ -25,7 +27,7 @@ import praktikum03.View.Fenster;
  *
  * @author Leon
  */
-public class Controller implements ActionListener, KeyListener
+public class Controller implements ActionListener, KeyListener, CellEditorListener
 {
   private Fenster view;
   private AdressverwaltungModel model;
@@ -51,6 +53,7 @@ public class Controller implements ActionListener, KeyListener
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
     view.getjTable1().addKeyListener(this);
+    //view.getjTable1().getCellEditor().addCellEditorListener(this);
   }
   
   public void startApp(){
@@ -69,6 +72,8 @@ public class Controller implements ActionListener, KeyListener
     invoker.addCommand(view.getSave(), new SaveCommand(view, model));
     invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
     invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
+    invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
+    //invoker.addCommand(view.getjTable1().getCellEditor(), new finishEditCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)
@@ -83,8 +88,11 @@ public class Controller implements ActionListener, KeyListener
   }
 
   @Override
-  public void keyPressed(KeyEvent e)
+  public void keyPressed(KeyEvent evt)
   {
+    System.out.println("key released!");
+    Component key = (Component)evt.getSource();
+    invoker.executeCommand(key);
   }
 
   @Override
@@ -94,4 +102,18 @@ public class Controller implements ActionListener, KeyListener
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
   }
+
+  @Override
+  public void editingStopped(ChangeEvent evt)
+  {
+    System.out.println("Editing stopped!");
+    Component key = (Component)evt.getSource();
+    invoker.executeCommand(key);
+  }
+
+  @Override
+  public void editingCanceled(ChangeEvent e)
+  {
+  }
+
 }
