@@ -28,7 +28,7 @@ public class AddEntryCommand implements CommandInterface
   public void execute()
   {
     //int row = view.getjTable1().getSelectedRow();
-    //model.leerenAdressEintragAnhaengen();   //Das macht ganz komischen scheiss
+    model.leerenAdressEintragAnhaengen();   //Das macht ganz komischen scheiss
     model.updateTable(view);
   }
 

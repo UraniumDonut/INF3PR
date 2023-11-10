@@ -50,7 +50,8 @@ public class OpenCommand implements CommandInterface{
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }           
+        }
+        model.updateTable(view);
     }
 
     @Override
