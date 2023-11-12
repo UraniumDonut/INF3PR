@@ -10,8 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import praktikum03.Controller.Commands.AddEntryCommand;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
@@ -27,7 +28,7 @@ import praktikum03.View.Fenster;
  *
  * @author Leon
  */
-public class Controller implements ActionListener, KeyListener, CellEditorListener
+public class Controller implements ActionListener, KeyListener
 {
   private Fenster view;
   private AdressverwaltungModel model;
@@ -54,10 +55,13 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     view.getRemoveEntry().addActionListener(this);
     view.getjTable1().addKeyListener(this);
 <<<<<<< HEAD
+<<<<<<< HEAD
     view.getjButton5().addActionListener(this::undo);
 =======
     //view.getjTable1().getCellEditor().addCellEditorListener(this);
 >>>>>>> fbe9373246eb523311217df1a45e6610602e773f
+=======
+>>>>>>> fc4e57d4ca726e1df110d3410fe04f60c8cc2e7f
   }
   
   public void startApp(){
@@ -76,8 +80,6 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     invoker.addCommand(view.getSave(), new SaveCommand(view, model));
     invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
     invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
-    invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
-    //invoker.addCommand(view.getjTable1().getCellEditor(), new finishEditCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)
@@ -94,9 +96,9 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
   @Override
   public void keyPressed(KeyEvent evt)
   {
-    System.out.println("key released!");
+    /*System.out.println("key released!");
     Component key = (Component)evt.getSource();
-    invoker.executeCommand(key);
+    invoker.executeCommand(key);*/
   }
 
   @Override
@@ -106,6 +108,7 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
   public void undo(ActionEvent evt){
     invoker.undoCommand();     
@@ -127,3 +130,7 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
 
 >>>>>>> fbe9373246eb523311217df1a45e6610602e773f
 }
+=======
+  
+}
+>>>>>>> fc4e57d4ca726e1df110d3410fe04f60c8cc2e7f
