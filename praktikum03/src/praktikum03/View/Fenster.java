@@ -399,6 +399,11 @@ public class Fenster extends javax.swing.JFrame {
         return jButton4;
     }
 
+  public JButton getjButton5()
+  {
+    return jButton5;
+  }
+
     public JTable getjTable1() {
         return jTable1;
     }

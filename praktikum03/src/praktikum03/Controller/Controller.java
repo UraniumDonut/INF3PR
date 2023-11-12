@@ -10,9 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import praktikum03.Controller.Commands.AddEntryCommand;
 import praktikum03.Controller.Commands.CommandInvoker;
 import praktikum03.Controller.Commands.ExitCommand;
@@ -54,6 +51,7 @@ public class Controller implements ActionListener, KeyListener
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
     view.getjTable1().addKeyListener(this);
+    view.getjButton5().addActionListener(this::undo);
   }
   
   public void startApp(){
@@ -99,6 +97,10 @@ public class Controller implements ActionListener, KeyListener
     System.out.println("key released!");
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
+  }
+  
+  public void undo(ActionEvent evt){
+    invoker.undoCommand();     
   }
   
 }

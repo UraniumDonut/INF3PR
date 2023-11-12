@@ -4,6 +4,7 @@
  */
 package praktikum03.Controller.Commands;
 
+import java.util.ArrayList;
 import java.util.prefs.Preferences;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
@@ -17,6 +18,7 @@ public class RemoveEntryCommand implements CommandInterface
 
   Fenster view;
   AdressverwaltungModel model;
+  ArrayList<String> rowData;
 
   public RemoveEntryCommand(Fenster frm, AdressverwaltungModel m)
   {
@@ -28,7 +30,9 @@ public class RemoveEntryCommand implements CommandInterface
   public void execute()
   {
     model.table2model(view);
+    
     int row = view.getjTable1().getSelectedRow();
+    rowData = model.getRowData(row);
     if (model.getRowCount() > 0 && row != -1)
     {
       model.deleteRowData(row);
@@ -39,7 +43,10 @@ public class RemoveEntryCommand implements CommandInterface
   @Override
   public void undo()
   {
-    //do stuff here! 
+    int row = model.getRowCount();
+    model.leerenAdressEintragAnhaengen();
+    model.insertRowData(row, rowData);
+    model.updateTable(view);
   }
 
   @Override
