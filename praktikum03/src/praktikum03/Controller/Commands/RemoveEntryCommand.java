@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package praktikum03.Controller.Commands;
 
 import java.util.prefs.Preferences;
@@ -15,6 +14,7 @@ import praktikum03.View.Fenster;
  */
 public class RemoveEntryCommand implements CommandInterface
 {
+
   Fenster view;
   AdressverwaltungModel model;
 
@@ -27,8 +27,10 @@ public class RemoveEntryCommand implements CommandInterface
   @Override
   public void execute()
   {
+    model.table2model(view);
     int row = view.getjTable1().getSelectedRow();
-    if(model.getRowCount() > 0 && row != -1){
+    if (model.getRowCount() > 0 && row != -1)
+    {
       model.deleteRowData(row);
       model.updateTable(view);
     }

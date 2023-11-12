@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package praktikum03.Model;
 
 import java.io.BufferedInputStream;
@@ -18,6 +17,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import praktikum03.View.Fenster;
@@ -28,12 +28,13 @@ import praktikum03.View.Fenster;
  */
 public class AdressverwaltungModel extends AbstractTableModel
 {
+
   private ArrayList<ArrayList<String>> daten;
   private ArrayList<String> adressEintraegeDaten;
   private ArrayList<String> adressEintraegeNamen;
   private UndoDataHolder undoData;
   //Preferences TODO!
-  
+
   public AdressverwaltungModel()
   {
     adressEintraegeDaten = new ArrayList<>();
@@ -64,35 +65,36 @@ public class AdressverwaltungModel extends AbstractTableModel
   {
     return daten.get(row).get(col);
   }
+
   @Override
   public void setValueAt(Object value, int row, int col)
   {
-    daten.get(row).set(col, (String)value);
+    daten.get(row).set(col, (String) value);
   }
-  
+
   @Override
   public boolean isCellEditable(int row, int col)
   {
     return true;
   }
-  
+
   @Override
   public String getColumnName(int col)
   {
     return adressEintraegeNamen.get(col);
   }
-  
+
   public ArrayList<String> getRowData(int row)
   {
     return daten.get(row);
   }
-  
+
   public void insertRowData(int row, ArrayList<String> rowData)
   {
     daten.add(row, rowData);
     this.fireTableDataChanged();
   }
-  
+
   public void deleteRowData(int row)
   {
     daten.remove(row);
@@ -106,22 +108,21 @@ public class AdressverwaltungModel extends AbstractTableModel
     daten.add(adressEintraegeDaten);
     this.fireTableDataChanged();
   }
-  
-  
+
   public void spalteHinzufuegen(int col, String name)
   {
     adressEintraegeNamen.add(name);
     daten.forEach(s -> s.add(col, " "));
     this.fireTableStructureChanged();
   }
-  
+
   public void spalteLoeschen(int col)
   {
     adressEintraegeNamen.remove(col);
     daten.forEach(s -> s.remove(col));
     this.fireTableStructureChanged();
   }
-  
+
   public void datenSpeichern(File datei) throws FileNotFoundException, IOException
   {
     FileOutputStream fos = new FileOutputStream(datei);
@@ -132,56 +133,72 @@ public class AdressverwaltungModel extends AbstractTableModel
     oos.flush();
     oos.close();
   }
-  
+
   public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException
   {
     FileInputStream fis = new FileInputStream(datei);
     BufferedInputStream bis = new BufferedInputStream(fis);
     ObjectInputStream ois = new ObjectInputStream(bis);
-    daten = (ArrayList<ArrayList<String>>)ois.readObject();
-    adressEintraegeNamen = (ArrayList<String>)ois.readObject();
-    adressEintraegeDaten = daten.get(daten.size()-1);
+    daten = (ArrayList<ArrayList<String>>) ois.readObject();
+    adressEintraegeNamen = (ArrayList<String>) ois.readObject();
+    adressEintraegeDaten = daten.get(daten.size() - 1);
     ois.close();
     this.fireTableDataChanged();
     // evtl. this.fireTableStructureChanged();
   }
-  
-  
-  public void updateTable(Fenster view){
-    DefaultTableModel tablemodel = (DefaultTableModel)view.getjTable1().getModel();
+
+  public void table2model(Fenster view)
+  {
+    JTable table = view.getjTable1();
+    int rows = this.getRowCount();
+    int col = this.getColumnCount();
+    for (int i = 0; i < rows; i++)
+    {
+      for (int j = 0; j < col; j++)
+      {
+        this.setValueAt(table.getValueAt(i, j), i, j);
+      }
+    }
+  }
+
+  public void updateTable(Fenster view)
+  {
+    DefaultTableModel tablemodel = (DefaultTableModel) view.getjTable1().getModel();
     tablemodel.setRowCount(0);
     tablemodel.setColumnCount(0);
     int rows = this.getRowCount();
     int col = this.getColumnCount();
-    for(int i = 0; i<col; i++){
+    for (int i = 0; i < col; i++)
+    {
       tablemodel.addColumn(this.getColumnName(i));
     }
-    for(int i = 0; i<rows; i++){
+    for (int i = 0; i < rows; i++)
+    {
       var row = new Vector();
-      for(int j = 0; j<col; j++){
-        row.add(this.getValueAt(i,j));
+      for (int j = 0; j < col; j++)
+      {
+        row.add(this.getValueAt(i, j));
       }
-    tablemodel.addRow(row);
+      tablemodel.addRow(row);
     }
   }
 }
 
-
-
 /**
- * unvollständig! TODO ergänzen!
- * hält Undo-Daten der Command
- * bei z.B. CommandOpen müssen die Daten gelöscht werden (wie auch der Command-Stack)
+ * unvollständig! TODO ergänzen! hält Undo-Daten der Command bei z.B.
+ * CommandOpen müssen die Daten gelöscht werden (wie auch der Command-Stack)
+ *
  * @author le
  */
 class UndoDataHolder
 {
-  /** Stack = LIFO = Last In First Out
-   *  Queue = FIFO = First In First Out
+
+  /**
+   * Stack = LIFO = Last In First Out Queue = FIFO = First In First Out
    */
   private ArrayDeque<ArrayList<String>> stackFuerGeloeschteDatensaetze;
   // etc.
-  
+
   public UndoDataHolder()
   {
     stackFuerGeloeschteDatensaetze = new ArrayDeque<>();

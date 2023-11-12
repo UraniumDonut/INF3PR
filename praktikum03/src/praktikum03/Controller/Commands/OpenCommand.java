@@ -20,48 +20,63 @@ import praktikum03.View.Fenster;
  *
  * @author basti
  */
-public class OpenCommand implements CommandInterface{
-    private Fenster view;
-    private AdressverwaltungModel model;
-    private Preferences pref;
-    
-    public OpenCommand(Fenster frm, AdressverwaltungModel m){
-        view = frm;
-        model = m;
-        pref = Preferences.userNodeForPackage(this.getClass());
-    }
-    @Override
-    public void execute() {
-        view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
-        view.getjFileChooser().setFileSelectionMode(FILES_ONLY);
-        int ret = view.getjFileChooser().showOpenDialog(view);
-        pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
-        if (ret == ERROR_OPTION){
-            //throw new Exception("Open failed.");
-        }
-        else if (ret == APPROVE_OPTION){
-            File file = view.getjFileChooser().getSelectedFile();
-            try {
-                model.datenLesen(file);
-                pref.put("CURRENT_FILE", file.getPath());
-                view.getFileName().setText(file.getPath());
-            } catch (IOException ex) {
-                Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        model.updateTable(view);
-    }
+public class OpenCommand implements CommandInterface
+{
 
-    @Override
-    public void undo() {
-        throw new UnsupportedOperationException("Command not redoable."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  private Fenster view;
+  private AdressverwaltungModel model;
+  private Preferences pref;
 
-    @Override
-    public boolean isUndoable() {
-        return false;
+  public OpenCommand(Fenster frm, AdressverwaltungModel m)
+  {
+    view = frm;
+    model = m;
+    pref = Preferences.userNodeForPackage(this.getClass());
+  }
+
+  @Override
+  public void execute()
+  {
+    model.table2model(view);
+    view.getjFileChooser().setCurrentDirectory(new File(pref.get("DIRECTORY", ".")));
+    view.getjFileChooser().setFileSelectionMode(FILES_ONLY);
+    int ret = view.getjFileChooser().showOpenDialog(view);
+    pref.put("DIRECTORY", view.getjFileChooser().getCurrentDirectory().getPath());
+    if (ret == ERROR_OPTION)
+    {
+      //throw new Exception("Open failed.");
     }
-    
+    else if (ret == APPROVE_OPTION)
+    {
+      File file = view.getjFileChooser().getSelectedFile();
+      try
+      {
+        model.datenLesen(file);
+        pref.put("CURRENT_FILE", file.getPath());
+        view.getFileName().setText(file.getPath());
+      }
+      catch (IOException ex)
+      {
+        Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      catch (ClassNotFoundException ex)
+      {
+        Logger.getLogger(OpenCommand.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+    model.updateTable(view);
+  }
+
+  @Override
+  public void undo()
+  {
+    throw new UnsupportedOperationException("Command not redoable."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  }
+
+  @Override
+  public boolean isUndoable()
+  {
+    return false;
+  }
+
 }
