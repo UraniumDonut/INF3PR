@@ -24,6 +24,7 @@ public class Start {
         Fenster frm = new Fenster();
         AdressverwaltungModel model = new AdressverwaltungModel();
         Controller controller = new Controller(frm, model);
+        frm.getjTable1().setModel(model);
         controller.startApp();
         controller.registerEvents();
         controller.registerCommands();

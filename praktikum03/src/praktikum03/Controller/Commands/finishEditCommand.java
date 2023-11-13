@@ -31,26 +31,18 @@ public class finishEditCommand implements CommandInterface {
      */
     @Override
     public void execute() {
-        JTable table = view.getjTable1();
-        int rows = model.getRowCount();
-        int col = model.getColumnCount();
-        model.putRowUndoStack(view.getjTable1().getSelectedRow());
-        model.table2model(view);
-        model.updateTable(view);
+        /*model.putRowUndoStack(view.getjTable1().getSelectedRow());*/
     }
 
     @Override
     public void undo() {
-        model.table2model(view);
-        RowData rd = new RowData();
-        rd = model.getRowUndoStack();
+        /*RowData rd = model.getRowUndoStack();
         model.deleteRowData(rd.idx);
-        model.insertRowData(rd.idx, rd.str);
-        model.updateTable(view);
+        model.insertRowData(rd.idx, rd.str);*/
     }
 
     @Override
     public boolean isUndoable() {
-        return true;
+        return false;
     }
 }

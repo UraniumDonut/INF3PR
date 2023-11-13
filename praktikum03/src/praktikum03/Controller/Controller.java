@@ -8,6 +8,8 @@ package praktikum03.Controller;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.event.CellEditorListener;
@@ -28,7 +30,7 @@ import praktikum03.View.Fenster;
  * Controller für die Adressverwaltung
  * @author Leon
  */
-public class Controller implements ActionListener, KeyListener, CellEditorListener
+public class Controller implements ActionListener, KeyListener
 {
   private Fenster view;
   private AdressverwaltungModel model;
@@ -102,6 +104,9 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
   @Override
   public void keyPressed(KeyEvent evt)
   {
+    System.out.println("key pressed!");
+    Component key = (Component)evt.getSource();
+    invoker.executeCommand(key);
   }
 
   /**
@@ -117,23 +122,6 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
   }
   public void undo(ActionEvent evt){
     invoker.undoCommand();     
-  }
-
-  /**
-   * Wird aufgerufen, wenn eine Zelle in der Tabelle nicht mehr bearbeitet wird
-   * @param evt Event, das ausgelöst wurde
-   */
-  @Override
-  public void editingStopped(ChangeEvent evt)
-  {
-    System.out.println("Editing stopped!");
-    Component key = (Component)evt.getSource();
-    invoker.executeCommand(key);
-  }
-
-  @Override
-  public void editingCanceled(ChangeEvent e)
-  {
   }
 }
 

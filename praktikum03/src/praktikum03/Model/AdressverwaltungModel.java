@@ -219,6 +219,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
      * @param view View, aus der die Daten gelesen werden sollen
      */
     public void table2model(Fenster view) {
+      /*
         JTable table = view.getjTable1();
         int rows = this.getRowCount();
         int col = this.getColumnCount();
@@ -226,7 +227,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
             for (int j = 0; j < col; j++) {
                 this.setValueAt(table.getValueAt(i, j), i, j);
             }
-        }
+        }*/
     }
 
     /**
@@ -235,6 +236,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
      * @param view View, in die die Daten geschrieben werden sollen
      */
     public void updateTable(Fenster view) {
+      /*
         DefaultTableModel tablemodel = (DefaultTableModel) view.getjTable1().getModel();
         tablemodel.setRowCount(0);
         tablemodel.setColumnCount(0);
@@ -249,7 +251,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
                 row.add(this.getValueAt(i, j));
             }
             tablemodel.addRow(row);
-        }
+        }*/
     }
 
     /**
