@@ -7,7 +7,7 @@ package praktikum03.Model;
 import java.util.ArrayList;
 
 /**
- *
+ * RowData Klasse für die Undo/Redo Funktion, speichert die Daten einer Zeile
  * @author basti
  */
 public class RowData{

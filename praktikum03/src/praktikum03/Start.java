@@ -13,12 +13,12 @@ import praktikum03.View.Fenster;
 
 /**
  *
- * @author basti
+ * @author Sebastian und Leon
  */
 public class Start {
 
     /**
-     * @param args the command line arguments
+     * Creates new Start Object with MVC
      */
     public Start() {
         Fenster frm = new Fenster();
@@ -30,6 +30,10 @@ public class Start {
         frm.setVisible(true);
     }
 
+    /**
+     * Main Methode, welche bei Programmstart aufgerufen wird
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

@@ -25,7 +25,7 @@ import praktikum03.View.Fenster;
 
 
 /**
- *
+ * Controller für die Adressverwaltung
  * @author Leon
  */
 public class Controller implements ActionListener, KeyListener, CellEditorListener
@@ -41,7 +41,10 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     this.invoker = new CommandInvoker();
   }
 
-  
+  /**
+   * Registriert die Events der View
+   */
+
   public void registerEvents(){
     view.getOpen().addActionListener(this);
     view.getSave().addActionListener(this);
@@ -57,10 +60,16 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     view.getjButton5().addActionListener(this::undo);
   }
   
+  /**
+   * Wird beim Start der Anwendung genutzt, um den Inhalt der Tabelle zu aktualisieren
+   */
   public void startApp(){
     model.updateTable(view);
   }
-  
+
+  /**
+   * Registriert die Commands der View im CommandInvoker
+   */
   public void registerCommands(){
     invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
     invoker.addCommand(view.getExit(), new ExitCommand(view,model));
@@ -73,12 +82,17 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
     invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
   }
+  /**
+   * Wird aufgerufen, wenn ein Knopf oder Menüpunkt gedrückt wurde
+   * @param evt Event, das ausgelöst wurde
+   */
   @Override
   public void actionPerformed(ActionEvent evt)
   {
     Component key = (Component)evt.getSource();
     invoker.executeCommand(key);
   }
+
 
   @Override
   public void keyTyped(KeyEvent e)
@@ -88,11 +102,12 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
   @Override
   public void keyPressed(KeyEvent evt)
   {
-    System.out.println("key released!");
-    Component key = (Component)evt.getSource();
-    invoker.executeCommand(key);
   }
 
+  /**
+   * Wird aufgerufen, wenn eine Taste losgelassen wird
+   * @param evt Event, das ausgelöst wurde
+   */
   @Override
   public void keyReleased(KeyEvent evt)
   {
@@ -104,6 +119,10 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     invoker.undoCommand();     
   }
 
+  /**
+   * Wird aufgerufen, wenn eine Zelle in der Tabelle nicht mehr bearbeitet wird
+   * @param evt Event, das ausgelöst wurde
+   */
   @Override
   public void editingStopped(ChangeEvent evt)
   {
