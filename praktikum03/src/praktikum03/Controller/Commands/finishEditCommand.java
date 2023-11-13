@@ -27,6 +27,9 @@ public class finishEditCommand implements CommandInterface
     model = m;
   }
 
+  /**
+   * Speichert die Änderungen in der Tabelle bei Drücken der Enter-Taste
+   */
   @Override
   public void execute()
   {

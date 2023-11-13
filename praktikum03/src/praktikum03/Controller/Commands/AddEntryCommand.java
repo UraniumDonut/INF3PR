@@ -24,7 +24,10 @@ public class AddEntryCommand implements CommandInterface
     view = frm;
     model = m;
   }
-  
+
+  /**
+   * Fügt einen neuen Eintrag in die Tabelle ein
+   */
   @Override
   public void execute()
   {

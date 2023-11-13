@@ -24,6 +24,9 @@ public class RemoveEntryCommand implements CommandInterface
     model = m;
   }
 
+  /**
+   * Löscht einen Eintrag aus der Tabelle
+   */
   @Override
   public void execute()
   {
