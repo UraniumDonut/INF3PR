@@ -48,6 +48,7 @@ public class SaveCommand implements CommandInterface
       {
         model.datenSpeichern(file);
         view.getFileName().setText(file.getPath());
+        model.clearUndoStack();
       }
       catch (IOException ex)
       {

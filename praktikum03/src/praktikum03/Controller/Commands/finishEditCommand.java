@@ -7,6 +7,7 @@ package praktikum03.Controller.Commands;
 import java.util.prefs.Preferences;
 import javax.swing.JTable;
 import praktikum03.Model.AdressverwaltungModel;
+import praktikum03.Model.RowData;
 import praktikum03.View.Fenster;
 
 /**
@@ -29,6 +30,16 @@ public class finishEditCommand implements CommandInterface
   @Override
   public void execute()
   {
+    JTable table = view.getjTable1();
+        int rows = model.getRowCount();
+        int col = model.getColumnCount();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < col; j++) {
+                if (!table.getValueAt(i, j).equals(model.getValueAt(i, j))){
+                    model.putRowUndoStack(i);
+                }
+            }
+        }
     model.table2model(view);
     model.updateTable(view);
   }
@@ -36,7 +47,12 @@ public class finishEditCommand implements CommandInterface
   @Override
   public void undo()
   {
-    //do stuff here! 
+    model.table2model(view);
+    RowData rd = new RowData();
+    rd = model.getRowUndoStack();
+    model.deleteRowData(rd.idx);
+    model.insertRowData(rd.idx, rd.str);
+    model.updateTable(view);              
   }
 
   @Override

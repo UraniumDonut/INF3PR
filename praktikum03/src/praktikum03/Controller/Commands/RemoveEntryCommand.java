@@ -4,9 +4,8 @@
  */
 package praktikum03.Controller.Commands;
 
-import java.util.ArrayList;
-import java.util.prefs.Preferences;
 import praktikum03.Model.AdressverwaltungModel;
+import praktikum03.Model.RowData;
 import praktikum03.View.Fenster;
 
 /**
@@ -32,6 +31,7 @@ public class RemoveEntryCommand implements CommandInterface
     int row = view.getjTable1().getSelectedRow();
     if (model.getRowCount() > 0 && row != -1)
     {
+      model.putRowUndoStack(row);
       model.deleteRowData(row);
       model.updateTable(view);
     }
@@ -40,12 +40,10 @@ public class RemoveEntryCommand implements CommandInterface
   @Override
   public void undo()
   {
-      /*
-    int row = view.getjTable1().getSelectedRow();
-    model.leerenAdressEintragAnhaengen();
-    var rowData = model.getRowData();
-    model.insertRowData(row, rowData);
-*/
+    RowData rowData = new RowData();
+    rowData = model.getRowUndoStack();
+    model.insertRowData(rowData.idx, rowData.str);
+    model.updateTable(view);
   }
 
   @Override

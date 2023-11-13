@@ -37,7 +37,8 @@ public class AddEntryCommand implements CommandInterface
   @Override
   public void undo()
   {
-      //Do stuff
+      model.deleteRowData(model.getRowCount()-1);
+      model.updateTable(view);
   }
 
   @Override

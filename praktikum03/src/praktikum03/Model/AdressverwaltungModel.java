@@ -26,168 +26,151 @@ import praktikum03.View.Fenster;
  *
  * @author le
  */
-public class AdressverwaltungModel extends AbstractTableModel
-{
+public class AdressverwaltungModel extends AbstractTableModel {
 
-  private ArrayList<ArrayList<String>> daten;
-  private ArrayList<String> adressEintraegeDaten;
-  private ArrayList<String> adressEintraegeNamen;
-  private UndoDataHolder undoData;
-  //Preferences TODO!
+    private ArrayList<ArrayList<String>> daten;
+    private ArrayList<String> adressEintraegeDaten;
+    private ArrayList<String> adressEintraegeNamen;
+    private UndoDataHolder undoData;
+    //Preferences TODO!
 
-  public AdressverwaltungModel()
-  {
-    adressEintraegeDaten = new ArrayList<>();
-    adressEintraegeNamen = new ArrayList<>();
-    daten = new ArrayList<>();
-    adressEintraegeNamen.add("Name");
-    adressEintraegeDaten.add("Lehner");
-    adressEintraegeNamen.add("Telefon");
-    adressEintraegeDaten.add("122345");
-    daten.add(adressEintraegeDaten);
-    undoData = new UndoDataHolder();
-  }
-
-  @Override
-  public int getRowCount()
-  {
-    return daten.size();
-  }
-
-  @Override
-  public int getColumnCount()
-  {
-    return adressEintraegeDaten.size();
-  }
-
-  @Override
-  public Object getValueAt(int row, int col)
-  {
-    return daten.get(row).get(col);
-  }
-
-  @Override
-  public void setValueAt(Object value, int row, int col)
-  {
-    daten.get(row).set(col, (String) value);
-  }
-
-  @Override
-  public boolean isCellEditable(int row, int col)
-  {
-    return true;
-  }
-
-  @Override
-  public String getColumnName(int col)
-  {
-    return adressEintraegeNamen.get(col);
-  }
-
-  public ArrayList<String> getRowData(int row)
-  {
-    return daten.get(row);
-  }
-
-  public void insertRowData(int row, ArrayList<String> rowData)
-  {
-    daten.add(row, rowData);
-    this.fireTableDataChanged();
-  }
-
-  public void deleteRowData(int row)
-  {
-    ArrayList<String> rowData = daten.remove(row);
-    this.fireTableDataChanged();
-    //undoData.putRowEntry(rowData);
-  }
-
-  public void leerenAdressEintragAnhaengen()
-  {
-    adressEintraegeDaten = new ArrayList<>();
-    adressEintraegeNamen.forEach(s -> adressEintraegeDaten.add(s));
-    daten.add(adressEintraegeDaten);
-    this.fireTableDataChanged();
-  }
-
-  public void spalteHinzufuegen(int col, String name)
-  {
-    adressEintraegeNamen.add(name);
-    daten.forEach(s -> s.add(col, " "));
-    this.fireTableStructureChanged();
-  }
-
-  public void spalteLoeschen(int col)
-  {
-    adressEintraegeNamen.remove(col);
-    daten.forEach(s -> s.remove(col));
-    this.fireTableStructureChanged();
-  }
-
-  public void datenSpeichern(File datei) throws FileNotFoundException, IOException
-  {
-    FileOutputStream fos = new FileOutputStream(datei);
-    BufferedOutputStream bos = new BufferedOutputStream(fos);
-    ObjectOutputStream oos = new ObjectOutputStream(bos);
-    oos.writeObject(daten);
-    oos.writeObject(adressEintraegeNamen);
-    oos.flush();
-    oos.close();
-    //undoData.clearUndoDataHolder();
-  }
-
-  public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException
-  {
-    FileInputStream fis = new FileInputStream(datei);
-    BufferedInputStream bis = new BufferedInputStream(fis);
-    ObjectInputStream ois = new ObjectInputStream(bis);
-    daten = (ArrayList<ArrayList<String>>) ois.readObject();
-    adressEintraegeNamen = (ArrayList<String>) ois.readObject();
-    adressEintraegeDaten = daten.get(daten.size() - 1);
-    ois.close();
-    this.fireTableDataChanged();
-    // evtl. this.fireTableStructureChanged();
-    //undoData.clearUndoDataHolder();
-  }
-
-  public void table2model(Fenster view)
-  {
-    JTable table = view.getjTable1();
-    int rows = this.getRowCount();
-    int col = this.getColumnCount();
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < col; j++)
-      {
-        this.setValueAt(table.getValueAt(i, j), i, j);
-      }
+    public AdressverwaltungModel() {
+        adressEintraegeDaten = new ArrayList<>();
+        adressEintraegeNamen = new ArrayList<>();
+        daten = new ArrayList<>();
+        adressEintraegeNamen.add("Name");
+        adressEintraegeDaten.add("Lehner");
+        adressEintraegeNamen.add("Telefon");
+        adressEintraegeDaten.add("122345");
+        daten.add(adressEintraegeDaten);
+        undoData = new UndoDataHolder();
     }
-  }
 
-  public void updateTable(Fenster view)
-  {
-    DefaultTableModel tablemodel = (DefaultTableModel) view.getjTable1().getModel();
-    tablemodel.setRowCount(0);
-    tablemodel.setColumnCount(0);
-    int rows = this.getRowCount();
-    int col = this.getColumnCount();
-    for (int i = 0; i < col; i++)
-    {
-      tablemodel.addColumn(this.getColumnName(i));
+    @Override
+    public int getRowCount() {
+        return daten.size();
     }
-    for (int i = 0; i < rows; i++)
-    {
-      var row = new Vector();
-      for (int j = 0; j < col; j++)
-      {
-        row.add(this.getValueAt(i, j));
-      }
-      tablemodel.addRow(row);
-    }
-  }
 
-    public ArrayList<String> getRowData() {
+    @Override
+    public int getColumnCount() {
+        return adressEintraegeDaten.size();
+    }
+
+    @Override
+    public Object getValueAt(int row, int col) {
+        return daten.get(row).get(col);
+    }
+
+    @Override
+    public void setValueAt(Object value, int row, int col) {
+        daten.get(row).set(col, (String) value);
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        return true;
+    }
+
+    @Override
+    public String getColumnName(int col) {
+        return adressEintraegeNamen.get(col);
+    }
+
+    public ArrayList<String> getRowData(int row) {
+        return daten.get(row);
+    }
+
+    public void insertRowData(int row, ArrayList<String> rowData) {
+        daten.add(row, rowData);
+        this.fireTableDataChanged();
+    }
+
+    public void deleteRowData(int row) {
+        ArrayList<String> rowData = daten.remove(row);
+        this.fireTableDataChanged();
+    }
+
+    public void leerenAdressEintragAnhaengen() {
+        adressEintraegeDaten = new ArrayList<>();
+        adressEintraegeNamen.forEach(s -> adressEintraegeDaten.add(s));
+        daten.add(adressEintraegeDaten);
+        this.fireTableDataChanged();
+    }
+
+    public void spalteHinzufuegen(int col, String name) {
+        adressEintraegeNamen.add(name);
+        daten.forEach(s -> s.add(col, " "));
+        this.fireTableStructureChanged();
+    }
+
+    public void spalteLoeschen(int col) {
+        adressEintraegeNamen.remove(col);
+        daten.forEach(s -> s.remove(col));
+        this.fireTableStructureChanged();
+    }
+
+    public void datenSpeichern(File datei) throws FileNotFoundException, IOException {
+        FileOutputStream fos = new FileOutputStream(datei);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+        oos.writeObject(daten);
+        oos.writeObject(adressEintraegeNamen);
+        oos.flush();
+        oos.close();
+    }
+
+    public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(datei);
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        daten = (ArrayList<ArrayList<String>>) ois.readObject();
+        adressEintraegeNamen = (ArrayList<String>) ois.readObject();
+        adressEintraegeDaten = daten.get(daten.size() - 1);
+        ois.close();
+        this.fireTableDataChanged();
+        // evtl. this.fireTableStructureChanged();
+    }
+
+    public void table2model(Fenster view) {
+        JTable table = view.getjTable1();
+        int rows = this.getRowCount();
+        int col = this.getColumnCount();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < col; j++) {
+                this.setValueAt(table.getValueAt(i, j), i, j);
+            }
+        }
+    }
+
+    public void updateTable(Fenster view) {
+        DefaultTableModel tablemodel = (DefaultTableModel) view.getjTable1().getModel();
+        tablemodel.setRowCount(0);
+        tablemodel.setColumnCount(0);
+        int rows = this.getRowCount();
+        int col = this.getColumnCount();
+        for (int i = 0; i < col; i++) {
+            tablemodel.addColumn(this.getColumnName(i));
+        }
+        for (int i = 0; i < rows; i++) {
+            var row = new Vector();
+            for (int j = 0; j < col; j++) {
+                row.add(this.getValueAt(i, j));
+            }
+            tablemodel.addRow(row);
+        }
+    }
+
+    public RowData getRowUndoStack() {
         return undoData.getRowEntry();
+    }
+    
+    public void putRowUndoStack(int row){
+        RowData rd = new RowData(row, new ArrayList(this.getRowData(row)));
+        undoData.putRowEntry(rd);
+    }
+    
+    public void clearUndoStack(){
+        undoData.clearUndoDataHolder();
     }
 }
 
@@ -197,29 +180,33 @@ public class AdressverwaltungModel extends AbstractTableModel
  *
  * @author le
  */
-class UndoDataHolder
-{
+class UndoDataHolder {
 
-  /**
-   * Stack = LIFO = Last In First Out Queue = FIFO = First In First Out
-   */
-  private ArrayDeque<ArrayList<String>> stackFuerGeloeschteDatensaetze;
-  // etc.
+    /**
+     * Stack = LIFO = Last In First Out Queue = FIFO = First In First Out
+     */
+    private ArrayDeque<ArrayList<String>> stackFuerGeloeschteDatensaetze;
+    private ArrayDeque<Integer> stackForIndex;
+    // etc.
 
-  public UndoDataHolder()
-  {
-    stackFuerGeloeschteDatensaetze = new ArrayDeque<>();
-  }
-  
-  public void putRowEntry(ArrayList<String> str){
-    stackFuerGeloeschteDatensaetze.push(str);
-  }
-  
-  public ArrayList<String> getRowEntry(){
-    return stackFuerGeloeschteDatensaetze.pop();
-  }
-  
-  public void clearUndoDataHolder(){
-    stackFuerGeloeschteDatensaetze.clear();
-  }
+    public UndoDataHolder() {
+        stackFuerGeloeschteDatensaetze = new ArrayDeque<>();
+        stackForIndex = new ArrayDeque<>();
+    }
+
+    public void putRowEntry(RowData rd) {
+        stackFuerGeloeschteDatensaetze.push(rd.str);
+        stackForIndex.push(rd.idx);
+    }
+
+    public RowData getRowEntry() {
+        RowData rd = new RowData();
+        rd.str = stackFuerGeloeschteDatensaetze.pop();
+        rd.idx = stackForIndex.pop();
+        return rd;
+    }
+
+    public void clearUndoDataHolder() {
+        stackFuerGeloeschteDatensaetze.clear();
+    }
 }

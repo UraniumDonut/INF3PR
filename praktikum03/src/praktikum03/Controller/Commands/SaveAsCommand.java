@@ -64,6 +64,7 @@ public class SaveAsCommand implements CommandInterface
         model.datenSpeichern(file);
         pref.put("CURRENT_FILE", file.toString());
         view.getFileName().setText(file.getPath());
+        model.clearUndoStack();
       }
       catch (IOException ex)
       {

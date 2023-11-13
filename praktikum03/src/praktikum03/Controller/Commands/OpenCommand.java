@@ -19,6 +19,7 @@ import praktikum03.View.Fenster;
 /**
  *
  * @author basti
+ * @param view
  */
 public class OpenCommand implements CommandInterface
 {
@@ -54,6 +55,7 @@ public class OpenCommand implements CommandInterface
         model.datenLesen(file);
         pref.put("CURRENT_FILE", file.getPath());
         view.getFileName().setText(file.getPath());
+        model.clearUndoStack();
       }
       catch (IOException ex)
       {
