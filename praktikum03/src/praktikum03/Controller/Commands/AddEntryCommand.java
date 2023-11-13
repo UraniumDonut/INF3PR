@@ -9,7 +9,7 @@ import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
 /**
- *
+ * Fügt einen neuen Eintrag in die Tabelle ein
  * @author Leon
  */
 public class AddEntryCommand implements CommandInterface
@@ -24,7 +24,7 @@ public class AddEntryCommand implements CommandInterface
     view = frm;
     model = m;
   }
-
+  
   @Override
   public void execute()
   {

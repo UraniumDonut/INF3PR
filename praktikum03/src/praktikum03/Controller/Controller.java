@@ -55,14 +55,10 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     view.getRemoveEntry().addActionListener(this);
     view.getjTable1().addKeyListener(this);
     view.getjButton5().addActionListener(this::undo);
-
-    //view.getjTable1().getCellEditor().addCellEditorListener(this);
-
   }
   
   public void startApp(){
     model.updateTable(view);
-    
   }
   
   public void registerCommands(){
@@ -76,7 +72,6 @@ public class Controller implements ActionListener, KeyListener, CellEditorListen
     invoker.addCommand(view.getSave(), new SaveCommand(view, model));
     invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
     invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
-    //invoker.addCommand(view.getjTable1().getCellEditor(), new finishEditCommand(view,model));
   }
   @Override
   public void actionPerformed(ActionEvent evt)

@@ -11,7 +11,7 @@ import praktikum03.Model.RowData;
 import praktikum03.View.Fenster;
 
 /**
- *
+ * Speichert die Änderungen in der Tabelle bei Drücken der Enter-Taste
  * @author Leon
  */
 public class finishEditCommand implements CommandInterface

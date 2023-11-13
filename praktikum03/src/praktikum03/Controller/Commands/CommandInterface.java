@@ -5,7 +5,7 @@
 package praktikum03.Controller.Commands;
 
 /**
- *
+ * Repräsentiert das Command Interface, welches von den Commands genutzt wird.
  * @author basti
  */
 public interface CommandInterface {

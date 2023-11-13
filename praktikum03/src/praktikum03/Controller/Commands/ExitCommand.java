@@ -8,7 +8,7 @@ import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
 /**
- *
+ * Schließt das Programm
  * @author Leon
  */
 public class ExitCommand implements CommandInterface

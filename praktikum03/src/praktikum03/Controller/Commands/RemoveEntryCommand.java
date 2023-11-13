@@ -9,7 +9,7 @@ import praktikum03.Model.RowData;
 import praktikum03.View.Fenster;
 
 /**
- *
+ * Löscht einen Eintrag aus der Tabelle
  * @author Leon
  */
 public class RemoveEntryCommand implements CommandInterface
