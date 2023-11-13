@@ -17,9 +17,8 @@ import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
 /**
- *
+ * Öffnet eine neue Datei
  * @author basti
- * @param view
  */
 public class OpenCommand implements CommandInterface
 {
