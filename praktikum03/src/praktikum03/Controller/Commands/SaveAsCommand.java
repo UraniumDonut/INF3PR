@@ -29,10 +29,10 @@ public class SaveAsCommand implements CommandInterface
   private Preferences pref;
   
 /**
- * 
+ * Konstruktor für SaveAsCommand
  * @param v Ansichts Element der MVC-Struktur
  * @param m Modell Element der MVC-Struktur
- * @Konstruktor für SaveAsCommand
+ * 
  */
   public SaveAsCommand(Fenster v, AdressverwaltungModel m)
   {
