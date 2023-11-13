@@ -24,6 +24,7 @@ import praktikum03.View.Fenster;
 
 /**
  * Model für die Adressverwaltung
+ *
  * @author le, basti, Leon
  */
 public class AdressverwaltungModel extends AbstractTableModel {
@@ -32,7 +33,6 @@ public class AdressverwaltungModel extends AbstractTableModel {
     private ArrayList<String> adressEintraegeDaten;
     private ArrayList<String> adressEintraegeNamen;
     private UndoDataHolder undoData;
-
 
     public AdressverwaltungModel() {
         adressEintraegeDaten = new ArrayList<>();
@@ -48,6 +48,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt die Anzahl der Zeilen zurück
+     *
      * @return Anzahl der Zeilen
      */
     @Override
@@ -57,6 +58,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt die Anzahl der Spalten zurück
+     *
      * @return Anzahl der Spalten
      */
     @Override
@@ -66,6 +68,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt den Wert an der Stelle (row, col) zurück
+     *
      * @param row Zeile
      * @param col Spalte
      * @return Wert an der Stelle (row, col)
@@ -77,6 +80,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Setzt den Wert an der Stelle (row, col) auf value
+     *
      * @param value neuer Wert
      * @param row Zeile
      * @param col Spalte
@@ -88,6 +92,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt zurück, ob die Zelle an der Stelle (row, col) editierbar ist
+     *
      * @param row Zeile
      * @param col Spalte
      * @return true, wenn die Zelle editierbar ist, sonst false
@@ -99,6 +104,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt den Namen der Spalte col zurück
+     *
      * @param col Spalte
      * @return Name der Spalte col
      */
@@ -109,6 +115,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt die Daten der Zeile row zurück
+     *
      * @param row Zeile
      * @return Daten der Zeile row
      */
@@ -118,6 +125,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Fügt eine neue Zeile mit den Daten rowData an der Stelle row ein
+     *
      * @param row Zeile
      * @param rowData Daten der neuen Zeile
      */
@@ -128,6 +136,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Löscht die Zeile row
+     *
      * @param row Zeile
      */
     public void deleteRowData(int row) {
@@ -147,6 +156,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Fügt eine neue Spalte mit dem Namen name an der Stelle col ein
+     *
      * @param col Spalte
      * @param name Name der Spalte
      */
@@ -158,6 +168,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Löscht die Spalte col
+     *
      * @param col Spalte
      */
     public void spalteLoeschen(int col) {
@@ -168,6 +179,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Speichert die Daten in der Datei datei
+     *
      * @param datei Datei, in der die Daten gespeichert werden sollen
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      * @throws IOException Wenn ein Fehler beim Schreiben auftritt
@@ -184,6 +196,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Liest die Daten aus der Datei datei
+     *
      * @param datei Datei, aus der die Daten gelesen werden sollen
      * @throws FileNotFoundException Wenn die Datei nicht gefunden wurde
      * @throws IOException Wenn ein Fehler beim Lesen auftritt
@@ -202,6 +215,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Kopiert die Daten aus der Tabelle in das Model
+     *
      * @param view View, aus der die Daten gelesen werden sollen
      */
     public void table2model(Fenster view) {
@@ -217,6 +231,7 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Kopiert die Daten aus dem Model in die Tabelle
+     *
      * @param view View, in die die Daten geschrieben werden sollen
      */
     public void updateTable(Fenster view) {
@@ -239,38 +254,40 @@ public class AdressverwaltungModel extends AbstractTableModel {
 
     /**
      * Gibt die neuste Row aus dem UndoStack zurück
+     *
      * @return neuste Row aus dem UndoStack
      */
     public RowData getRowUndoStack() {
         return undoData.getRowEntry();
     }
-    
+
     /**
      * Fügt eine Row in den UndoStack ein
-     *  @param row Die einzufügende Zeile
+     *
+     * @param row Die einzufügende Zeile
      */
-    public void putRowUndoStack(int row){
+    public void putRowUndoStack(int row) {
         RowData rd = new RowData(row, new ArrayList(this.getRowData(row)));
         undoData.putRowEntry(rd);
     }
-    
+
     /**
      * Löscht den UndoStack
      */
-    public void clearUndoStack(){
+    public void clearUndoStack() {
         undoData.clearUndoDataHolder();
     }
 }
 
 /**
  * Klasse für die Undo/Redo Funktion, speichert die Daten einer Zeile
+ *
  * @author le
  */
 class UndoDataHolder {
 
     private ArrayDeque<ArrayList<String>> stackFuerGeloeschteDatensaetze;
     private ArrayDeque<Integer> stackForIndex;
-
 
     public UndoDataHolder() {
         stackFuerGeloeschteDatensaetze = new ArrayDeque<>();
@@ -279,6 +296,7 @@ class UndoDataHolder {
 
     /**
      * Speichert die Daten einer Zeile
+     *
      * @param rd Daten einer Zeile
      */
     public void putRowEntry(RowData rd) {
@@ -288,6 +306,7 @@ class UndoDataHolder {
 
     /**
      * Gibt die Daten einer Zeile zurück
+     *
      * @return Daten einer Zeile
      */
     public RowData getRowEntry() {
