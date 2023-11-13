@@ -18,6 +18,8 @@ import praktikum03.View.Fenster;
 /**
  *
  * @author basti
+ * Die Klasse enthält das Kommando für das Speichern der der Daten in einem 
+ * File, dass über den JFileChooser selektiert wird. Erbt von Command Interface.
  */
 public class SaveAsCommand implements CommandInterface
 {
@@ -25,7 +27,13 @@ public class SaveAsCommand implements CommandInterface
   private Fenster view;
   private AdressverwaltungModel model;
   private Preferences pref;
-
+  
+/**
+ * 
+ * @param v Ansichts Element der MVC-Struktur
+ * @param m Modell Element der MVC-Struktur
+ * @Konstruktor für SaveAsCommand
+ */
   public SaveAsCommand(Fenster v, AdressverwaltungModel m)
   {
     view = v;
@@ -33,6 +41,10 @@ public class SaveAsCommand implements CommandInterface
     pref = Preferences.userNodeForPackage(this.getClass());
   }
 
+  /**
+  *Führt den Aufruf der des SaveAs aus. Zunächst wird ein Dateiauswahlfenster geöffnet, dann werden die Daten in dieses abgespeichert.
+  * 
+  */
   @Override
   public void execute()
   {
@@ -52,7 +64,7 @@ public class SaveAsCommand implements CommandInterface
         System.out.println("Existiert nicht!");
         try
         {
-          file.createNewFile();
+            file.createNewFile();
         }
         catch (IOException ex)
         {
@@ -74,12 +86,19 @@ public class SaveAsCommand implements CommandInterface
 
   }
 
+  /**
+   * Überschreibt die Funktion undo des CommandInterfaces, wirft aber nur eine Exception, da hier kein undo vorgesehen ist.
+   */
   @Override
   public void undo()
   {
-    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    throw new UnsupportedOperationException("Not supported for the last command."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
   }
 
+  /**
+   * Abfrage, ob für das Kommando ein Undo vorgesehen ist
+   * @return Boolean, der beschreibt, ob ein Undo vorgesehen ist.
+   */
   @Override
   public boolean isUndoable()
   {
