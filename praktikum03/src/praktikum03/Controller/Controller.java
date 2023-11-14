@@ -21,7 +21,6 @@ import praktikum03.Controller.Commands.OpenCommand;
 import praktikum03.Controller.Commands.RemoveEntryCommand;
 import praktikum03.Controller.Commands.SaveAsCommand;
 import praktikum03.Controller.Commands.SaveCommand;
-import praktikum03.Controller.Commands.finishEditCommand;
 import praktikum03.Model.AdressverwaltungModel;
 import praktikum03.View.Fenster;
 
@@ -30,7 +29,7 @@ import praktikum03.View.Fenster;
  * Controller für die Adressverwaltung
  * @author Leon
  */
-public class Controller implements ActionListener, KeyListener
+public class Controller implements ActionListener
 {
   private Fenster view;
   private AdressverwaltungModel model;
@@ -52,14 +51,15 @@ public class Controller implements ActionListener, KeyListener
     view.getSave().addActionListener(this);
     view.getSaveAs().addActionListener(this);
     view.getExit().addActionListener(this);
-    view.getjButton1().addActionListener(this);
-    view.getjButton2().addActionListener(this);
-    view.getjButton3().addActionListener(this);
-    view.getjButton4().addActionListener(this);
+    view.gettoolbarSave().addActionListener(this);
+    view.gettoolbarDelete().addActionListener(this);
+    view.gettoolbarAdd().addActionListener(this);
+    view.gettoolbarRemove().addActionListener(this);
     view.getAddEntry().addActionListener(this);
     view.getRemoveEntry().addActionListener(this);
-    view.getjTable1().addKeyListener(this);
-    view.getjButton5().addActionListener(this::undo);
+    view.getPopUpAdd().addActionListener(this);
+    view.getPopUpRemove().addActionListener(this);
+    view.gettoolbarUndo().addActionListener(this::undo);
   }
   
   /**
@@ -76,13 +76,16 @@ public class Controller implements ActionListener, KeyListener
     invoker.addCommand(view.getOpen(), new OpenCommand(view,model));
     invoker.addCommand(view.getExit(), new ExitCommand(view,model));
     invoker.addCommand(view.getSaveAs(), new SaveAsCommand(view, model));
-    invoker.addCommand(view.getAddEntry(), new AddEntryCommand(view,model));
-    invoker.addCommand(view.getjButton3(), new AddEntryCommand(view,model));
-    invoker.addCommand(view.getRemoveEntry(), new RemoveEntryCommand(view,model));
-    invoker.addCommand(view.getjButton4(), new RemoveEntryCommand(view,model));
+    AddEntryCommand addcommand = new AddEntryCommand(view,model);
+    invoker.addCommand(view.getAddEntry(), addcommand);
+    invoker.addCommand(view.gettoolbarAdd(), addcommand);
+    invoker.addCommand(view.getPopUpAdd(), addcommand);
+    RemoveEntryCommand removecommand = new RemoveEntryCommand(view,model);
+    invoker.addCommand(view.getRemoveEntry(), removecommand);
+    invoker.addCommand(view.gettoolbarRemove(), removecommand);
+    invoker.addCommand(view.getPopUpRemove(), removecommand);
     invoker.addCommand(view.getSave(), new SaveCommand(view, model));
-    invoker.addCommand(view.getjButton1(), new SaveCommand(view, model));
-    invoker.addCommand(view.getjTable1(), new finishEditCommand(view,model));
+    invoker.addCommand(view.gettoolbarSave(), new SaveCommand(view, model));
   }
   /**
    * Wird aufgerufen, wenn ein Knopf oder Menüpunkt gedrückt wurde
@@ -95,31 +98,6 @@ public class Controller implements ActionListener, KeyListener
     invoker.executeCommand(key);
   }
 
-
-  @Override
-  public void keyTyped(KeyEvent e)
-  {
-  }
-
-  @Override
-  public void keyPressed(KeyEvent evt)
-  {
-    System.out.println("key pressed!");
-    Component key = (Component)evt.getSource();
-    invoker.executeCommand(key);
-  }
-
-  /**
-   * Wird aufgerufen, wenn eine Taste losgelassen wird
-   * @param evt Event, das ausgelöst wurde
-   */
-  @Override
-  public void keyReleased(KeyEvent evt)
-  {
-    System.out.println("key released!");
-    Component key = (Component)evt.getSource();
-    invoker.executeCommand(key);
-  }
   public void undo(ActionEvent evt){
     invoker.undoCommand();     
   }

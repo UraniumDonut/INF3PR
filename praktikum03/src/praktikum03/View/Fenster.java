@@ -35,17 +35,17 @@ public class Fenster extends javax.swing.JFrame {
   {
 
     TablePopUp = new javax.swing.JPopupMenu();
-    Remove = new javax.swing.JMenuItem();
-    Add = new javax.swing.JMenuItem();
+    PopUpRemove = new javax.swing.JMenuItem();
+    PopUpAdd = new javax.swing.JMenuItem();
     jFileChooser = new javax.swing.JFileChooser();
     jScrollPane1 = new javax.swing.JScrollPane();
     jTable1 = new javax.swing.JTable();
     jToolBar1 = new javax.swing.JToolBar();
-    jButton1 = new javax.swing.JButton();
-    jButton2 = new javax.swing.JButton();
-    jButton3 = new javax.swing.JButton();
-    jButton4 = new javax.swing.JButton();
-    jButton5 = new javax.swing.JButton();
+    toolbarSave = new javax.swing.JButton();
+    toolbarDelete = new javax.swing.JButton();
+    toolbarAdd = new javax.swing.JButton();
+    toolbarRemove = new javax.swing.JButton();
+    toolbarUndo = new javax.swing.JButton();
     FileName = new javax.swing.JLabel();
     Hauptmenu = new javax.swing.JMenuBar();
     File = new javax.swing.JMenu();
@@ -57,20 +57,20 @@ public class Fenster extends javax.swing.JFrame {
     AddEntry = new javax.swing.JMenuItem();
     RemoveEntry = new javax.swing.JMenuItem();
 
-    Remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Remove16.gif"))); // NOI18N
-    Remove.setText("Remove");
-    Remove.addActionListener(new java.awt.event.ActionListener()
+    PopUpRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Remove16.gif"))); // NOI18N
+    PopUpRemove.setText("Remove");
+    PopUpRemove.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        RemoveActionPerformed(evt);
+        PopUpRemoveActionPerformed(evt);
       }
     });
-    TablePopUp.add(Remove);
+    TablePopUp.add(PopUpRemove);
 
-    Add.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Edit16.gif"))); // NOI18N
-    Add.setText("Add");
-    TablePopUp.add(Add);
+    PopUpAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Edit16.gif"))); // NOI18N
+    PopUpAdd.setText("Add");
+    TablePopUp.add(PopUpAdd);
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,69 +91,69 @@ public class Fenster extends javax.swing.JFrame {
 
     jToolBar1.setRollover(true);
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Save24.gif"))); // NOI18N
-    jButton1.setToolTipText("Speichern");
-    jButton1.setFocusable(false);
-    jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton1.addActionListener(new java.awt.event.ActionListener()
+    toolbarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Save24.gif"))); // NOI18N
+    toolbarSave.setToolTipText("Speichern");
+    toolbarSave.setFocusable(false);
+    toolbarSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    toolbarSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    toolbarSave.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        jButton1ActionPerformed(evt);
+        toolbarSaveActionPerformed(evt);
       }
     });
-    jToolBar1.add(jButton1);
+    jToolBar1.add(toolbarSave);
 
-    jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Remove24.gif"))); // NOI18N
-    jButton2.setToolTipText("Löschen");
-    jButton2.setFocusable(false);
-    jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton2.addActionListener(new java.awt.event.ActionListener()
+    toolbarDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Remove24.gif"))); // NOI18N
+    toolbarDelete.setToolTipText("Löschen");
+    toolbarDelete.setFocusable(false);
+    toolbarDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    toolbarDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    toolbarDelete.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        jButton2ActionPerformed(evt);
+        toolbarDeleteActionPerformed(evt);
       }
     });
-    jToolBar1.add(jButton2);
+    jToolBar1.add(toolbarDelete);
 
-    jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/RowInsertAfter24.gif"))); // NOI18N
-    jButton3.setToolTipText("Insert Entry");
-    jButton3.setFocusable(false);
-    jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton3.addActionListener(new java.awt.event.ActionListener()
+    toolbarAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/RowInsertAfter24.gif"))); // NOI18N
+    toolbarAdd.setToolTipText("Insert Entry");
+    toolbarAdd.setFocusable(false);
+    toolbarAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    toolbarAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    toolbarAdd.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        jButton3ActionPerformed(evt);
+        toolbarAddActionPerformed(evt);
       }
     });
-    jToolBar1.add(jButton3);
+    jToolBar1.add(toolbarAdd);
 
-    jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/RowDelete24.gif"))); // NOI18N
-    jButton4.setToolTipText("Remove Entry");
-    jButton4.setFocusable(false);
-    jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jToolBar1.add(jButton4);
+    toolbarRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/RowDelete24.gif"))); // NOI18N
+    toolbarRemove.setToolTipText("Remove Entry");
+    toolbarRemove.setFocusable(false);
+    toolbarRemove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    toolbarRemove.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    jToolBar1.add(toolbarRemove);
 
-    jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Undo24.gif"))); // NOI18N
-    jButton5.setMnemonic('S');
-    jButton5.setToolTipText("Undo");
-    jButton5.setFocusable(false);
-    jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton5.addActionListener(new java.awt.event.ActionListener()
+    toolbarUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/praktikum03/View/icons/Undo24.gif"))); // NOI18N
+    toolbarUndo.setMnemonic('S');
+    toolbarUndo.setToolTipText("Undo");
+    toolbarUndo.setFocusable(false);
+    toolbarUndo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    toolbarUndo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    toolbarUndo.addActionListener(new java.awt.event.ActionListener()
     {
       public void actionPerformed(java.awt.event.ActionEvent evt)
       {
-        jButton5ActionPerformed(evt);
+        toolbarUndoActionPerformed(evt);
       }
     });
-    jToolBar1.add(jButton5);
+    jToolBar1.add(toolbarUndo);
 
     getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
     getContentPane().add(FileName, java.awt.BorderLayout.PAGE_END);
@@ -234,13 +234,13 @@ public class Fenster extends javax.swing.JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void toolbarDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toolbarDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_toolbarDeleteActionPerformed
 
-    private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
+    private void PopUpRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PopUpRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveActionPerformed
+    }//GEN-LAST:event_PopUpRemoveActionPerformed
 
 
     private void FileMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FileMouseReleased
@@ -261,23 +261,23 @@ public class Fenster extends javax.swing.JFrame {
 
   }//GEN-LAST:event_ExitMouseReleased
 
-  private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
-  {//GEN-HEADEREND:event_jButton3ActionPerformed
+  private void toolbarAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_toolbarAddActionPerformed
+  {//GEN-HEADEREND:event_toolbarAddActionPerformed
       // TODO add your handling code here:
-  }//GEN-LAST:event_jButton3ActionPerformed
+  }//GEN-LAST:event_toolbarAddActionPerformed
 
   private void AddEntryActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_AddEntryActionPerformed
   {//GEN-HEADEREND:event_AddEntryActionPerformed
       // TODO add your handling code here:
   }//GEN-LAST:event_AddEntryActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void toolbarUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toolbarUndoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_toolbarUndoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void toolbarSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toolbarSaveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_toolbarSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,7 +315,6 @@ public class Fenster extends javax.swing.JFrame {
     }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JMenuItem Add;
   private javax.swing.JMenuItem AddEntry;
   private javax.swing.JMenu Edit;
   private javax.swing.JMenuItem Exit;
@@ -323,24 +322,25 @@ public class Fenster extends javax.swing.JFrame {
   private javax.swing.JLabel FileName;
   private javax.swing.JMenuBar Hauptmenu;
   private javax.swing.JMenuItem Open;
-  private javax.swing.JMenuItem Remove;
+  private javax.swing.JMenuItem PopUpAdd;
+  private javax.swing.JMenuItem PopUpRemove;
   private javax.swing.JMenuItem RemoveEntry;
   private javax.swing.JMenuItem Save;
   private javax.swing.JMenuItem SaveAs;
   private javax.swing.JPopupMenu TablePopUp;
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton2;
-  private javax.swing.JButton jButton3;
-  private javax.swing.JButton jButton4;
-  private javax.swing.JButton jButton5;
   private javax.swing.JFileChooser jFileChooser;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JTable jTable1;
   private javax.swing.JToolBar jToolBar1;
+  private javax.swing.JButton toolbarAdd;
+  private javax.swing.JButton toolbarDelete;
+  private javax.swing.JButton toolbarRemove;
+  private javax.swing.JButton toolbarSave;
+  private javax.swing.JButton toolbarUndo;
   // End of variables declaration//GEN-END:variables
 
-    public JMenuItem getAdd() {
-        return Add;
+    public JMenuItem getPopUpAdd() {
+        return PopUpAdd;
     }
 
     public JMenuItem getAddEntry() {
@@ -371,8 +371,8 @@ public class Fenster extends javax.swing.JFrame {
         return Open;
     }
 
-    public JMenuItem getRemove() {
-        return Remove;
+    public JMenuItem getPopUpRemove() {
+        return PopUpRemove;
     }
 
     public JMenuItem getSave() {
@@ -383,20 +383,20 @@ public class Fenster extends javax.swing.JFrame {
         return SaveAs;
     }
 
-    public JButton getjButton1() {
-        return jButton1;
+    public JButton gettoolbarSave() {
+        return toolbarSave;
     }
 
-    public JButton getjButton2() {
-        return jButton2;
+    public JButton gettoolbarDelete() {
+        return toolbarDelete;
     }
 
-    public JButton getjButton3() {
-        return jButton3;
+    public JButton gettoolbarAdd() {
+        return toolbarAdd;
     }
 
-    public JButton getjButton4() {
-        return jButton4;
+    public JButton gettoolbarRemove() {
+        return toolbarRemove;
     }
 
     public JTable getjTable1() {
@@ -407,7 +407,7 @@ public class Fenster extends javax.swing.JFrame {
         return jFileChooser;
     } 
 
-    public JButton getjButton5() {
-        return jButton5;
+    public JButton gettoolbarUndo() {
+        return toolbarUndo;
     }
 }
