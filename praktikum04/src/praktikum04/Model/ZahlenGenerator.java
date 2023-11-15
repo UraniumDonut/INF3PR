@@ -17,38 +17,41 @@ import java.util.random.RandomGenerator;
  */
 public class ZahlenGenerator implements Runnable{
     private SubmissionPublisher<Integer> publisher;
-    private boolean active;
     private Thread trd;
+    private boolean active;
     
     public ZahlenGenerator(){
         publisher = new SubmissionPublisher<>(); 
         active = false;
+        trd = new Thread(this); 
+        trd.start();
     }
     @Override
     public void run() {
-        int i = 1;
+        int i;
         RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-        while(active){
+        while(true){
             i = 1 + g.nextInt(6);
-            publisher.submit(i);
+            if (active){
+                publisher.submit(i);
+            }
+            
             try {
                 Thread.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        trd = null;
     }
+    
     public void Start(){
         active = true;
-        if(trd == null){
-           trd = new Thread(this); 
-           trd.start();
-        }
     }
+    
     public void Stop(){
         active = false;
     }
+    
     public void addSubscriber(Subscriber<Integer> subscriber){
         publisher.subscribe(subscriber);
         System.out.println("Subscriber hinzugefügt");
