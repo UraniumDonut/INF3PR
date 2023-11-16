@@ -17,18 +17,19 @@ import java.util.random.RandomGenerator;
  */
 public class ZahlenGenerator implements Runnable{
     private SubmissionPublisher<Integer> publisher;
-    private boolean active;
     private Thread trd;
     
     public ZahlenGenerator(){
         publisher = new SubmissionPublisher<>(); 
-        active = false;
+        trd = new Thread(this); 
+        trd.start();
+        this.Stop();
     }
     @Override
     public void run() {
         int i = 1;
         RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
-        while(active){
+        while(true){
             i = 1 + g.nextInt(6);
             publisher.submit(i);
             try {
@@ -37,17 +38,20 @@ public class ZahlenGenerator implements Runnable{
                 Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        trd = null;
     }
+    
     public void Start(){
-        active = true;
-        if(trd == null){
-           trd = new Thread(this); 
-           trd.start();
+        synchronized (this) {
+            trd.notify();
         }
     }
     public void Stop(){
-        active = false;
+        try {
+            trd.wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(-10);
+        }
     }
     public void addSubscriber(Subscriber<Integer> subscriber){
         publisher.subscribe(subscriber);
