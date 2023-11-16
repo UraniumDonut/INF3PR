@@ -22,9 +22,10 @@ public class Start {
         ZahlenGenerator model = new ZahlenGenerator();
         Controller ctrl = new Controller(model, frm);
         Adapter adapter = new Adapter(frm, model);
-        model.addSubscriber(adapter);
         ctrl.registerEvents();
+        model.initZahlenGenerator(adapter);
         frm.setVisible(true);
+        System.out.println("Init done");
     }
 
     public static void main(String[] args) {
