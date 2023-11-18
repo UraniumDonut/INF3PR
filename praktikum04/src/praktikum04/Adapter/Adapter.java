@@ -11,7 +11,7 @@ import praktikum04.Model.ZahlenGenerator;
 import praktikum04.View.Fenster;
 
 /**
- *
+ * Adapter zwischen Model und View
  * @author basti
  */
 public class Adapter implements Subscriber<Integer>{
@@ -19,17 +19,28 @@ public class Adapter implements Subscriber<Integer>{
     private ZahlenGenerator model;
     private Subscription subscription;
     
+    /**
+     * Erstellt einen neuen Adapter
+     * @param view View des Programms
+     * @param model Model des Programms
+     */
     public Adapter(Fenster view, ZahlenGenerator model){
         this.view = view;
         this.model = model;
     }
 
+    /**
+     * Speichert die Subscription und fordert eine Zahl an
+     */
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
         this.subscription = subscription;
         subscription.request(1);
     }
 
+    /**
+     * Gibt die Zahl an die View weiter und fordert eine neue Zahl an
+     */
     @Override
     public void onNext(Integer item) {
         System.out.println("Wert erhalten");
@@ -37,11 +48,19 @@ public class Adapter implements Subscriber<Integer>{
         subscription.request(1);
     }
 
+    /**
+     * Gibt eine Fehlermeldung aus
+     * @param throwable Fehler
+     */
     @Override
     public void onError(Throwable throwable) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Gibt eine Fehlermeldung aus
+     * @param throwable Fehler
+     */
     @Override
     public void onComplete() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
