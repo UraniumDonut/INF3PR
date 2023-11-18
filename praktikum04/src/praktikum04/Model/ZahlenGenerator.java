@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import java.util.random.RandomGenerator;
 
 /**
- *
+ * generiert Zahlen und gibt diese an die Subscriber weiter
  * @author basti
  */
 public class ZahlenGenerator implements Runnable{
@@ -20,12 +20,18 @@ public class ZahlenGenerator implements Runnable{
     private Thread trd;
     private boolean active;
     
+    /**
+     * Erstellt einen neuen SubmissionPublisher und startet den Thread
+     */
     public ZahlenGenerator(){
         publisher = new SubmissionPublisher<>(); 
         active = false;
         trd = new Thread(this); 
         trd.start();
     }
+    /**
+     * Generiert eine Zufallszahl zwischen 1 und 6 und gibt diese an die Subscriber weiter
+     */
     @Override
     public void run() {
         int i;
@@ -44,14 +50,24 @@ public class ZahlenGenerator implements Runnable{
         }
     }
     
+    /**
+     * Startet den ZahlenGenerator
+     */
     public void Start(){
         active = true;
     }
     
+    /**
+     * Stoppt den ZahlenGenerator
+     */
     public void Stop(){
         active = false;
     }
     
+    /**
+     * Fügt einen Subscriber hinzu
+     * @param subscriber Der Subscriber, der hinzugefügt werden soll
+     */
     public void addSubscriber(Subscriber<Integer> subscriber){
         publisher.subscribe(subscriber);
         System.out.println("Subscriber hinzugefügt");
