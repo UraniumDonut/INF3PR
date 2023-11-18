@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import java.util.random.RandomGenerator;
 
 /**
- *
+ * Generiert Zufallszahlen und gibt diese an die Subscriber weiter
  * @author basti
  */
 public class ZahlenGenerator implements Runnable{
@@ -20,10 +20,17 @@ public class ZahlenGenerator implements Runnable{
     private boolean active;
     private Thread trd;
     
+    /**
+     * Konstrukter erzeugt einen neuen SubmissionPublisher und deaktiviert die Würfelfunktion
+     */
     public ZahlenGenerator(){
         publisher = new SubmissionPublisher<>(); 
         active = false;
     }
+    /**
+     * Gibt eine Zufallszahl zwischen 1 und 6 zurück
+     * @return Zufallszahl
+     */
     @Override
     public void run() {
         int i = 1;
@@ -39,6 +46,9 @@ public class ZahlenGenerator implements Runnable{
         }
         trd = null;
     }
+    /**
+     * Startet den Thread und somit die Würfelfunktion
+     */
     public void Start(){
         active = true;
         if(trd == null){
@@ -46,9 +56,16 @@ public class ZahlenGenerator implements Runnable{
            trd.start();
         }
     }
+    /**
+     * Stoppt den Thread und somit die Würfelfunktion
+     */
     public void Stop(){
         active = false;
     }
+    /**
+     * Fügt einen Subscriber hinzu
+     * @param subscriber Subscriber
+     */
     public void addSubscriber(Subscriber<Integer> subscriber){
         publisher.subscribe(subscriber);
         System.out.println("Subscriber hinzugefügt");
