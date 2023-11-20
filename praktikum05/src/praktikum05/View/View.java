@@ -42,27 +42,34 @@ public class View extends javax.swing.JFrame
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+    GamblingPanel.setBackground(new java.awt.Color(41, 130, 0));
     GamblingPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    GamblingPanel.setPreferredSize(new java.awt.Dimension(250, 135));
     GamblingPanel.setLayout(new java.awt.GridLayout(1, 3));
 
     lblZahl0.setAlignment(java.awt.Label.CENTER);
     lblZahl0.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl0.setForeground(new java.awt.Color(210, 2, 2));
     lblZahl0.setText("7");
     GamblingPanel.add(lblZahl0);
 
     lblZahl1.setAlignment(java.awt.Label.CENTER);
     lblZahl1.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl1.setForeground(new java.awt.Color(210, 2, 2));
     lblZahl1.setText("7");
     GamblingPanel.add(lblZahl1);
 
     lblZahl2.setAlignment(java.awt.Label.CENTER);
     lblZahl2.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl2.setForeground(new java.awt.Color(210, 2, 2));
     lblZahl2.setText("7");
     GamblingPanel.add(lblZahl2);
 
     getContentPane().add(GamblingPanel, java.awt.BorderLayout.PAGE_START);
 
+    ControlPanel.setBackground(new java.awt.Color(41, 130, 0));
     ControlPanel.setMaximumSize(new java.awt.Dimension(32000, 40));
+    ControlPanel.setPreferredSize(new java.awt.Dimension(159, 33));
 
     btnStop.setText("Stop");
     btnStop.addActionListener(new java.awt.event.ActionListener()
