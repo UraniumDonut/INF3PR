@@ -11,17 +11,25 @@ import praktikum04.Model.ZahlenGenerator;
 import praktikum04.View.Fenster;
 
 /**
- *
+ * Controller für das Programm
  * @author basti
  */
 public class Controller implements ActionListener{
     ZahlenGenerator model;
     Fenster view;
     
+    /**
+     * Erstellt einen neuen Controller
+     * @param model Model des Programms
+     * @param view View des Programms
+     */
     public Controller(ZahlenGenerator model, Fenster view){
         this.view = view;
         this.model = model;
     }
+    /**
+     * Startet oder stoppt den ZahlenGenerator je nachdem welcher Button gedrückt wurde
+     */
     @Override
     public void actionPerformed(ActionEvent evt) {
         Component key = (Component)evt.getSource();    
@@ -32,6 +40,9 @@ public class Controller implements ActionListener{
             model.stop();
         }
     }
+    /**
+     * Registriert die Events
+     */
     public void registerEvents(){
         view.getBtnStart().addActionListener(this);
         view.getBtnStop().addActionListener(this);
