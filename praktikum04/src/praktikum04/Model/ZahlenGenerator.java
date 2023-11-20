@@ -55,29 +55,22 @@ public final class ZahlenGenerator implements Runnable {
             }
         }
     }
-
-<<<<<<< HEAD
-    public void start() {
-=======
+    
+    
     /**
      * Startet den ZahlenGenerator
      */
-    public void Start() {
->>>>>>> e6d3af676705b24e614c52549adb423ea709efaf
+    public void start() {
         active = true;
         synchronized (trd) {
             trd.notify();
         }
     }
 
-<<<<<<< HEAD
-    public void stop() {
-=======
     /**
      * Stoppt den ZahlenGenerator
      */
-    public void Stop() {
->>>>>>> e6d3af676705b24e614c52549adb423ea709efaf
+    public void stop() {
         active = false;
     }
     /**
