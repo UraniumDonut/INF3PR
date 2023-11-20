@@ -15,7 +15,7 @@ import java.util.concurrent.SubmissionPublisher;
  */
 public class Bandit implements Subscriber
 {
-  SubmissionPublisher<Integer> sub;
+  SubmissionPublisher<WuerfelWert> publisher;
   ZahlenGenerator[] gen;
   
   public Bandit()
@@ -27,8 +27,7 @@ public class Bandit implements Subscriber
 
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        }
 
     @Override
     public void onNext(Object item) {
@@ -43,5 +42,9 @@ public class Bandit implements Subscriber
     @Override
     public void onComplete() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    void addSubscriber(Subscriber sub){
+        publisher.subscribe(sub);
     }
 }
