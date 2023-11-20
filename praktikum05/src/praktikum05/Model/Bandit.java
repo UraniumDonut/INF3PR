@@ -5,14 +5,41 @@
 
 package praktikum05.Model;
 
+import java.util.concurrent.Flow;
+import java.util.concurrent.Flow.Subscriber;
+
 /**
  *
  * @author Leon
  */
-public class Bandit 
+public class Bandit implements Subscriber
 {
+  ZahlenGenerator[] gen;
+  
   public Bandit()
   {
-  
+      for (int i = 0; i < 3; i++){
+          gen[i] = new ZahlenGenerator();
+      }
   }
+
+    @Override
+    public void onSubscribe(Flow.Subscription subscription) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void onNext(Object item) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void onComplete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
