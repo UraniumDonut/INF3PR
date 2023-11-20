@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import praktikum05.Adapter.Adapter;
 import praktikum05.Controller.Controller;
+import praktikum05.Model.Bandit;
 import praktikum05.Model.ZahlenGenerator;
 import praktikum05.View.View;
 
@@ -23,7 +24,7 @@ public class Start
      */
     public Start() {
         View frm = new View();
-        ZahlenGenerator model = new ZahlenGenerator();
+        Bandit model = new Bandit();
         Controller ctrl = new Controller(model, frm);
         Adapter adapter = new Adapter(frm, model);
         //ctrl.registerEvents();

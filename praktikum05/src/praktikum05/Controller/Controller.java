@@ -7,6 +7,7 @@ package praktikum05.Controller;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import praktikum05.Model.Bandit;
 import praktikum05.Model.ZahlenGenerator;
 import praktikum05.View.View;
 
@@ -15,7 +16,7 @@ import praktikum05.View.View;
  * @author basti
  */
 public class Controller implements ActionListener{
-    ZahlenGenerator model;
+    Bandit model;
     View view;
     
     /**
@@ -23,7 +24,7 @@ public class Controller implements ActionListener{
      * @param model Model des Programms
      * @param view View des Programms
      */
-    public Controller(ZahlenGenerator model, View view){
+    public Controller(Bandit model, View view){
         this.view = view;
         this.model = model;
     }
