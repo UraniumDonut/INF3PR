@@ -27,11 +27,12 @@ public class Bandit implements Subscriber
 
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
-        }
+       subscription.request(1);
+    }
 
     @Override
     public void onNext(Object item) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ted yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
