@@ -7,6 +7,7 @@ package praktikum05.Model;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.SubmissionPublisher;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.util.concurrent.Flow.Subscriber;
  */
 public class Bandit implements Subscriber
 {
+  SubmissionPublisher<Integer> sub;
   ZahlenGenerator[] gen;
   
   public Bandit()
