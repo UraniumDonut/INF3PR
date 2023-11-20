@@ -38,7 +38,7 @@ public final class ZahlenGenerator implements Runnable {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if (active == false)
+            while (active == false)
             synchronized (trd) {
                 try {
                     trd.wait();
@@ -50,14 +50,14 @@ public final class ZahlenGenerator implements Runnable {
         }
     }
 
-    public void Start() {
+    public void start() {
         active = true;
         synchronized (trd) {
             trd.notify();
         }
     }
 
-    public void Stop() {
+    public void stop() {
         active = false;
     }
 

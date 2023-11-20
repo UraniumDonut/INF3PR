@@ -26,10 +26,10 @@ public class Controller implements ActionListener{
     public void actionPerformed(ActionEvent evt) {
         Component key = (Component)evt.getSource();    
         if (key == view.getBtnStart()){
-            model.Start();
+            model.start();
         }
         else if(key == view.getBtnStop()){
-            model.Stop();
+            model.stop();
         }
     }
     public void registerEvents(){
