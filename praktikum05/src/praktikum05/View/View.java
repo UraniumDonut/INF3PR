@@ -4,6 +4,9 @@
  */
 package praktikum05.View;
 
+import java.awt.Label;
+import javax.swing.JButton;
+
 /**
  *
  * @author Leon
@@ -29,21 +32,60 @@ public class View extends javax.swing.JFrame
   private void initComponents()
   {
 
+    GamblingPanel = new javax.swing.JPanel();
+    lblZahl0 = new java.awt.Label();
+    lblZahl1 = new java.awt.Label();
+    lblZahl2 = new java.awt.Label();
+    ControlPanel = new javax.swing.JPanel();
+    btnStop = new javax.swing.JButton();
+    btnStart = new javax.swing.JButton();
+
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
-    );
-    layout.setVerticalGroup(
-      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 300, Short.MAX_VALUE)
-    );
+    GamblingPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    GamblingPanel.setLayout(new java.awt.GridLayout(1, 3));
+
+    lblZahl0.setAlignment(java.awt.Label.CENTER);
+    lblZahl0.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl0.setText("7");
+    GamblingPanel.add(lblZahl0);
+
+    lblZahl1.setAlignment(java.awt.Label.CENTER);
+    lblZahl1.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl1.setText("7");
+    GamblingPanel.add(lblZahl1);
+
+    lblZahl2.setAlignment(java.awt.Label.CENTER);
+    lblZahl2.setFont(new java.awt.Font("Dialog", 0, 100)); // NOI18N
+    lblZahl2.setText("7");
+    GamblingPanel.add(lblZahl2);
+
+    getContentPane().add(GamblingPanel, java.awt.BorderLayout.PAGE_START);
+
+    ControlPanel.setMaximumSize(new java.awt.Dimension(32000, 40));
+
+    btnStop.setText("Stop");
+    btnStop.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        btnStopActionPerformed(evt);
+      }
+    });
+    ControlPanel.add(btnStop);
+
+    btnStart.setText("Start");
+    ControlPanel.add(btnStart);
+
+    getContentPane().add(ControlPanel, java.awt.BorderLayout.CENTER);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void btnStopActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnStopActionPerformed
+  {//GEN-HEADEREND:event_btnStopActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_btnStopActionPerformed
 
   /**
    * @param args the command line arguments
@@ -94,6 +136,42 @@ public class View extends javax.swing.JFrame
     });
   }
 
+  public JButton getBtnStart()
+  {
+    return btnStart;
+  }
+
+  public JButton getBtnStop()
+  {
+    return btnStop;
+  }
+
+  public Label getLblZahl0()
+  {
+    return lblZahl0;
+  }
+
+  public Label getLblZahl1()
+  {
+    return lblZahl1;
+  }
+
+  public Label getLblZahl2()
+  {
+    return lblZahl2;
+  }
+
+  
+  
+  
+  
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JPanel ControlPanel;
+  private javax.swing.JPanel GamblingPanel;
+  private javax.swing.JButton btnStart;
+  private javax.swing.JButton btnStop;
+  private java.awt.Label lblZahl0;
+  private java.awt.Label lblZahl1;
+  private java.awt.Label lblZahl2;
   // End of variables declaration//GEN-END:variables
 }
