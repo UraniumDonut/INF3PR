@@ -17,12 +17,13 @@ import java.util.random.RandomGenerator;
 public final class ZahlenGenerator implements Runnable
 {
 
-  private final SubmissionPublisher<Integer> publisher;
+  private final SubmissionPublisher<WuerfelWert> publisher;
   private final Thread trd;
   private boolean active;
-
-  public ZahlenGenerator()
+  private final int wuerfel;
+  public ZahlenGenerator(int wuerfel)
   {
+    this.wuerfel = wuerfel;
     publisher = new SubmissionPublisher<>();
     trd = new Thread(this);
     active = false;
@@ -36,7 +37,8 @@ public final class ZahlenGenerator implements Runnable
     while (true)
     {
       i = 1 + g.nextInt(6);
-      publisher.submit(i);
+      WuerfelWert wert = new WuerfelWert(wuerfel,i);
+      publisher.submit(wert);
       try
       {
         Thread.sleep(10);
@@ -81,7 +83,7 @@ public final class ZahlenGenerator implements Runnable
      * Fügt einen Subscriber hinzu
      * @param subscriber
      */
-    public void initZahlenGenerator(Flow.Subscriber<Integer> subscriber) {
+    public void initZahlenGenerator(Flow.Subscriber<WuerfelWert> subscriber) {
         publisher.subscribe(subscriber);
         System.out.println("Subscriber hinzugefügt");
         trd.start();
