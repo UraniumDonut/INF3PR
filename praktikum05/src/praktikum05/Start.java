@@ -27,8 +27,8 @@ public class Start
         Bandit model = new Bandit();
         Controller ctrl = new Controller(model, frm);
         Adapter adapter = new Adapter(frm, model);
-        //ctrl.registerEvents();
-        //model.initZahlenGenerator(adapter);
+        ctrl.registerEvents();
+        model.addSubscriber(adapter);
         frm.setVisible(true);
         System.out.println("Init done");
     }

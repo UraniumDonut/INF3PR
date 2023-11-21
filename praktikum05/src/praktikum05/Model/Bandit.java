@@ -15,15 +15,19 @@ import java.util.concurrent.SubmissionPublisher;
  */
 public class Bandit implements Subscriber<WuerfelWert> {
 
-    private Subscription subscription;
+    private Subscription[] subscription;
     SubmissionPublisher<WuerfelWert> publisher;
     ZahlenGenerator[] gen;
+    int x;
 
     public Bandit() {
+        gen = new ZahlenGenerator[3];
         for (int i = 0; i < 3; i++) {
-            gen = new ZahlenGenerator[3];
             gen[i] = new ZahlenGenerator(i);
         }
+        publisher = new SubmissionPublisher<>();
+        subscription = new Subscription[3];
+        x = 0;
     }
     
     public void start(){
@@ -40,13 +44,16 @@ public class Bandit implements Subscriber<WuerfelWert> {
     
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
-        this.subscription = subscription;
+        this.subscription[x++] = subscription;
         subscription.request(1);
+        if (x > 3){
+            System.exit(-5);
+        }
     }
 
     @Override
     public void onNext(WuerfelWert item) {
-        subscription.request(1);
+        subscription[item.getWuerfel()].request(1);
         publisher.submit(item);
     }
 
@@ -60,7 +67,10 @@ public class Bandit implements Subscriber<WuerfelWert> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    void addSubscriber(Subscriber sub) {
+    public void addSubscriber(Subscriber<WuerfelWert> sub) {
         publisher.subscribe(sub);
+        for (int i = 0; i < 3; i++){
+            gen[i].initZahlenGenerator(this);
+        }
     }
 }

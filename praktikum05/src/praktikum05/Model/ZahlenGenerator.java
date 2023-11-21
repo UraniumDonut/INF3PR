@@ -18,14 +18,16 @@ public final class ZahlenGenerator implements Runnable
 {
 
   private final SubmissionPublisher<WuerfelWert> publisher;
-  private final Thread trd;
+  private Thread trd;
   private boolean active;
   private final int wuerfel;
+  private final Object LOCK;
+  
   public ZahlenGenerator(int wuerfel)
   {
     this.wuerfel = wuerfel;
     publisher = new SubmissionPublisher<>();
-    trd = new Thread(this);
+    LOCK = new Object();
     active = false;
   }
 
@@ -39,20 +41,21 @@ public final class ZahlenGenerator implements Runnable
       i = 1 + g.nextInt(6);
       WuerfelWert wert = new WuerfelWert(wuerfel,i);
       publisher.submit(wert);
+      System.out.println("Zahlengenerator " + wuerfel + ": neuer Wert: " + wert.getWert());
       try
       {
-        Thread.sleep(10);
+        Thread.sleep(20);
       }
       catch (InterruptedException ex)
       {
         Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
       }
       while (active == false)
-            synchronized (trd)
+      synchronized (LOCK)
       {
         try
         {
-          trd.wait();
+          LOCK.wait();
         }
         catch (InterruptedException ex)
         {
@@ -68,9 +71,10 @@ public final class ZahlenGenerator implements Runnable
      */
     public void start() {
         active = true;
-        synchronized (trd) {
-            trd.notify();
+        synchronized (LOCK) {
+            LOCK.notify();
         }
+        System.out.println("Zahlengenerator " + wuerfel + " start()");
     }
 
     /**
@@ -86,6 +90,10 @@ public final class ZahlenGenerator implements Runnable
     public void initZahlenGenerator(Flow.Subscriber<WuerfelWert> subscriber) {
         publisher.subscribe(subscriber);
         System.out.println("Subscriber hinzugefügt");
+        if (trd == null){
+            trd = new Thread(this);
+        }
+        System.out.println("Zahlengenerator " + wuerfel + " start new Thread");
         trd.start();
     }
 }

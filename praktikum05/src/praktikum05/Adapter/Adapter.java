@@ -51,7 +51,7 @@ public class Adapter implements Subscriber<WuerfelWert>
   @Override
   public void onNext(WuerfelWert item)
   {
-    System.out.println("Wert erhalten");
+    System.out.println("Wuerfel " + item.getWuerfel() + "Wert erhalten: " + item.getWert());
     switch (item.getWuerfel())
     {
       case 0:
@@ -65,7 +65,7 @@ public class Adapter implements Subscriber<WuerfelWert>
         break;
 
     }
-    view.getLblZahl0().setText(item.toString());
+    //view.getLblZahl0().setText(item.toString());
     subscription.request(1);
   }
 
