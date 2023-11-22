@@ -19,16 +19,18 @@ public final class ZahlenGenerator implements Runnable
 
   private final SubmissionPublisher<WuerfelWert> publisher;
   private Thread trd;
-  private boolean active;
+  private int active;
   private final int wuerfel;
   private final Object LOCK;
+  RandomGenerator g;
   
   public ZahlenGenerator(int wuerfel)
   {
     this.wuerfel = wuerfel;
     publisher = new SubmissionPublisher<>();
     LOCK = new Object();
-    active = false;
+    active = 0;
+    g = RandomGenerator.of("L64X128MixRandom");
   }
 
   @Override
@@ -38,9 +40,10 @@ public final class ZahlenGenerator implements Runnable
     RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
     while (true)
     {
-      i = 1 + g.nextInt(6);
+      i = 1;//1 + g.nextInt(6);
       WuerfelWert wert = new WuerfelWert(wuerfel,i);
       publisher.submit(wert);
+      active--;
       System.out.println("Zahlengenerator " + wuerfel + ": neuer Wert: " + wert.getWert());
       try
       {
@@ -50,7 +53,7 @@ public final class ZahlenGenerator implements Runnable
       {
         Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
       }
-      while (active == false)
+      while (active <= 0)
       synchronized (LOCK)
       {
         try
@@ -70,19 +73,19 @@ public final class ZahlenGenerator implements Runnable
      * Startet den ZahlenGenerator
      */
     public void start() {
-        active = true;
+        active = g.nextInt(20, 50);
         synchronized (LOCK) {
             LOCK.notify();
         }
         System.out.println("Zahlengenerator " + wuerfel + " start()");
     }
 
-    /**
-     * Stoppt den ZahlenGenerator
-     */
-    public void stop() {
-        active = false;
-    }
+//    /**
+//     * Stoppt den ZahlenGenerator
+//     */
+//    public void stop() {
+//        active = false;
+//    }
     /**
      * Fügt einen Subscriber hinzu
      * @param subscriber
@@ -96,4 +99,8 @@ public final class ZahlenGenerator implements Runnable
         System.out.println("Zahlengenerator " + wuerfel + " start new Thread");
         trd.start();
     }
-}
+
+    public int getActive() {
+        return active;
+    }
+}    

@@ -33,19 +33,19 @@ public class Controller implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent evt) {
-        Component key = (Component)evt.getSource();    
-        if (key == view.getBtnStart()){
+//        Component key = (Component)evt.getSource();    
+//        if (key == view.getBtnStart()){
             model.start();
-        }
-        else if(key == view.getBtnStop()){
-            model.stop();
-        }
+//        }
+//        else if(key == view.getBtnStop()){
+//            model.stop();
+//        }
     }
     /**
      * Registriert die Events
      */
     public void registerEvents(){
         view.getBtnStart().addActionListener(this);
-        view.getBtnStop().addActionListener(this);
+//        view.getBtnStop().addActionListener(this);
     }
 }

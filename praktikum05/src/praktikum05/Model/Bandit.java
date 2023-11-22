@@ -36,11 +36,11 @@ public class Bandit implements Subscriber<WuerfelWert> {
         }
     }
     
-    public void stop(){
-        for (int i = 0; i < 3; i++){
-            gen[i].stop();
-        }
-    }
+//    public void stop(){
+//        for (int i = 0; i < 3; i++){
+//            gen[i].stop();
+//        }
+//    }
     
     @Override
     public void onSubscribe(Flow.Subscription subscription) {
@@ -72,5 +72,13 @@ public class Bandit implements Subscriber<WuerfelWert> {
         for (int i = 0; i < 3; i++){
             gen[i].initZahlenGenerator(this);
         }
+    }
+    
+    public boolean getFinished(){
+        boolean x = true;
+        for (ZahlenGenerator g : gen){
+            x &= (0 == g.getActive());
+        }
+        return x;
     }
 }

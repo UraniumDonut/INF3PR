@@ -7,6 +7,7 @@ package praktikum05.Adapter;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
+import javax.swing.JOptionPane;
 import praktikum05.Model.Bandit;
 import praktikum05.Model.WuerfelWert;
 import praktikum05.View.View;
@@ -65,8 +66,16 @@ public class Adapter implements Subscriber<WuerfelWert>
         break;
 
     }
-    //view.getLblZahl0().setText(item.toString());
     subscription.request(1);
+    if (model.getFinished()){
+        if (view.getLblZahl0().getText().equals(view.getLblZahl1().getText()) 
+                && view.getLblZahl0().getText().equals(view.getLblZahl2().getText())
+                && view.getLblZahl1().getText().equals(view.getLblZahl2().getText())){
+            JOptionPane.showInputDialog(view, """
+                                              3 Gleiche, sie haben gewonnen!!!
+                                              Gib hier deine IBAN ein um den Gewinn zu erhalten:""");
+        }
+    }
   }
 
   /**
