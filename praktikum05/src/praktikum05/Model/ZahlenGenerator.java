@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import java.util.random.RandomGenerator;
 
 /**
- *
+ *Zahlengenerator erzeugt zufällige Zahlen zwischen 1 und 6 für eine zufällige Zeit 
  * @author Leon
  */
 public final class ZahlenGenerator implements Runnable
@@ -32,7 +32,10 @@ public final class ZahlenGenerator implements Runnable
     active = 0;
     g = RandomGenerator.of("L64X128MixRandom");
   }
-
+/**
+ * Erzeugt in einem eigenen Thread eine zufällige Anzahl an zufälligen Zahlen zwischen 1 und 6.
+ * Diese werden dann an alle subscriber submitted.
+ */
   @Override
   public void run()
   {
@@ -80,12 +83,6 @@ public final class ZahlenGenerator implements Runnable
         System.out.println("Zahlengenerator " + wuerfel + " start()");
     }
 
-//    /**
-//     * Stoppt den ZahlenGenerator
-//     */
-//    public void stop() {
-//        active = false;
-//    }
     /**
      * Fügt einen Subscriber hinzu
      * @param subscriber
@@ -99,7 +96,10 @@ public final class ZahlenGenerator implements Runnable
         System.out.println("Zahlengenerator " + wuerfel + " start new Thread");
         trd.start();
     }
-
+/**
+ * Gibt zurück, ob der Zahlengenerator noch aktiv ist
+ * @return 
+ */
     public int getActive() {
         return active;
     }

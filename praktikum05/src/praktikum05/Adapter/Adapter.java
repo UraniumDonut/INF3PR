@@ -48,6 +48,7 @@ public class Adapter implements Subscriber<WuerfelWert>
 
   /**
    * Gibt die Zahl an die View weiter und fordert eine neue Zahl an
+   * Wenn am Ende drei gleiche Zahlen stehen, dann erscheint ein Gewinnfenster
    */
   @Override
   public void onNext(WuerfelWert item)
