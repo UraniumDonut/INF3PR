@@ -55,17 +55,20 @@ public class GluecksLogger
     {
       props.load(is);
     }
-    catch (Exception e)
+    catch (Exception ex)
     {
+      lg.log(Level.SEVERE, null, ex);
     }
     ConsoleHandler ch = new ConsoleHandler();
     FileHandler fh = null;
     try
     {
       fh = new FileHandler(props.getProperty("LOG_DATEI"));
+      fh.setLevel(Level.parse(props.getProperty("LOG_LEVEL")));
     }
     catch (Exception ex)
     {
+      lg.log(Level.SEVERE, null, ex);
     }
     lg.setUseParentHandlers(false);
     ch.setFormatter(new GluecksspielFormatter());
