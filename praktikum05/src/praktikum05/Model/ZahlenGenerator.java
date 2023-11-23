@@ -9,6 +9,7 @@ import java.util.concurrent.SubmissionPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.random.RandomGenerator;
+import praktikum05.Logger.GluecksLogger;
 
 /**
  *Zahlengenerator erzeugt zufällige Zahlen zwischen 1 und 6 für eine zufällige Zeit 
@@ -23,6 +24,8 @@ public final class ZahlenGenerator implements Runnable
   private final int wuerfel;
   private final Object LOCK;
   RandomGenerator g;
+  
+  private static Logger lg = GluecksLogger.getLogger();
   
   public ZahlenGenerator(int wuerfel)
   {
@@ -43,18 +46,20 @@ public final class ZahlenGenerator implements Runnable
     RandomGenerator g = RandomGenerator.of("L64X128MixRandom");
     while (true)
     {
-      i = 1;//1 + g.nextInt(6);
+      i = 1 + g.nextInt(6);
       WuerfelWert wert = new WuerfelWert(wuerfel,i);
       publisher.submit(wert);
       active--;
-      System.out.println("Zahlengenerator " + wuerfel + ": neuer Wert: " + wert.getWert());
+      lg.info("Zahlengenerator " + wuerfel + ": neuer Wert: " + wert.getWert());
+      
+      //System.out.println("Zahlengenerator " + wuerfel + ": neuer Wert: " + wert.getWert());
       try
       {
         Thread.sleep(20);
       }
       catch (InterruptedException ex)
       {
-        Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        lg.log(Level.SEVERE, null, ex);
       }
       while (active <= 0)
       synchronized (LOCK)
@@ -65,7 +70,7 @@ public final class ZahlenGenerator implements Runnable
         }
         catch (InterruptedException ex)
         {
-          Logger.getLogger(ZahlenGenerator.class.getName()).log(Level.SEVERE, null, ex);
+          lg.log(Level.SEVERE, null, ex);
           System.exit(-10);
         }
       }
@@ -80,7 +85,8 @@ public final class ZahlenGenerator implements Runnable
         synchronized (LOCK) {
             LOCK.notify();
         }
-        System.out.println("Zahlengenerator " + wuerfel + " start()");
+        lg.info("Zahlengenerator " + wuerfel + " start()");
+        //System.out.println("Zahlengenerator " + wuerfel + " start()");
     }
 
     /**
@@ -89,11 +95,13 @@ public final class ZahlenGenerator implements Runnable
      */
     public void initZahlenGenerator(Flow.Subscriber<WuerfelWert> subscriber) {
         publisher.subscribe(subscriber);
-        System.out.println("Subscriber hinzugefügt");
+        lg.info("Subscriber hinzugefuegt");
+        //System.out.println("Subscriber hinzugefügt");
         if (trd == null){
             trd = new Thread(this);
         }
-        System.out.println("Zahlengenerator " + wuerfel + " start new Thread");
+        lg.info("Zahlengenerator " + wuerfel + " start new Thread");
+        //System.out.println("Zahlengenerator " + wuerfel + " start new Thread");
         trd.start();
     }
 /**

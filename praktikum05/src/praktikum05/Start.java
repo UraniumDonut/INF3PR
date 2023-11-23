@@ -5,10 +5,12 @@
 
 package praktikum05;
 
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import praktikum05.Adapter.Adapter;
 import praktikum05.Controller.Controller;
+import praktikum05.Logger.GluecksLogger;
 import praktikum05.Model.Bandit;
 import praktikum05.Model.ZahlenGenerator;
 import praktikum05.View.View;
@@ -19,6 +21,8 @@ import praktikum05.View.View;
  */
 public class Start 
 {
+  
+  private static Logger lg = GluecksLogger.getLogger();
   /**
      * Erstellt ein neues Fenster, Model und Controller und startet das Programm
      */
@@ -30,7 +34,8 @@ public class Start
         ctrl.registerEvents();
         model.addSubscriber(adapter);
         frm.setVisible(true);
-        System.out.println("Init done");
+        
+        lg.info("Init done");
     }
 
   /**

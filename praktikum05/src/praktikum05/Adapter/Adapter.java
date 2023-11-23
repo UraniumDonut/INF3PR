@@ -7,7 +7,9 @@ package praktikum05.Adapter;
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.Flow.Subscription;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import praktikum05.Logger.GluecksLogger;
 import praktikum05.Model.Bandit;
 import praktikum05.Model.WuerfelWert;
 import praktikum05.View.View;
@@ -23,6 +25,8 @@ public class Adapter implements Subscriber<WuerfelWert>
   private View view;
   private Bandit model;
   private Subscription subscription;
+  
+  private static Logger lg = GluecksLogger.getLogger();
 
   /**
    * Erstellt einen neuen Adapter
@@ -53,7 +57,7 @@ public class Adapter implements Subscriber<WuerfelWert>
   @Override
   public void onNext(WuerfelWert item)
   {
-    System.out.println("Wuerfel " + item.getWuerfel() + "Wert erhalten: " + item.getWert());
+    lg.info("Wuerfel " + item.getWuerfel() + " Wert erhalten: " + item.getWert());
     switch (item.getWuerfel())
     {
       case 0:
