@@ -63,9 +63,10 @@ public class Gerade extends JComponent implements Runnable{
     float y = this.getHeight()/2;
     
     
-    g2.translate(x/2, y/2);
+    g2.translate(x, y);
+    synchronized(this){
     g2.rotate(Math.toRadians(winkel));
-    
+  }
     gerade.setLine(0,0,0,LAENGE);
     
     g2.setStroke(stift);
@@ -75,10 +76,13 @@ public class Gerade extends JComponent implements Runnable{
 
   @Override
   public void run(){
-    while(true){
-      winkel++;
+      while(true){
+      synchronized (this){
+          winkel++;
+      
       if(winkel >= 360){
         winkel = 0;
+      }
       }
       this.repaint();
       try{
