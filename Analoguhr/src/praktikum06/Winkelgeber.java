@@ -4,10 +4,23 @@
  */
 package praktikum06;
 
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 /**
  *
  * @author basti
  */
-public class Winkelgeber {
+public class Winkelgeber implements Runnable{
+
+    @Override
+    public void run() {
+    try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+        new Start();
+    }
     
 }
