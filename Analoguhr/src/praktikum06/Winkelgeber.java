@@ -12,15 +12,18 @@ import javax.swing.UIManager;
  * @author basti
  */
 public class Winkelgeber implements Runnable{
-
+    private Gerade g;
+    private Thread trd;
+    
+    public Winkelgeber(){
+        g = new Gerade();
+    }
     @Override
     public void run() {
-    try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.toString());
-        }
-        new Start();
+        
     }
-    
+    public void startThread(){
+        trd = new Thread(this);
+        trd.start();
+    }
 }
