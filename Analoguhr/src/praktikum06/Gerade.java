@@ -29,16 +29,16 @@ public class Gerade extends JComponent implements Runnable{
 
   private ExecutorService eService;
   private Future task;
-  
+  private int zeit;
   private Thread thd;
 
-  public Gerade(){
+  public Gerade(int zeit){
     gerade = new Line2D.Float();
     stift = new BasicStroke(DICKE);
     eService = Executors.newSingleThreadExecutor();
     task = null;
     thd = null;
-    
+    this.zeit = zeit;
   }
 
   public void start(){
@@ -80,7 +80,7 @@ public class Gerade extends JComponent implements Runnable{
       }
       this.repaint();
       try{
-        Thread.sleep(10);
+        Thread.sleep(10 * zeit);
       }
       catch(Exception ex){
         //lg.severe(ex.toString());

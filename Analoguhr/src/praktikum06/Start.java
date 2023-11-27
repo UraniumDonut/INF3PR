@@ -20,17 +20,21 @@ import praktikum06.logger.GluecksLogger;
  */
 public class Start {
     private static final Logger lg = GluecksLogger.getLogger();
+    private Gerade[] ger;
     
     private Start(){
       JFrame frm = new JFrame();
       frm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       Container kiste = frm.getContentPane();
       kiste.setLayout(new OverlayLayout(kiste));
-      
-      Gerade ger = new Gerade();
-      ger.setOpaque(false);
-      ger.start();
-      kiste.add(ger);
+      ger = new Gerade[3];
+      int i = 1;
+      for (Gerade g : ger){
+        g = new Gerade(i++);
+        g.setOpaque(false);
+        g.start();
+        kiste.add(g);
+      }
       frm.setSize(300,300);
       frm.setVisible(true);
     }
