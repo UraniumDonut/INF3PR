@@ -24,20 +24,31 @@ public class Gerade extends JComponent implements Runnable{
   private BasicStroke stift;
 
   private Line2D.Float gerade;
+  private int winkel = 0;
+  private static final float LAENGE = 50;
 
   private ExecutorService eService;
   private Future task;
+  
+  private Thread thd;
 
   public Gerade(){
     gerade = new Line2D.Float();
     stift = new BasicStroke(DICKE);
     eService = Executors.newSingleThreadExecutor();
     task = null;
+    thd = null;
+    
   }
 
   public void start(){
     if (task == null){
       task = eService.submit(this);
+     
+    }
+    if (thd == null){
+      thd = new Thread(this);
+      thd.start();
     }
   }
   
@@ -50,7 +61,10 @@ public class Gerade extends JComponent implements Runnable{
     float x = this.getWidth()/2;
     float y = this.getHeight()/2;
     
-    gerade.setLine(x,y,x+20,y+20);
+    float endX = (float) Math.cos(Math.toRadians(winkel))*LAENGE +x;
+    float endY = (float) Math.sin(Math.toRadians(winkel))*LAENGE +y;
+    
+    gerade.setLine(x,y,endX,endY);
     
     g2.setStroke(stift);
 		g2.setPaint(Color.RED);
@@ -59,7 +73,20 @@ public class Gerade extends JComponent implements Runnable{
 
   @Override
   public void run(){
-
+    while(true){
+      winkel++;
+      if(winkel >= 360){
+        winkel = 0;
+      }
+      this.repaint();
+      try{
+        Thread.sleep(10);
+      }
+      catch(Exception ex){
+        //lg.severe(ex.toString());
+    }
+    }
+    
   } 
 }
 

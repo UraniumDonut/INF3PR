@@ -29,6 +29,7 @@ public class Start {
       
       Gerade ger = new Gerade();
       ger.setOpaque(false);
+      ger.start();
       kiste.add(ger);
       frm.setSize(300,300);
       frm.setVisible(true);
