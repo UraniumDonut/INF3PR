@@ -10,6 +10,6 @@ import javax.swing.JComponent;
  *
  * @author basti
  */
-public class Zeichenflaeche extends JComponent{
+public class Gerade extends JComponent{
     
 }
