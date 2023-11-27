@@ -39,3 +39,4 @@ replay_pid*
 /Analoguhr/nbproject/private/
 /Analoguhr/src/praktikum06/logger/logger.properties
 *.properties
+/Analoguhr/build/
