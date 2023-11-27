@@ -27,7 +27,7 @@ public class Start {
       Container kiste = frm.getContentPane();
       kiste.setLayout(new OverlayLayout(kiste));
       
-      Gerade ger = new Gerade();
+      Gerade ger = new Gerade(frm);
       ger.setOpaque(false);
       ger.start();
       kiste.add(ger);

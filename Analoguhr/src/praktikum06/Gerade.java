@@ -9,11 +9,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 
 /**
  *
@@ -29,22 +31,21 @@ public class Gerade extends JComponent implements Runnable{
 
   private ExecutorService eService;
   private Future task;
-  
+  private AffineTransform at;
   private Thread thd;
 
-  public Gerade(){
+  public Gerade(JFrame frm){
     gerade = new Line2D.Float();
     stift = new BasicStroke(DICKE);
     eService = Executors.newSingleThreadExecutor();
     task = null;
     thd = null;
-    
+    at = new AffineTransform();
   }
 
   public void start(){
     if (task == null){
       task = eService.submit(this);
-     
     }
     if (thd == null){
       thd = new Thread(this);
@@ -61,10 +62,11 @@ public class Gerade extends JComponent implements Runnable{
     float x = this.getWidth()/2;
     float y = this.getHeight()/2;
     
-    float endX = (float) Math.cos(Math.toRadians(winkel))*LAENGE +x;
-    float endY = (float) Math.sin(Math.toRadians(winkel))*LAENGE +y;
     
-    gerade.setLine(x,y,endX,endY);
+    g2.translate(x/2, y/2);
+    g2.rotate(Math.toRadians(winkel));
+    
+    gerade.setLine(0,0,0,LAENGE);
     
     g2.setStroke(stift);
 		g2.setPaint(Color.RED);
