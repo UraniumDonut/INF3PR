@@ -50,7 +50,7 @@ public class Gerade extends JComponent implements Runnable{
     float x = this.getWidth()/2;
     float y = this.getHeight()/2;
     
-    gerade.setLine(x,y,x+10,y+10);
+    gerade.setLine(x,y,x+20,y+20);
     
     g2.setStroke(stift);
 		g2.setPaint(Color.RED);

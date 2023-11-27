@@ -5,9 +5,13 @@
 package praktikum06;
 
 
+import java.awt.Container;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.OverlayLayout;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import praktikum06.logger.GluecksLogger;
 
 /**
@@ -18,8 +22,16 @@ public class Start {
     private static final Logger lg = GluecksLogger.getLogger();
     
     private Start(){
-        Winkelgeber wg = new Winkelgeber();
-        wg.startThread();
+      JFrame frm = new JFrame();
+      frm.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      Container kiste = frm.getContentPane();
+      kiste.setLayout(new OverlayLayout(kiste));
+      
+      Gerade ger = new Gerade();
+      ger.setOpaque(false);
+      kiste.add(ger);
+      frm.setSize(300,300);
+      frm.setVisible(true);
     }
     /**
      * @param args the command line arguments
