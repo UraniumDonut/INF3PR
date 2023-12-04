@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -21,7 +22,7 @@ public class GraphicModel {
     private ArrayList<Point> points;
    
     
-    public void savePoints(String filename) throws FileNotFountException{
+    public void savePoints(String filename) throws Exception{
         //Preference
         FileOutputStream fos = new FileOutputStream(filename);
         // Puffer für Performance
@@ -33,7 +34,7 @@ public class GraphicModel {
         oos.close();
     }
     
-    public void readPoints(String filename) throws FileNotFountException{
+    public void readPoints(String filename) throws Exception{
         //Preference
         FileInputStream fis = new FileInputStream(filename);
         // Puffer für Performance
