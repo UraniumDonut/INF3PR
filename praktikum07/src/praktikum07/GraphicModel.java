@@ -4,11 +4,10 @@
  */
 package praktikum07;
 
-import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,8 +18,12 @@ import java.util.ArrayList;
  * @author basti
  */
 public class GraphicModel {
-    private ArrayList<Point> points;
-   
+    private ArrayList<Line2D> lines;
+    
+    public void addLines(Point start, Point end){
+        setLine
+        lines.addFirst(Line2D());
+    }
     
     public void savePoints(String filename) throws Exception{
         //Preference
@@ -29,7 +32,7 @@ public class GraphicModel {
         BufferedOutputStream bos = new BufferedOutputStream(fos);
         //Serialisierung
         ObjectOutputStream oos = new ObjectOutputStream(bos);
-        oos.writeObject(points);
+        oos.writeObject(lines);
         oos.flush(); //Puffer!
         oos.close();
     }
@@ -45,7 +48,7 @@ public class GraphicModel {
         Object daten = ois.readObject();
         
         if (daten instanceof ArrayList liste){
-            points = liste;
+            lines = liste;
         }
         
         ois.close();
