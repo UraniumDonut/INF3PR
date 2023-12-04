@@ -4,6 +4,7 @@
  */
 package praktikum07;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -14,10 +15,12 @@ import java.awt.event.MouseListener;
 public class Controller implements MouseListener{
     GraphicViewer view;
     GraphicModel model;
+    Point startPoint;
     
     public Controller(GraphicViewer view, GraphicModel model){
         this.view = view;
         this.model = model;
+        startPoint = null;
     }
 
     @Override
@@ -27,12 +30,12 @@ public class Controller implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        startPoint = e.getPoint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        model.addLine(startPoint, e.getPoint());
     }
 
     @Override
@@ -45,4 +48,7 @@ public class Controller implements MouseListener{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public void registerEvents(){
+        view.addMouseListener(this);
+    }
 }
