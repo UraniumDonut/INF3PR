@@ -4,8 +4,10 @@
  */
 package praktikum07;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -20,33 +22,61 @@ import javax.swing.JComponent;
  *
  * @author basti
  */
-public class GraphicViewer extends JComponent implements Printable{
-    public void doPrint(){
-        HashPrintRequestAttributeSet printSet = new HashPrintRequestAttributeSet();
-        printSet.add(DialogTypeSelection.NATIVE);
-        PrinterJob pj = PrinterJob.getPrinterJob();
-        pj.setPrintable(this);
-        
-        if (pj.printDialog(printSet)){
-            try {
-                pj.print(printSet);
-            } catch (PrinterException ex) {
-                Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+public class GraphicViewer extends JComponent implements Printable
+{
+  private final static Dimension EINS = new Dimension(1,1);
+  private Line2D.Float line;
+  private GraphicModel model;
+  public GraphicViewer(){
+    line = new Line2D.Float();
+    //hier linie definieren
+  }
+  public void initView(GraphicModel model){
+    this.model = model;
+  }
+  
+  
+  public void paintComponent(Graphics g){
+    if (model == null){
+      
     }
+    
+  }
+  
+  public void doPrint()
+  {
+    HashPrintRequestAttributeSet printSet = new HashPrintRequestAttributeSet();
+    printSet.add(DialogTypeSelection.NATIVE);
+    PrinterJob pj = PrinterJob.getPrinterJob();
+    pj.setPrintable(this);
 
-    @Override
-    public int print(Graphics gp, PageFormat pf, int pageIndex) throws PrinterException {
-        Graphics2D gp2 = (Graphics2D)gp;
-        if (pageIndex == 0){
-            gp2.translate(pf.getImageableX(), pf.getImageableX());
-            gp2.scale(pf.getImageableHeight(), pf.getImageableWidth());
-            super.print(gp2);
-            return Printable.PAGE_EXISTS;
-        }
-        else{
-            return Printable.NO_SUCH_PAGE;
-        }
+    if (pj.printDialog(printSet))
+    {
+      try
+      {
+        pj.print(printSet);
+      }
+      catch (PrinterException ex)
+      {
+        Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
+  }
+
+  @Override
+  public int print(Graphics gp, PageFormat pf, int pageIndex) throws PrinterException
+  {
+    Graphics2D gp2 = (Graphics2D) gp;
+    if (pageIndex == 0)
+    {
+      gp2.translate(pf.getImageableX(), pf.getImageableX());
+      gp2.scale(pf.getImageableHeight(), pf.getImageableWidth());
+      super.print(gp2);
+      return Printable.PAGE_EXISTS;
+    }
+    else
+    {
+      return Printable.NO_SUCH_PAGE;
+    }
+  }
 }

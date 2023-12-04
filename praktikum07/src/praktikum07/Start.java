@@ -20,6 +20,7 @@ public class Start {
         GraphicModel model = new GraphicModel();
         Controller controller = new Controller(view, model);
         controller.registerEvents();
+        view.initView(model);
         window.setVisible(true);
         
     }
