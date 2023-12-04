@@ -31,7 +31,7 @@ public class GraphicViewer extends JComponent implements Printable
     this.model = model;
   }
   
-  
+  @Override
   public void paintComponent(Graphics g){
     if (model == null){
       return;
