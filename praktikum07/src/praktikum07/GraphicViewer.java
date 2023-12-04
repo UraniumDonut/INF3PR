@@ -24,12 +24,8 @@ import javax.swing.JComponent;
  */
 public class GraphicViewer extends JComponent implements Printable
 {
-  private final static Dimension EINS = new Dimension(1,1);
-  private Line2D.Float line;
   private GraphicModel model;
   public GraphicViewer(){
-    line = new Line2D.Float();
-    //hier linie definieren
   }
   public void initView(GraphicModel model){
     this.model = model;
@@ -38,8 +34,11 @@ public class GraphicViewer extends JComponent implements Printable
   
   public void paintComponent(Graphics g){
     if (model == null){
-      
+      return;
     }
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D)g;
+    
     
   }
   
