@@ -15,6 +15,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Start {
     private Start(){
+        Window window = new Window();
+        GraphicViewer view = window.getGraphicViewer1();
+        GraphicModel model = new GraphicModel();
+        Controller controller = new Controller(view, model);
+        controller.registerEvents();
+        window.setVisible(true);
         
     }
     
