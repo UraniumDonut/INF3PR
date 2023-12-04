@@ -4,6 +4,7 @@
  */
 package praktikum07;
 
+import java.awt.Point;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
  * @author basti
  */
 public class GraphicModel {
+    private ArrayList<Point> points;
+   
     
     public void savePoints(String filename) throws FileNotFountException{
         //Preference
@@ -43,5 +46,7 @@ public class GraphicModel {
         if (daten instanceof ArrayList liste){
             punkte = liste;
         }
+        
+        ois.close();
     }
 }
