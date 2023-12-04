@@ -40,3 +40,5 @@ replay_pid*
 /Analoguhr/src/praktikum06/logger/logger.properties
 *.properties
 /Analoguhr/build/
+/praktikum07/nbproject/private/
+/praktikum06/build/
