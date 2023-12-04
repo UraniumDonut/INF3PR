@@ -10,6 +10,14 @@ package praktikum07;
  */
 public class Window extends javax.swing.JFrame {
 
+  /**
+   * @return the graphicViewer1
+   */
+  public praktikum07.GraphicViewer getGraphicViewer1()
+  {
+    return graphicViewer1;
+  }
+
     /**
      * Creates new form Fenster
      */
