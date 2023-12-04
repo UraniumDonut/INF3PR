@@ -4,8 +4,8 @@
  */
 package praktikum07;
 
-import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -21,14 +21,11 @@ import java.util.List;
  * @author basti
  */
 public class GraphicModel {
-    private ArrayList<Line2D> lines;
+    private ArrayList<Line2D.Float> lines;
     
-    public void addLines(Point start, Point end){
-        setLine
-        lines.addFirst(Line2D());
+    public void addLine(Point2D start, Point2D end){
+        lines.add(new Line2D.Float((Point2D)start,(Point2D)end));
     }
-    
-    
     
     public List<Line2D> getLines(){
       return Collections.unmodifiableList(lines);
