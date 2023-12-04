@@ -40,3 +40,5 @@ replay_pid*
 *.properties
 /Analoguhr/build/
 
+/praktikum07/build/
+/praktikum07/dist/
