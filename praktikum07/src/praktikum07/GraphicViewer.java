@@ -25,10 +25,12 @@ import javax.swing.JComponent;
 public class GraphicViewer extends JComponent implements Printable
 {
   private GraphicModel model;
+  private Line2D.Float line;
   public GraphicViewer(){
   }
   public void initView(GraphicModel model){
     this.model = model;
+    this.line = new Line2D.Float();
   }
   
   @Override
@@ -38,9 +40,10 @@ public class GraphicViewer extends JComponent implements Printable
     }
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D)g;
+    
     model.getLines().forEach(n -> {
-      
-      
+      line = n;
+      g2.draw(line);
     });
     
   }

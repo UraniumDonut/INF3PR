@@ -23,11 +23,15 @@ import java.util.List;
 public class GraphicModel {
     private ArrayList<Line2D.Float> lines;
     
+    public GraphicModel(){
+      this.lines = new ArrayList<Line2D.Float>();
+    }
+    
     public void addLine(Point2D start, Point2D end){
         lines.add(new Line2D.Float((Point2D)start,(Point2D)end));
     }
     
-    public List<Line2D> getLines(){
+    public List<Line2D.Float> getLines(){
       return Collections.unmodifiableList(lines);
     }
     public void savePoints(String filename) throws Exception{
