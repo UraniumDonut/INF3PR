@@ -36,6 +36,7 @@ public class Controller implements MouseListener{
     @Override
     public void mouseReleased(MouseEvent e) {
         model.addLine(startPoint, e.getPoint());
+        view.repaint();
     }
 
     @Override
