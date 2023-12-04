@@ -45,7 +45,7 @@ public class GraphicModel {
         Object daten = ois.readObject();
         
         if (daten instanceof ArrayList liste){
-            punkte = liste;
+            points = liste;
         }
         
         ois.close();
