@@ -4,6 +4,7 @@
  */
 package praktikum07;
 
+import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -12,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -25,6 +28,11 @@ public class GraphicModel {
         lines.addFirst(Line2D());
     }
     
+    
+    
+    public List<Line2D> getLines(){
+      return Collections.unmodifiableList(lines);
+    }
     public void savePoints(String filename) throws Exception{
         //Preference
         FileOutputStream fos = new FileOutputStream(filename);

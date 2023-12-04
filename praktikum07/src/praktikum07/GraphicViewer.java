@@ -38,7 +38,10 @@ public class GraphicViewer extends JComponent implements Printable
     }
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D)g;
-    
+    model.getLines().forEach(n -> {
+      
+      
+    });
     
   }
   
