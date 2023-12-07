@@ -5,8 +5,6 @@
 package praktikum07;
 
 import java.awt.Point;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
@@ -22,21 +20,24 @@ import java.util.List;
  * @author basti
  */
 public class GraphicModel {
+    //private ArrayList<Point> points;
     private ArrayList<Shape> shapes;
     
     public GraphicModel(){
-      this.shapes = new ArrayList<Shape>();
+      this.shapes = new ArrayList<>();
     }
     
     public void addShape(Point point){
         shapes.add(new Shape(point));
     }
     
-    public void addPoint(Point2D point){
-        shapes.addPoint(point);
+    public void addPoint(Point point){
+        if(!shapes.isEmpty()){
+          shapes.get(shapes.size() - 1).addPoint(point);
+        }
     }
     
-    public List<Line2D.Float> getLines(){
+    public List<Shape> getShapes(){
       return Collections.unmodifiableList(shapes);
     }
     public void savePoints(String filename) throws Exception{
@@ -44,11 +45,12 @@ public class GraphicModel {
         FileOutputStream fos = new FileOutputStream(filename);
         // Puffer für Performance
         BufferedOutputStream bos = new BufferedOutputStream(fos);
-        //Serialisierung
-        ObjectOutputStream oos = new ObjectOutputStream(bos);
+      try ( //Serialisierung
+              ObjectOutputStream oos = new ObjectOutputStream(bos))
+      {
         oos.writeObject(shapes);
         oos.flush(); //Puffer!
-        oos.close();
+      }
     }
     
     public void readPoints(String filename) throws Exception{
@@ -56,15 +58,14 @@ public class GraphicModel {
         FileInputStream fis = new FileInputStream(filename);
         // Puffer für Performance
         BufferedInputStream bis = new BufferedInputStream(fis);
-        //Deserialisierung
-        ObjectInputStream ois = new ObjectInputStream(bis);
-        
+      try ( //Deserialisierung
+              ObjectInputStream ois = new ObjectInputStream(bis))
+      {
         Object daten = ois.readObject();
         
-        if (daten instanceof ArrayList liste){
-            shapes = liste;
+        if (daten instanceof ArrayList list){
+          shapes = list;
         }
-        
-        ois.close();
+      }
     }
 }

@@ -4,52 +4,83 @@
  */
 package praktikum07;
 
-import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.prefs.Preferences;
 
 /**
  *
  * @author basti
  */
-public class Controller implements MouseListener{
-    GraphicViewer view;
-    GraphicModel model;
-    Point startPoint;
-    
-    public Controller(GraphicViewer view, GraphicModel model){
-        this.view = view;
-        this.model = model;
-        startPoint = null;
-    }
+public class Controller implements MouseMotionListener, MouseListener, ActionListener
+{
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  GraphicViewer view;
+  GraphicModel model;
+  Window window;
+  Preferences pref;
+  public Controller(GraphicViewer view, GraphicModel model, Window window)
+  {
+    this.view = view;
+    this.model = model;
+    this.window = window;
+    pref = Preferences.userNodeForPackage(this.getClass());
+  }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        startPoint = e.getPoint();
-    }
+  public void registerEvents()
+  {
+    view.addMouseListener(this);
+    view.addMouseMotionListener(this);
+    window.getOpenButton().addActionListener(this);
+    window.getSaveButton().addActionListener(this);
+  }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        model.addLine(startPoint, e.getPoint());
-        view.repaint();
-    }
+  @Override
+  public void mouseDragged(MouseEvent e)
+  {
+    model.addPoint(e.getPoint());
+    view.repaint();
+  }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+  @Override
+  public void mouseMoved(MouseEvent e)
+  {
+  }
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  @Override
+  public void mouseClicked(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mousePressed(MouseEvent e)
+  {
+    model.addShape(e.getPoint());
+  }
+
+  @Override
+  public void mouseReleased(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseEntered(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseExited(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e)
+  {
+    if(e.getSource() == window.getOpenButton()){
+      //model.savePoints();
     }
-    
-    public void registerEvents(){
-        view.addMouseListener(this);
-    }
+  }
 }

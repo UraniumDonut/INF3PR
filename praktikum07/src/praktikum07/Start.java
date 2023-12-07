@@ -18,7 +18,7 @@ public class Start {
         Window window = new Window();
         GraphicViewer view = window.getGraphicViewer1();
         GraphicModel model = new GraphicModel();
-        Controller controller = new Controller(view, model);
+        Controller controller = new Controller(view, model, window);
         controller.registerEvents();
         view.initView(model);
         window.setVisible(true);

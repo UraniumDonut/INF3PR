@@ -4,14 +4,16 @@
  */
 package praktikum07;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -40,12 +42,18 @@ public class GraphicViewer extends JComponent implements Printable
     }
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D)g;
-    
-    model.getLines().forEach(n -> {
-      line = n;
-      g2.draw(line);
+    model.getShapes().forEach(s -> {
+      List<Point> points = s.getPoints();
+      for (int i = 0; i < points.size(); i++){
+      if (i == 0){
+        //do nothing
+      }
+      else{
+        line = new Line2D.Float(points.get(i-1), points.get(i));
+        g2.draw(line);
+      }
+    }
     });
-    
   }
   
   public void doPrint()

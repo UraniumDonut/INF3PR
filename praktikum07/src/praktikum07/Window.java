@@ -11,6 +11,30 @@ package praktikum07;
 public class Window extends javax.swing.JFrame {
 
   /**
+   * @return the ExitButton
+   */
+  public javax.swing.JMenuItem getExitButton()
+  {
+    return ExitButton;
+  }
+
+  /**
+   * @return the OpenButton
+   */
+  public javax.swing.JMenuItem getOpenButton()
+  {
+    return OpenButton;
+  }
+
+  /**
+   * @return the SaveButton
+   */
+  public javax.swing.JMenuItem getSaveButton()
+  {
+    return SaveButton;
+  }
+
+  /**
    * @return the graphicViewer1
    */
   public praktikum07.GraphicViewer getGraphicViewer1()
@@ -36,24 +60,46 @@ public class Window extends javax.swing.JFrame {
   {
 
     graphicViewer1 = new praktikum07.GraphicViewer();
-    jMenuBar1 = new javax.swing.JMenuBar();
-    jMenu1 = new javax.swing.JMenu();
-    jMenu2 = new javax.swing.JMenu();
+    jMenuBar = new javax.swing.JMenuBar();
+    jFileMenu = new javax.swing.JMenu();
+    OpenButton = new javax.swing.JMenuItem();
+    SaveButton = new javax.swing.JMenuItem();
+    ExitButton = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setMinimumSize(new java.awt.Dimension(400, 600));
     getContentPane().add(graphicViewer1, java.awt.BorderLayout.CENTER);
 
-    jMenu1.setText("File");
-    jMenuBar1.add(jMenu1);
+    jFileMenu.setText("File");
 
-    jMenu2.setText("Edit");
-    jMenuBar1.add(jMenu2);
+    OpenButton.setText("Open");
+    jFileMenu.add(OpenButton);
 
-    setJMenuBar(jMenuBar1);
+    SaveButton.setText("Save");
+    jFileMenu.add(SaveButton);
+
+    ExitButton.setText("Exit");
+    ExitButton.addActionListener(new java.awt.event.ActionListener()
+    {
+      public void actionPerformed(java.awt.event.ActionEvent evt)
+      {
+        ExitButtonActionPerformed(evt);
+      }
+    });
+    jFileMenu.add(ExitButton);
+
+    jMenuBar.add(jFileMenu);
+
+    setJMenuBar(jMenuBar);
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
+
+  private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_ExitButtonActionPerformed
+  {//GEN-HEADEREND:event_ExitButtonActionPerformed
+    // TODO add your handling code here:
+    System.exit(0);
+  }//GEN-LAST:event_ExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,9 +138,11 @@ public class Window extends javax.swing.JFrame {
     }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenuItem ExitButton;
+  private javax.swing.JMenuItem OpenButton;
+  private javax.swing.JMenuItem SaveButton;
   private praktikum07.GraphicViewer graphicViewer1;
-  private javax.swing.JMenu jMenu1;
-  private javax.swing.JMenu jMenu2;
-  private javax.swing.JMenuBar jMenuBar1;
+  private javax.swing.JMenu jFileMenu;
+  private javax.swing.JMenuBar jMenuBar;
   // End of variables declaration//GEN-END:variables
 }
