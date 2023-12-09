@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package praktikum07;
+package praktikum07.controller;
 
+import praktikum07.model.GraphicModel;
+import praktikum07.view.Window;
+import praktikum07.view.GraphicViewer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -36,6 +39,7 @@ public class Controller implements MouseMotionListener, MouseListener, ActionLis
     view.addMouseMotionListener(this);
     window.getOpenButton().addActionListener(this);
     window.getSaveButton().addActionListener(this);
+    window.getPrintButton().addActionListener(this::print);
   }
 
   @Override
@@ -82,5 +86,10 @@ public class Controller implements MouseMotionListener, MouseListener, ActionLis
     if(e.getSource() == window.getOpenButton()){
       //model.savePoints();
     }
+  }
+  
+  public void print(ActionEvent evt){
+      view.doPrint();
+      System.out.println("Datei gedruckt.");
   }
 }

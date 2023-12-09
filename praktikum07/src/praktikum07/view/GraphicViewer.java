@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package praktikum07;
+package praktikum07.view;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,13 +12,14 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.DialogTypeSelection;
 import javax.swing.JComponent;
+import praktikum07.model.GraphicModel;
+import praktikum07.Start;
 
 /**
  *

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package praktikum07;
+package praktikum07.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -23,10 +23,10 @@ public class Shape
     points.add(beginning);
   }
   
-  void addPoint(Point p){
+  public void addPoint(Point p){
     points.add(p);
   }
-  List<Point> getPoints(){
+  public List<Point> getPoints(){
     return Collections.unmodifiableList(points);
   }
 }
