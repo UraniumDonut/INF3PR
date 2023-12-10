@@ -4,9 +4,11 @@
  */
 package praktikum07.view;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.geom.Line2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -84,7 +86,7 @@ public class GraphicViewer extends JComponent implements Printable
     if (pageIndex == 0)
     {
       gp2.translate(pf.getImageableX(), pf.getImageableX());
-      gp2.scale(pf.getImageableHeight(), pf.getImageableWidth());
+      gp2.scale(pf.getImageableWidth()/pf.getWidth(), pf.getImageableHeight()/pf.getWidth());
       super.print(gp2);
       return Printable.PAGE_EXISTS;
     }

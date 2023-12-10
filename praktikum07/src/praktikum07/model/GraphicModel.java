@@ -7,8 +7,11 @@ package praktikum07.model;
 import java.awt.Point;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -40,7 +43,8 @@ public class GraphicModel {
     public List<Shape> getShapes(){
       return Collections.unmodifiableList(shapes);
     }
-    public void savePoints(String filename) throws Exception{
+    
+    public void saveShapes(String filename) throws Exception{
         //Preference
         FileOutputStream fos = new FileOutputStream(filename);
         // Puffer für Performance
@@ -53,7 +57,7 @@ public class GraphicModel {
       }
     }
     
-    public void readPoints(String filename) throws Exception{
+    public void readShapes(String filename) throws Exception{
         //Preference
         FileInputStream fis = new FileInputStream(filename);
         // Puffer für Performance

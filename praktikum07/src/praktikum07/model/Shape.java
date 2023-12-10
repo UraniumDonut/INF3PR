@@ -6,6 +6,7 @@
 package praktikum07.model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,12 +15,12 @@ import java.util.List;
  *
  * @author Leon
  */
-public class Shape 
+public class Shape implements Serializable
 {
   ArrayList<Point> points;
   public Shape(Point beginning)
   {
-    points = new ArrayList<Point>();
+    points = new ArrayList<>();
     points.add(beginning);
   }
   
