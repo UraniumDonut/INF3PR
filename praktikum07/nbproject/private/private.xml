@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/model/GraphicModel.java</file>
-            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/view/Window.java</file>
             <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/view/GraphicViewer.java</file>
-            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/Start.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/model/Shape.java</file>
             <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum07/src/praktikum07/controller/Controller.java</file>
         </group>
     </open-files>
