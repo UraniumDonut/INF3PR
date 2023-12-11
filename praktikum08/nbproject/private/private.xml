@@ -3,7 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Leon/Documents/Git/INF3PR/praktikum08/src/praktikum08/Start.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/controller/ReceiveAdapter.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/controller/CommandConnect.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/Start.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/Transmitter.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/controller/CommandSend.java</file>
+            <file>file:/home/basti/Dokumente/Studium/INF3_2/INF3PR/praktikum08/src/praktikum08/ChatView.java</file>
         </group>
     </open-files>
 </project-private>

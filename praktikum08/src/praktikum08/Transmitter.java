@@ -13,21 +13,28 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Flow.Subscriber;
+import java.util.concurrent.SubmissionPublisher;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author basti
  */
-public class Transmitter
+public class Transmitter  implements Runnable
 {
 
   private static final int PORT = 35400;
+  private BufferedReader in;
+  private PrintWriter out;
+  private SubmissionPublisher<String> pub;
 
   public Transmitter()
   {
   }
 
-  public void initTransmitter(boolean isServer, String IP) throws IOException
+  public void connect(boolean isServer, String IP) throws IOException
   {
     Socket s = null;
     if (isServer)
@@ -46,9 +53,24 @@ public class Transmitter
     InputStreamReader isr = new InputStreamReader(ins, "UTF-8");
     OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8"); //Das sind jetzt Strings
 
-    BufferedReader in = new BufferedReader(isr);
+    in = new BufferedReader(isr);
     //BufferedWriter out = new BufferedWriter(osw); 
-    PrintWriter out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
+    out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
   }
 
+    @Override
+    public void run() {
+      try {
+          String str = in.readLine();
+          if(str != null){
+              pub.submit(str);
+          }
+      } catch (IOException ex) {
+          Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+    
+    public void addSubscriber(Subscriber<String> subscriber){
+        pub.subscribe(subscriber);
+    }
 }

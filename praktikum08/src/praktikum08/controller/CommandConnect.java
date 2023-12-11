@@ -6,7 +6,10 @@ package praktikum08.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.concurrent.Flow;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import praktikum08.ChatView;
 import praktikum08.Transmitter;
 
@@ -31,7 +34,12 @@ public class CommandConnect implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String ip = view.getTfIP().getText();
-        model.connect(ip);
+        boolean isServer = view.getServerCheckbox().isSelected();
+        try {
+            model.connect(isServer, ip);
+        } catch (IOException ex) {
+            Logger.getLogger(CommandConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
