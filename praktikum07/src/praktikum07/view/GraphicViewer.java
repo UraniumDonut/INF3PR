@@ -30,7 +30,7 @@ public class GraphicViewer extends JComponent implements Printable
 
   private GraphicModel model;
   private Line2D.Float line;
-
+  private Point lastPoint = null;
   public GraphicViewer()
   {
   }
@@ -39,6 +39,18 @@ public class GraphicViewer extends JComponent implements Printable
   {
     this.model = model;
     this.line = new Line2D.Float();
+  }
+  
+  public void drawLine(Point p){
+    Graphics2D g2 = (Graphics2D)this.getGraphics();
+    if(lastPoint != null){
+      g2.draw(new Line2D.Float(lastPoint, p));
+    }
+    lastPoint = p;
+  }
+  
+  public void resetPoint(){
+    this.lastPoint = null;
   }
 
   @Override

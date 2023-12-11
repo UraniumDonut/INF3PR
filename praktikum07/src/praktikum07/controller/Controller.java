@@ -4,6 +4,7 @@
  */
 package praktikum07.controller;
 
+import java.awt.Point;
 import praktikum07.model.GraphicModel;
 import praktikum07.view.Window;
 import praktikum07.view.GraphicViewer;
@@ -53,8 +54,9 @@ public class Controller implements MouseMotionListener, MouseListener, ActionLis
   @Override
   public void mouseDragged(MouseEvent e)
   {
-    model.addPoint(e.getPoint());
-    view.repaint();
+    Point p = e.getPoint();
+    model.addPoint(p);
+    view.drawLine(p);
   }
 
   @Override
@@ -70,7 +72,11 @@ public class Controller implements MouseMotionListener, MouseListener, ActionLis
   @Override
   public void mousePressed(MouseEvent e)
   {
-    model.addShape(e.getPoint());
+    Point p = e.getPoint();
+    view.repaint();
+    model.addShape(p);
+    view.resetPoint();
+    view.drawLine(p);
   }
 
   @Override
