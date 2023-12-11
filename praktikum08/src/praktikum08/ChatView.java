@@ -32,12 +32,16 @@ public class ChatView extends javax.swing.JFrame
     ChatPanel = new javax.swing.JPanel();
     ScrollPane = new javax.swing.JScrollPane();
     ChatTextArea = new javax.swing.JTextArea();
+    inputField = new javax.swing.JTextField();
     ControlsPanel = new javax.swing.JPanel();
     ServerCheckbox = new javax.swing.JCheckBox();
     SendButton = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+    ChatPanel.setLayout(new javax.swing.BoxLayout(ChatPanel, javax.swing.BoxLayout.PAGE_AXIS));
+
+    ChatTextArea.setEditable(false);
     ChatTextArea.setColumns(20);
     ChatTextArea.setRows(10);
     ChatTextArea.setMinimumSize(new java.awt.Dimension(13, 1000));
@@ -45,6 +49,13 @@ public class ChatView extends javax.swing.JFrame
 
     ChatPanel.add(ScrollPane);
 
+    inputField.setText("input");
+    ChatPanel.add(inputField);
+
+    ControlsPanel.setMaximumSize(new java.awt.Dimension(500, 23));
+    ControlsPanel.setMinimumSize(new java.awt.Dimension(200, 23));
+    ControlsPanel.setName(""); // NOI18N
+    ControlsPanel.setPreferredSize(new java.awt.Dimension(100, 23));
     ControlsPanel.setLayout(new java.awt.GridLayout(1, 2));
 
     ServerCheckbox.setText("Act as Server");
@@ -128,5 +139,6 @@ public class ChatView extends javax.swing.JFrame
   private javax.swing.JScrollPane ScrollPane;
   private javax.swing.JButton SendButton;
   private javax.swing.JCheckBox ServerCheckbox;
+  private javax.swing.JTextField inputField;
   // End of variables declaration//GEN-END:variables
 }

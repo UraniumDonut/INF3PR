@@ -13,6 +13,9 @@ public class Start
 {
   public Start()
   {
+    ChatView view = new ChatView();
+    
+    view.setVisible(true);
   
   }
 
