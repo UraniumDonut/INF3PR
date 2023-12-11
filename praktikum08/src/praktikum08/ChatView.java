@@ -4,6 +4,12 @@
  */
 package praktikum08;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Leon
@@ -125,6 +131,26 @@ public class ChatView extends javax.swing.JFrame
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConnectActionPerformed
+
+    public JTextArea getChatTextArea() {
+        return ChatTextArea;
+    }
+
+    public JButton getSendButton() {
+        return SendButton;
+    }
+
+    public JToggleButton getBtnConnect() {
+        return btnConnect;
+    }
+
+    public JTextField getInputField() {
+        return inputField;
+    }
+
+    public JFormattedTextField getTfIP() {
+        return tfIP;
+    }
 
   /**
    * @param args the command line arguments

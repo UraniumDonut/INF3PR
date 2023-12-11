@@ -13,7 +13,7 @@ import praktikum08.Transmitter;
  *
  * @author basti
  */
-public class ReceiveAdapter implements Subscriber{
+public class ReceiveAdapter implements Subscriber<String>{
     ChatView view;
     Transmitter model;
     Flow.Subscription sub;
@@ -30,7 +30,7 @@ public class ReceiveAdapter implements Subscriber{
     }
 
     @Override
-    public void onNext(Object item) {
+    public void onNext(String item) {
         view.getChatTextArea().append(item);
         sub.request(1);
     }
