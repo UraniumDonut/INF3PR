@@ -17,7 +17,7 @@ import praktikum08.Transmitter;
  *
  * @author basti
  */
-public class CommandConnect implements ActionListener{
+public class CommandConnect implements ActionListener, Runnable{
     ChatView view;
     Transmitter model;
     Flow.Subscription sub;
@@ -33,6 +33,12 @@ public class CommandConnect implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Thread trd = new Thread(this);
+        trd.start();
+    }
+
+    @Override
+    public void run() {
         String ip = view.getTfIP().getText();
         boolean isServer = view.getServerCheckbox().isSelected();
         try {

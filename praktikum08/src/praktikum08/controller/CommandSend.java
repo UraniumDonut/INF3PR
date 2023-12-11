@@ -4,10 +4,33 @@
  */
 package praktikum08.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import praktikum08.ChatView;
+import praktikum08.Transmitter;
+
 /**
  *
  * @author basti
  */
-public class CommandSend {
+public class CommandSend implements ActionListener{
+    private ChatView view;
+    private Transmitter model;
     
+    public CommandSend(ChatView view, Transmitter model){
+        this.view = view;
+        this.model = model;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String msg = view.getInputField().getText();
+        view.getInputField().setText("");
+        model.send(msg);
+    }
+    
+    public void registerEvents(){
+        view.getSendButton().addActionListener(this);
+        view.getInputField().addActionListener(this);
+    }
 }

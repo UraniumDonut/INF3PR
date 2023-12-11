@@ -29,9 +29,11 @@ public class Transmitter  implements Runnable
   private BufferedReader in;
   private PrintWriter out;
   private SubmissionPublisher<String> pub;
+  private Thread trd;
 
   public Transmitter()
   {
+      pub = new SubmissionPublisher<String>();
   }
 
   public void connect(boolean isServer, String IP) throws IOException
@@ -56,21 +58,36 @@ public class Transmitter  implements Runnable
     in = new BufferedReader(isr);
     //BufferedWriter out = new BufferedWriter(osw); 
     out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
+    
+    if (trd == null){
+        Thread trd = new Thread(this);
+        trd.start();
+    }
   }
 
     @Override
     public void run() {
-      try {
-          String str = in.readLine();
-          if(str != null){
-              pub.submit(str);
+      while(true){
+        try {
+            String str = in.readLine();
+            if(str != null){
+                pub.submit(str);
+            }
+            trd.sleep(100);
+        } catch (IOException ex) {
+            Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+              Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
           }
-      } catch (IOException ex) {
-          Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
     
     public void addSubscriber(Subscriber<String> subscriber){
         pub.subscribe(subscriber);
+    }
+    
+    public void send(String msg){
+        out.println(msg);
+        out.flush();
     }
 }
