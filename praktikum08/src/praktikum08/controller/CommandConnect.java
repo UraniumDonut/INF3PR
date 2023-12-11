@@ -4,6 +4,8 @@
  */
 package praktikum08.controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.Flow;
 import praktikum08.ChatView;
 import praktikum08.Transmitter;
@@ -12,7 +14,7 @@ import praktikum08.Transmitter;
  *
  * @author basti
  */
-public class CommandConnect{
+public class CommandConnect implements ActionListener{
     ChatView view;
     Transmitter model;
     Flow.Subscription sub;
@@ -22,6 +24,15 @@ public class CommandConnect{
         this.model = model;
     }
     
-    public connect()
+    public void registerEvents(){
+        view.getBtnConnect().addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String ip = view.getTfIP().getText();
+        model.connect(ip);
+    }
+    
     
 }
