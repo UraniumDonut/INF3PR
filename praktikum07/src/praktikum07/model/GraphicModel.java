@@ -54,6 +54,7 @@ public class GraphicModel {
       {
         oos.writeObject(shapes);
         oos.flush(); //Puffer!
+        oos.close();
       }
     }
     

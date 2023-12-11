@@ -48,7 +48,7 @@ public class Transmitter
 
     BufferedReader in = new BufferedReader(isr);
     //BufferedWriter out = new BufferedWriter(osw); 
-    PrintWriter out = new PrintWriter(osr); //ist cooler, weil wir hier die println und printf funktionen haben
+    PrintWriter out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
   }
 
 }
