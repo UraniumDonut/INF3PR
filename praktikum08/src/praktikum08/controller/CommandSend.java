@@ -25,6 +25,7 @@ public class CommandSend implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String msg = view.getInputField().getText();
+        view.getChatTextArea().append(msg + System.lineSeparator());
         view.getInputField().setText("");
         model.send(msg);
     }

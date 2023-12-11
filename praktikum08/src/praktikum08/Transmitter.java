@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class Transmitter  implements Runnable
 {
 
-  private static final int PORT = 35400;
+  private static final int PORT = 8080;
   private BufferedReader in;
   private PrintWriter out;
   private SubmissionPublisher<String> pub;
@@ -48,7 +48,7 @@ public class Transmitter  implements Runnable
     {
       s = new Socket(IP, PORT); //Das Blockiert und muss im Thread sein bei GUI Applikationen
     }
-
+    System.out.println("connected");
     InputStream ins = s.getInputStream();
     OutputStream os = s.getOutputStream();
 

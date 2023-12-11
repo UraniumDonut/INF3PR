@@ -31,7 +31,7 @@ public class ReceiveAdapter implements Subscriber<String>{
 
     @Override
     public void onNext(String item) {
-        view.getChatTextArea().append(item);
+        view.getChatTextArea().append(item + System.lineSeparator());
         sub.request(1);
     }
 
