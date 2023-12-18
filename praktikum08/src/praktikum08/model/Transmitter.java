@@ -17,6 +17,7 @@ import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import praktikum08.Logger.GluecksLogger;
 
 /**
  *
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
  */
 public class Transmitter  implements Runnable
 {
+  private static Logger lg = GluecksLogger.getLogger();
 
   private static final int PORT = 8080;
   private BufferedReader in;
@@ -48,7 +50,7 @@ public class Transmitter  implements Runnable
     {
       s = new Socket(IP, PORT); //Das Blockiert und muss im Thread sein bei GUI Applikationen
     }
-    System.out.println("connected");
+    lg.info("connected");
     InputStream ins = s.getInputStream();
     OutputStream os = s.getOutputStream();
 

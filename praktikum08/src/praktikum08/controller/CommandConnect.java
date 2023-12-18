@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.concurrent.Flow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import praktikum08.Logger.GluecksLogger;
 import praktikum08.view.ChatView;
 import praktikum08.model.Transmitter;
 
@@ -17,36 +18,46 @@ import praktikum08.model.Transmitter;
  *
  * @author basti
  */
-public class CommandConnect implements ActionListener, Runnable{
-    ChatView view;
-    Transmitter model;
-    Flow.Subscription sub;
-    
-    public CommandConnect(ChatView view, Transmitter model){
-        this.view = view;
-        this.model = model;
-    }
-    
-    public void registerEvents(){
-        view.getBtnConnect().addActionListener(this);
-    }
+public class CommandConnect implements ActionListener, Runnable
+{
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Thread trd = new Thread(this);
-        trd.start();
-    }
+  private static Logger lg = GluecksLogger.getLogger();
 
-    @Override
-    public void run() {
-        String ip = view.getTfIP().getText();
-        boolean isServer = view.getServerCheckbox().isSelected();
-        try {
-            model.connect(isServer, ip);
-        } catch (IOException ex) {
-            Logger.getLogger(CommandConnect.class.getName()).log(Level.SEVERE, null, ex);
-        }
+  ChatView view;
+  Transmitter model;
+  Flow.Subscription sub;
+
+  public CommandConnect(ChatView view, Transmitter model)
+  {
+    this.view = view;
+    this.model = model;
+  }
+
+  public void registerEvents()
+  {
+    view.getBtnConnect().addActionListener(this);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e)
+  {
+    Thread trd = new Thread(this);
+    trd.start();
+  }
+
+  @Override
+  public void run()
+  {
+    String ip = view.getTfIP().getText();
+    boolean isServer = view.getServerCheckbox().isSelected();
+    try
+    {
+      model.connect(isServer, ip);
     }
-    
-    
+    catch (IOException ex)
+    {
+      Logger.getLogger(CommandConnect.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
 }
