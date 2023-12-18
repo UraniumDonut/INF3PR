@@ -43,8 +43,6 @@ public class ChatView extends javax.swing.JFrame
     private void initComponents() {
 
         ChatPanel = new javax.swing.JPanel();
-        ScrollPane = new javax.swing.JScrollPane();
-        ChatTextArea = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         inputField = new javax.swing.JTextField();
         SendButton = new javax.swing.JButton();
@@ -53,18 +51,11 @@ public class ChatView extends javax.swing.JFrame
         tfIP = new javax.swing.JFormattedTextField();
         btnConnect = new javax.swing.JToggleButton();
         ServerCheckbox = new javax.swing.JCheckBox();
+        graphicViewer1 = new praktikum08.view.GraphicViewer();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ChatPanel.setLayout(new javax.swing.BoxLayout(ChatPanel, javax.swing.BoxLayout.PAGE_AXIS));
-
-        ChatTextArea.setEditable(false);
-        ChatTextArea.setColumns(20);
-        ChatTextArea.setRows(10);
-        ChatTextArea.setMinimumSize(new java.awt.Dimension(13, 1000));
-        ScrollPane.setViewportView(ChatTextArea);
-
-        ChatPanel.add(ScrollPane);
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -119,6 +110,7 @@ public class ChatView extends javax.swing.JFrame
         jPanel1.add(ServerCheckbox);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(graphicViewer1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -140,9 +132,10 @@ public class ChatView extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConnectActionPerformed
 
-    public JTextArea getChatTextArea() {
-        return ChatTextArea;
+    public GraphicViewer getGraphicViewer() {
+        return graphicViewer1;
     }
+
 
     public JButton getSendButton() {
         return SendButton;
@@ -218,12 +211,11 @@ public class ChatView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ChatPanel;
-    private javax.swing.JTextArea ChatTextArea;
     private javax.swing.JPanel ControlsPanel;
-    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton SendButton;
     private javax.swing.JCheckBox ServerCheckbox;
     private javax.swing.JToggleButton btnConnect;
+    private praktikum08.view.GraphicViewer graphicViewer1;
     private javax.swing.JTextField inputField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
