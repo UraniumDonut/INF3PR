@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package praktikum08;
+package praktikum08.model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class Transmitter  implements Runnable
     out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
     
     if (trd == null){
-        Thread trd = new Thread(this);
+        trd = new Thread(this);
         trd.start();
     }
   }

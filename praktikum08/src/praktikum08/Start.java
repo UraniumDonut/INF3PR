@@ -5,6 +5,8 @@
 
 package praktikum08;
 
+import praktikum08.view.ChatView;
+import praktikum08.model.Transmitter;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import praktikum08.controller.CommandConnect;

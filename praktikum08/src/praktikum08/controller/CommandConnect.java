@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.concurrent.Flow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import praktikum08.ChatView;
-import praktikum08.Transmitter;
+import praktikum08.view.ChatView;
+import praktikum08.model.Transmitter;
 
 /**
  *
