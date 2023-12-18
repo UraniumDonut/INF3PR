@@ -60,7 +60,7 @@ public class Transmitter  implements Runnable
     out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
     
     if (trd == null){
-        Thread trd = new Thread(this);
+        trd = new Thread(this);
         trd.start();
     }
   }
