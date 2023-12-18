@@ -34,6 +34,7 @@ public class Transmitter implements Runnable
   private ObjectInputStream isr;
   private ObjectOutputStream osw;
   private SubmissionPublisher<Object> pub;
+
   private Thread trd;
 
   public Transmitter()
