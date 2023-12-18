@@ -6,6 +6,7 @@ package praktikum08.controller;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import praktikum08.model.GraphicModel;
 import praktikum08.model.Shape;
 import praktikum08.view.ChatView;
 import praktikum08.model.Transmitter;
@@ -16,12 +17,14 @@ import praktikum08.model.Transmitter;
  */
 public class ReceiveAdapter implements Subscriber<Object>{
     ChatView view;
-    Transmitter model;
+    Transmitter transModel;
+    GraphicModel graphicModel;
     Flow.Subscription sub;
     
-    public ReceiveAdapter(ChatView view, Transmitter model){
+    public ReceiveAdapter(ChatView view, Transmitter transModel, GraphicModel graphicModel){
         this.view = view;
-        this.model = model;
+        this.transModel = transModel;
+        this.graphicModel = graphicModel;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class ReceiveAdapter implements Subscriber<Object>{
 
     @Override
     public void onNext(Object item) {
-        view.getGraphicViewer().addShape((Shape)item);
+        GraphicModel.addShape((Shape)item);
         sub.request(1);
     }
 
