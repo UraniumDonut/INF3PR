@@ -8,7 +8,9 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 import praktikum08.model.GraphicModel;
+import praktikum08.model.Shape;
 import praktikum08.view.ChatView;
 import praktikum08.model.Transmitter;
 
@@ -33,6 +35,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
     Point p = e.getPoint();
     graphic_model.addPoint(p);
     view.getGraphicViewer().drawLine(p);
+    
   }
 
   @Override
@@ -58,6 +61,9 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   @Override
   public void mouseReleased(MouseEvent e)
   {
+    List<Shape> shapes = graphic_model.getShapes();
+    Shape last = shapes.get(shapes.size() - 1);
+    trans_model.send(last);
   }
 
   @Override
