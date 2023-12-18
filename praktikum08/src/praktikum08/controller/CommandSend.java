@@ -28,6 +28,12 @@ public class CommandSend implements MouseMotionListener, MouseListener{
         this.trans_model = trans_model;
         this.graphic_model = graphic_model;
     }
+    
+   public void registerEvents()
+  {
+    view.addMouseListener(this);
+    view.addMouseMotionListener(this);
+  }
 
   @Override
   public void mouseDragged(MouseEvent e)
