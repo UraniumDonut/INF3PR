@@ -5,17 +5,17 @@
 package praktikum08.model;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
 
@@ -29,7 +29,7 @@ public class Transmitter  implements Runnable
 
   private static final int PORT = 8080;
   private BufferedReader in;
-  private PrintWriter out;
+  private ObjectOutputStream out;
   private SubmissionPublisher<String> pub;
   private Thread trd;
 
@@ -58,8 +58,8 @@ public class Transmitter  implements Runnable
     OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8"); //Das sind jetzt Strings
 
     in = new BufferedReader(isr);
-    //BufferedWriter out = new BufferedWriter(osw); 
-    out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
+    BufferedWriter out = new BufferedWriter(osw); 
+    //out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
     
     if (trd == null){
         trd = new Thread(this);
