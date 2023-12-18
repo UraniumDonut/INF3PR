@@ -12,6 +12,7 @@ import javax.swing.UIManager;
 import praktikum08.controller.CommandConnect;
 import praktikum08.controller.CommandSend;
 import praktikum08.controller.ReceiveAdapter;
+import praktikum08.model.GraphicModel;
 
 /**
  *
@@ -21,11 +22,12 @@ public class Start
 {
   public Start()
   {
-    Transmitter model = new Transmitter();
+    Transmitter trans_model = new Transmitter();
+    GraphicModel graphic_model = new GraphicModel();
     ChatView view = new ChatView();
-    ReceiveAdapter ra = new ReceiveAdapter(view, model);
-    CommandConnect cc = new CommandConnect(view, model);
-    CommandSend cs = new CommandSend(view, model);
+    ReceiveAdapter ra = new ReceiveAdapter(view, trans_model, graphic_model);
+    CommandConnect cc = new CommandConnect(view, trans_model);
+    CommandSend cs = new CommandSend(view, trans_model, graphic_model);
     cc.registerEvents();
     cs.registerEvents();
     model.addSubscriber(ra);
