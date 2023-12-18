@@ -50,7 +50,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   {
     Point p = e.getPoint();
     view.repaint();
-    graphic_model.addShape(p);
+    graphic_model.createShape(p);
     view.getGraphicViewer().resetPoint();
     view.getGraphicViewer().drawLine(p);
   }

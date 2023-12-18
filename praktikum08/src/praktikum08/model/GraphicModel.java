@@ -21,7 +21,7 @@ public class GraphicModel {
       this.shapes = new ArrayList<>();
     }
     
-    public void addShape(Point point){
+    public void createShape(Point point){
         shapes.add(new Shape(point));
     }
     
@@ -35,4 +35,7 @@ public class GraphicModel {
       return Collections.unmodifiableList(shapes);
     }
     
+    public void addShape(Shape s){
+        shapes.add(s);
+    }
 }
