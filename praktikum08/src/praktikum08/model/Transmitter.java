@@ -77,9 +77,9 @@ public class Transmitter  implements Runnable
             }
             trd.sleep(100);
         } catch (IOException ex) {
-            Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
+            lg.severe(ex.getLocalizedMessage());
         } catch (InterruptedException ex) {
-              Logger.getLogger(Transmitter.class.getName()).log(Level.SEVERE, null, ex);
+              lg.severe(ex.getLocalizedMessage());
           }
       }
     }

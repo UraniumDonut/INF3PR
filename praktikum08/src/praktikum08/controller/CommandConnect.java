@@ -56,7 +56,7 @@ public class CommandConnect implements ActionListener, Runnable
     }
     catch (IOException ex)
     {
-      Logger.getLogger(CommandConnect.class.getName()).log(Level.SEVERE, null, ex);
+      lg.severe(ex.getLocalizedMessage());
     }
   }
 
