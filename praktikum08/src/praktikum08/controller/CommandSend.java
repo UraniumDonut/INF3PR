@@ -6,8 +6,8 @@ package praktikum08.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import praktikum08.ChatView;
-import praktikum08.Transmitter;
+import praktikum08.view.ChatView;
+import praktikum08.model.Transmitter;
 
 /**
  *

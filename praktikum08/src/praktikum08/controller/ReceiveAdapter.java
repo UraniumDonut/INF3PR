@@ -6,8 +6,8 @@ package praktikum08.controller;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
-import praktikum08.ChatView;
-import praktikum08.Transmitter;
+import praktikum08.view.ChatView;
+import praktikum08.model.Transmitter;
 
 /**
  *
