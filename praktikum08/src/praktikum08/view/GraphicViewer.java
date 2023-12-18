@@ -18,9 +18,8 @@ import java.util.logging.Logger;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.DialogTypeSelection;
 import javax.swing.JComponent;
-import praktikum07.model.GraphicModel;
-import praktikum07.Start;
 import praktikum08.Start;
+import praktikum08.model.GraphicModel;
 
 /**
  *
