@@ -44,33 +44,4 @@ public class GraphicModel {
       return Collections.unmodifiableList(shapes);
     }
     
-    public void saveShapes(String filename) throws Exception{
-        //Preference
-        FileOutputStream fos = new FileOutputStream(filename);
-        // Puffer für Performance
-        BufferedOutputStream bos = new BufferedOutputStream(fos);
-      try ( //Serialisierung
-              ObjectOutputStream oos = new ObjectOutputStream(bos))
-      {
-        oos.writeObject(shapes);
-        oos.flush(); //Puffer!
-        oos.close();
-      }
-    }
-    
-    public void readShapes(String filename) throws Exception{
-        //Preference
-        FileInputStream fis = new FileInputStream(filename);
-        // Puffer für Performance
-        BufferedInputStream bis = new BufferedInputStream(fis);
-      try ( //Deserialisierung
-              ObjectInputStream ois = new ObjectInputStream(bis))
-      {
-        Object daten = ois.readObject();
-        
-        if (daten instanceof ArrayList list){
-          shapes = list;
-        }
-      }
-    }
 }
