@@ -30,7 +30,7 @@ public class Start
     CommandSend cs = new CommandSend(view, trans_model, graphic_model);
     cc.registerEvents();
     cs.registerEvents();
-    model.addSubscriber(ra);
+    trans_model.addSubscriber(ra);
     view.setVisible(true);
   }
 

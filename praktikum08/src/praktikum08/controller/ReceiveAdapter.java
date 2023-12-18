@@ -35,7 +35,7 @@ public class ReceiveAdapter implements Subscriber<Object>{
 
     @Override
     public void onNext(Object item) {
-        GraphicModel.addShape((Shape)item);
+        graphicModel.addShape((Shape)item);
         sub.request(1);
     }
 
