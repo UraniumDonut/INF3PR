@@ -29,7 +29,7 @@ public class Transmitter  implements Runnable
 
   private static final int PORT = 8080;
   private BufferedReader in;
-  private ObjectOutputStream out;
+  private BufferedWriter out;
   private SubmissionPublisher<String> pub;
   private Thread trd;
 
