@@ -25,7 +25,7 @@ import praktikum08.model.GraphicModel;
  *
  * @author basti
  */
-public class GraphicViewer extends JComponent implements Printable
+public class GraphicViewer extends JComponent
 {
 
   private GraphicModel model;
@@ -83,42 +83,5 @@ public class GraphicViewer extends JComponent implements Printable
         }
       }
     });
-  }
-
-  public void doPrint()
-  {
-    HashPrintRequestAttributeSet printSet = new HashPrintRequestAttributeSet();
-    printSet.add(DialogTypeSelection.NATIVE);
-    PrinterJob pj = PrinterJob.getPrinterJob();
-    pj.setPrintable(this);
-
-    if (pj.printDialog(printSet))
-    {
-      try
-      {
-        pj.print(printSet);
-      }
-      catch (PrinterException ex)
-      {
-        Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
-  }
-
-  @Override
-  public int print(Graphics gp, PageFormat pf, int pageIndex) throws PrinterException
-  {
-    Graphics2D gp2 = (Graphics2D) gp;
-    if (pageIndex == 0)
-    {
-      gp2.translate(pf.getImageableX(), pf.getImageableX());
-      gp2.scale(pf.getImageableWidth() / pf.getWidth(), pf.getImageableHeight() / pf.getWidth());
-      super.print(gp2);
-      return Printable.PAGE_EXISTS;
-    }
-    else
-    {
-      return Printable.NO_SUCH_PAGE;
-    }
   }
 }

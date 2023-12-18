@@ -4,8 +4,11 @@
  */
 package praktikum08.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import praktikum08.model.GraphicModel;
 import praktikum08.view.ChatView;
 import praktikum08.model.Transmitter;
 
@@ -13,25 +16,52 @@ import praktikum08.model.Transmitter;
  *
  * @author basti
  */
-public class CommandSend implements ActionListener{
+public class CommandSend implements MouseMotionListener, MouseListener{
     private ChatView view;
-    private Transmitter model;
+    private Transmitter trans_model;
+    private GraphicModel graphic_model;
     
-    public CommandSend(ChatView view, Transmitter model){
+    public CommandSend(ChatView view, Transmitter trans_model, GraphicModel graphic_model){
         this.view = view;
-        this.model = model;
+        this.trans_model = trans_model;
+        this.graphic_model = graphic_model;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String msg = view.getInputField().getText();
-        view.getChatTextArea().append(msg + System.lineSeparator());
-        view.getInputField().setText("");
-        model.send(msg);
-    }
-    
-    public void registerEvents(){
-        view.getSendButton().addActionListener(this);
-        view.getInputField().addActionListener(this);
-    }
+  @Override
+  public void mouseDragged(MouseEvent e)
+  {
+    Point p = e.getPoint();
+    graphic_model.addPoint(p);
+    view.drawLine(p);
+  }
+
+  @Override
+  public void mouseMoved(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseClicked(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mousePressed(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseReleased(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseEntered(MouseEvent e)
+  {
+  }
+
+  @Override
+  public void mouseExited(MouseEvent e)
+  {
+  }
 }
