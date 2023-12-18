@@ -86,6 +86,8 @@ public class ChatView extends javax.swing.JFrame
         jPanel1.add(ServerCheckbox);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
+
+        graphicViewer1.setMinimumSize(new java.awt.Dimension(100, 200));
         getContentPane().add(graphicViewer1, java.awt.BorderLayout.CENTER);
 
         pack();
