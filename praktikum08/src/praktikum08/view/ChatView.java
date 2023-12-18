@@ -44,9 +44,6 @@ public class ChatView extends javax.swing.JFrame
 
         ChatPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        inputField = new javax.swing.JTextField();
-        SendButton = new javax.swing.JButton();
-        ControlsPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         tfIP = new javax.swing.JFormattedTextField();
         btnConnect = new javax.swing.JToggleButton();
@@ -58,28 +55,7 @@ public class ChatView extends javax.swing.JFrame
         ChatPanel.setLayout(new javax.swing.BoxLayout(ChatPanel, javax.swing.BoxLayout.PAGE_AXIS));
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
-
-        inputField.setText("input");
-        inputField.setMinimumSize(new java.awt.Dimension(200, 23));
-        inputField.setPreferredSize(new java.awt.Dimension(350, 23));
-        inputField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputFieldActionPerformed(evt);
-            }
-        });
-        jPanel2.add(inputField);
-
-        SendButton.setText("Send");
-        jPanel2.add(SendButton);
-
         ChatPanel.add(jPanel2);
-
-        ControlsPanel.setMaximumSize(new java.awt.Dimension(500, 23));
-        ControlsPanel.setMinimumSize(new java.awt.Dimension(200, 23));
-        ControlsPanel.setName(""); // NOI18N
-        ControlsPanel.setPreferredSize(new java.awt.Dimension(100, 23));
-        ControlsPanel.setLayout(new java.awt.GridLayout(1, 2));
-        ChatPanel.add(ControlsPanel);
 
         getContentPane().add(ChatPanel, java.awt.BorderLayout.SOUTH);
 
@@ -124,10 +100,6 @@ public class ChatView extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_tfIPActionPerformed
 
-    private void inputFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputFieldActionPerformed
-
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConnectActionPerformed
@@ -136,18 +108,10 @@ public class ChatView extends javax.swing.JFrame
         return graphicViewer1;
     }
 
-
-    public JButton getSendButton() {
-        return SendButton;
-    }
-
     public JToggleButton getBtnConnect() {
         return btnConnect;
     }
 
-    public JTextField getInputField() {
-        return inputField;
-    }
 
     public JFormattedTextField getTfIP() {
         return tfIP;
@@ -211,12 +175,9 @@ public class ChatView extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ChatPanel;
-    private javax.swing.JPanel ControlsPanel;
-    private javax.swing.JButton SendButton;
     private javax.swing.JCheckBox ServerCheckbox;
     private javax.swing.JToggleButton btnConnect;
     private praktikum08.view.GraphicViewer graphicViewer1;
-    private javax.swing.JTextField inputField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JFormattedTextField tfIP;
