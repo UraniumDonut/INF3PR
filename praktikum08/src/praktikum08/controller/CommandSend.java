@@ -32,7 +32,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   {
     Point p = e.getPoint();
     graphic_model.addPoint(p);
-    view.drawLine(p);
+    view.getGraphicViewer().drawLine(p);
   }
 
   @Override
@@ -48,6 +48,11 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   @Override
   public void mousePressed(MouseEvent e)
   {
+    Point p = e.getPoint();
+    view.repaint();
+    graphic_model.addShape(p);
+    view.getGraphicViewer().resetPoint();
+    view.getGraphicViewer().drawLine(p);
   }
 
   @Override
