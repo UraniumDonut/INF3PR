@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.concurrent.Flow;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
 import praktikum08.view.ChatView;
