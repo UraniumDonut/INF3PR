@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class GraphicModel {
     //private ArrayList<Point> points;
-    private ArrayList<Shape> shapes;
+    private final ArrayList<Shape> shapes;
     
     public GraphicModel(){
       this.shapes = new ArrayList<>();
@@ -36,6 +36,6 @@ public class GraphicModel {
     }
     
     public void addShape(Shape s){
-        shapes.add(s);
+        shapes.add(0, s);
     }
 }

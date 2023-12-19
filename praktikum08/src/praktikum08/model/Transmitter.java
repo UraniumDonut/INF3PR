@@ -11,13 +11,10 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import static java.lang.System.out;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.concurrent.SubmissionPublisher;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
 
@@ -28,18 +25,18 @@ import praktikum08.Logger.GluecksLogger;
 public class Transmitter implements Runnable
 {
 
-  private static Logger lg = GluecksLogger.getLogger();
+  private static final Logger lg = GluecksLogger.getLogger();
 
   private static final int PORT = 8080;
   private ObjectInputStream isr;
   private ObjectOutputStream osw;
-  private SubmissionPublisher<Object> pub;
+  private final SubmissionPublisher<Object> pub;
 
   private Thread trd;
 
   public Transmitter()
   {
-    pub = new SubmissionPublisher<Object>();
+    pub = new SubmissionPublisher<>();
   }
 
   public void connect(boolean isServer, String IP) throws IOException
@@ -81,13 +78,13 @@ public class Transmitter implements Runnable
       try
       {
         Object daten = isr.readObject();
-        if (daten instanceof ArrayList)
+        if (daten instanceof Shape)
         {
           pub.submit(daten);
         }
-        trd.sleep(100);
+        Thread.sleep(100);
       }
-      catch (Exception ex)
+      catch (IOException | ClassNotFoundException | InterruptedException ex)
       {
         lg.severe(ex.getLocalizedMessage());
       }
@@ -104,9 +101,9 @@ public class Transmitter implements Runnable
     try
     {
       osw.writeObject(obj);
-      out.flush();
+      osw.flush();
     }
-    catch (Exception ex)
+    catch (IOException ex)
     {
       lg.severe(ex.getLocalizedMessage());
     }

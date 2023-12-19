@@ -25,6 +25,7 @@ public class Start
     Transmitter trans_model = new Transmitter();
     GraphicModel graphic_model = new GraphicModel();
     ChatView view = new ChatView();
+    view.getGraphicViewer().initView(graphic_model);
     ReceiveAdapter ra = new ReceiveAdapter(view, trans_model, graphic_model);
     CommandConnect cc = new CommandConnect(view, trans_model);
     CommandSend cs = new CommandSend(view, trans_model, graphic_model);

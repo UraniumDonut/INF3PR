@@ -19,9 +19,9 @@ import praktikum08.model.Transmitter;
  * @author basti
  */
 public class CommandSend implements MouseMotionListener, MouseListener{
-    private ChatView view;
-    private Transmitter trans_model;
-    private GraphicModel graphic_model;
+    private final ChatView view;
+    private final Transmitter trans_model;
+    private final GraphicModel graphic_model;
     
     public CommandSend(ChatView view, Transmitter trans_model, GraphicModel graphic_model){
         this.view = view;
@@ -58,7 +58,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   public void mousePressed(MouseEvent e)
   {
     Point p = e.getPoint();
-    view.repaint();
+    view.getGraphicViewer().repaint();
     graphic_model.createShape(p);
     view.getGraphicViewer().resetPoint();
     view.getGraphicViewer().drawLine(p);

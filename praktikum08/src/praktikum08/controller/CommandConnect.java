@@ -7,7 +7,6 @@ package praktikum08.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.concurrent.Flow;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
 import praktikum08.view.ChatView;
@@ -20,11 +19,10 @@ import praktikum08.model.Transmitter;
 public class CommandConnect implements ActionListener, Runnable
 {
 
-  private static Logger lg = GluecksLogger.getLogger();
+  private static final Logger lg = GluecksLogger.getLogger();
 
   ChatView view;
   Transmitter model;
-  Flow.Subscription sub;
 
   public CommandConnect(ChatView view, Transmitter model)
   {

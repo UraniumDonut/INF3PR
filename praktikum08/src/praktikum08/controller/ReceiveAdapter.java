@@ -18,15 +18,13 @@ import praktikum08.model.Transmitter;
  * @author basti
  */
 public class ReceiveAdapter implements Subscriber<Object>{
-    private static Logger lg = GluecksLogger.getLogger();
+    private static final Logger lg = GluecksLogger.getLogger();
     ChatView view;
-    Transmitter transModel;
     GraphicModel graphicModel;
     Flow.Subscription sub;
     
     public ReceiveAdapter(ChatView view, Transmitter transModel, GraphicModel graphicModel){
         this.view = view;
-        this.transModel = transModel;
         this.graphicModel = graphicModel;
     }
 
@@ -40,7 +38,7 @@ public class ReceiveAdapter implements Subscriber<Object>{
     public void onNext(Object item) {
         graphicModel.addShape((Shape)item);
         lg.info("Shape received");
-        view.getGraphicViewer().repaint();
+        view.repaint();
         sub.request(1);
     }
 
