@@ -55,14 +55,15 @@ public class Transmitter implements Runnable
       s = new Socket(IP, PORT); //Das Blockiert und muss im Thread sein bei GUI Applikationen
     }
     lg.info("connected");
-    InputStream ins = s.getInputStream();
     OutputStream os = s.getOutputStream();
+    InputStream ins = s.getInputStream();
 
-    BufferedInputStream bis = new BufferedInputStream(ins);
     BufferedOutputStream bos = new BufferedOutputStream(os);
+    BufferedInputStream bis = new BufferedInputStream(ins);
 
-    isr = new ObjectInputStream(bis);
     osw = new ObjectOutputStream(bos);
+    osw.flush();
+    isr = new ObjectInputStream(bis);
 
     //out = new PrintWriter(osw); //ist cooler, weil wir hier die println und printf funktionen haben
     if (trd == null)
@@ -80,7 +81,7 @@ public class Transmitter implements Runnable
       try
       {
         Object daten = isr.readObject();
-        if (daten instanceof ArrayList list)
+        if (daten instanceof ArrayList)
         {
           pub.submit(daten);
         }

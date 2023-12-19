@@ -6,6 +6,8 @@ package praktikum08.controller;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
+import java.util.logging.Logger;
+import praktikum08.Logger.GluecksLogger;
 import praktikum08.model.GraphicModel;
 import praktikum08.model.Shape;
 import praktikum08.view.ChatView;
@@ -16,6 +18,7 @@ import praktikum08.model.Transmitter;
  * @author basti
  */
 public class ReceiveAdapter implements Subscriber<Object>{
+    private static Logger lg = GluecksLogger.getLogger();
     ChatView view;
     Transmitter transModel;
     GraphicModel graphicModel;
@@ -36,6 +39,8 @@ public class ReceiveAdapter implements Subscriber<Object>{
     @Override
     public void onNext(Object item) {
         graphicModel.addShape((Shape)item);
+        lg.info("Shape received");
+        view.getGraphicViewer().repaint();
         sub.request(1);
     }
 
