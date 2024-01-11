@@ -1,0 +1,2 @@
+praktikum08.Logger.GluecksspielFormatter
+praktikum08.Logger.GluecksLogger
