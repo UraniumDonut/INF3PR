@@ -17,8 +17,8 @@ public class FxModel implements Runnable{
     private Thread trd;
     private StringProperty str;
     
-    public initModel(){
-        if(trd = null){
+    public void initModel(){
+        if(trd == null){
             str = new SimpleStringProperty();
             str.set("00:00");
             trd = new Thread(this);
