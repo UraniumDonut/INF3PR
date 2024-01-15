@@ -21,14 +21,14 @@
                <children>
                   <VBox prefHeight="72.0" prefWidth="106.0">
                      <children>
-                        <Label styleClass="clocktext" stylesheets="@FxView.css" text="12:35" />
-                        <Label styleClass="infotext" stylesheets="@FxView.css" text="ICE 834" />
+                        <Label fx:id="lblZeit" styleClass="clocktext" stylesheets="@FxView.css" text="12:35" />
+                        <Label fx:id="lblZugnummer" styleClass="infotext" stylesheets="@FxView.css" text="ICE 834" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="253.0">
                      <children>
-                        <Label styleClass="infotext" stylesheets="@FxView.css" text="Nürnberg HBF" />
-                        <Label styleClass="infotext" stylesheets="@FxView.css" text="12:50" />
+                        <Label fx:id="lblBahnhof" styleClass="infotext" stylesheets="@FxView.css" text="Nürnberg HBF" />
+                        <Label fx:id="lblAbfahrtszeit" styleClass="infotext" stylesheets="@FxView.css" text="12:50" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -57,9 +57,9 @@
                   <Label text="Zugnummer" />
                   <Label text="Bahnhof" GridPane.rowIndex="1" />
                   <Label text="Abfahrtszeit" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="tfZugnummer" text="ICE 834" GridPane.columnIndex="1" />
+                  <TextField fx:id="tfBahnhof" text="Nürnberg HBF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="tfAbfahrtszeit" text="12:50" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
