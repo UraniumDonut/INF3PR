@@ -5,16 +5,38 @@
 package praktikum10;
 
 import java.time.LocalTime;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author basti
  */
-public class FxModel {
+public class FxModel implements Runnable{
     private LocalTime t;
+    private Thread trd;
+    private StringProperty str;
     
-    public String getTime(){
-        t = LocalTime.now();
-        return t.toString();
+    public StringProperty getProperty(){
+        return str;
+    }
+    
+//    public String getTime(){
+//        t = LocalTime.now();
+//        return t.toString();
+//    }
+
+    @Override
+    public void run() {
+        while(true){
+            if(t.getMinute() != LocalTime.now().getMinute()){
+                t = LocalTime.now();
+                str.set(t.toString());
+            }
+            try {
+                trd.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }
