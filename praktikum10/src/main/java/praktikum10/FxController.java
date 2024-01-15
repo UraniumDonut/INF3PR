@@ -1,12 +1,15 @@
 package praktikum10;
 
-import java.io.IOException;
-import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
-public class FxController {
+public class FxController implements Initializable{
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        FxStart.setRoot("secondary");
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle rb)
+  {
+  }
+  
+  
 }

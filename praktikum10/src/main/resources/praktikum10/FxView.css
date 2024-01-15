@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jan 15, 2024, 12:13:03 PM
+    Author     : Leon
+*/
+
+.tafelcontrols{
+  -fx-background-color: #0050bc;
+  -fx-background-radius: 18 18 18 18;
+  -fx-border-radius: 18 18 18 18;
+}
+.infotext{
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 18;
+}
+.clocktext{
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 40;
+}
