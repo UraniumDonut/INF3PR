@@ -39,10 +39,8 @@ public class FxModel implements Runnable{
     @Override
     public void run() {
         while(true){
-            if(true){
-                t = LocalTime.now();
-                str.set(t.format(dtf));
-            }
+            t = LocalTime.now();
+            str.set(t.format(dtf));
             try {
                 trd.sleep(1000);
             } catch (InterruptedException ex) {
