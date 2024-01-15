@@ -5,6 +5,7 @@
 package praktikum10;
 
 import java.time.LocalTime;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -16,6 +17,14 @@ public class FxModel implements Runnable{
     private Thread trd;
     private StringProperty str;
     
+    public initModel(){
+        if(trd = null){
+            str = new SimpleStringProperty();
+            str.set("00:00");
+            trd = new Thread(this);
+            trd.start();
+        }
+    }
     public StringProperty getProperty(){
         return str;
     }
