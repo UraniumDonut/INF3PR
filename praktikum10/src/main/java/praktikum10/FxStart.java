@@ -21,7 +21,8 @@ public class FxStart extends Application {
       fxmlLoader.setLocation(this.getClass().getResource("FxView.fxml"));
       Parent root = fxmlLoader.load();
       FxController controller = (FxController) fxmlLoader.getController();
-
+      FxModel model = new FxModel();
+      controller.setModel(model);
       
       controller.registerBindings();
       scene = new Scene(root);
