@@ -5,6 +5,7 @@
 package praktikum10;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,6 +17,7 @@ public class FxModel implements Runnable{
     private LocalTime t;
     private Thread trd;
     private StringProperty str;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
     
     public void initModel(){
         if(trd == null){
@@ -39,7 +41,7 @@ public class FxModel implements Runnable{
         while(true){
             if(true){
                 t = LocalTime.now();
-                str.set(t.getMinute() + ":" + t.getHour());
+                str.set(t.format(dtf));
             }
             try {
                 trd.sleep(1000);
