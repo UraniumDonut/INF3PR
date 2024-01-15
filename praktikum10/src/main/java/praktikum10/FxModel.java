@@ -39,7 +39,7 @@ public class FxModel implements Runnable{
         while(true){
             if(t.getMinute() != LocalTime.now().getMinute()){
                 t = LocalTime.now();
-                str.set(t.toString());
+                str.set(t.getMinute() + ":" + t.getHour());
             }
             try {
                 trd.sleep(1000);
