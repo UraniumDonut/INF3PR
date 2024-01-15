@@ -37,7 +37,7 @@ public class FxModel implements Runnable{
     @Override
     public void run() {
         while(true){
-            if(t.getMinute() != LocalTime.now().getMinute()){
+            if(true){
                 t = LocalTime.now();
                 str.set(t.getMinute() + ":" + t.getHour());
             }
