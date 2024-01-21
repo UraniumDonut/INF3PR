@@ -8,10 +8,9 @@ import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
-import praktikum08.model.GraphicModel;
+import praktikum08.model.Model;
 import praktikum08.model.Shape;
 import praktikum08.view.ChatView;
-import praktikum08.model.Transmitter;
 
 /**
  *
@@ -20,12 +19,12 @@ import praktikum08.model.Transmitter;
 public class ReceiveAdapter implements Subscriber<Object>{
     private static final Logger lg = GluecksLogger.getLogger();
     ChatView view;
-    GraphicModel graphicModel;
+    Model model;
     Flow.Subscription sub;
     
-    public ReceiveAdapter(ChatView view, Transmitter transModel, GraphicModel graphicModel){
+    public ReceiveAdapter(ChatView view, Model model){
         this.view = view;
-        this.graphicModel = graphicModel;
+        this.model = model;
     }
 
     @Override
@@ -36,7 +35,7 @@ public class ReceiveAdapter implements Subscriber<Object>{
 
     @Override
     public void onNext(Object item) {
-        graphicModel.addShape((Shape)item);
+        model.addShape((Shape)item);
         lg.info("Shape received");
         view.repaint();
         sub.request(1);

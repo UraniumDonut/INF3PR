@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Logger;
 import praktikum08.Logger.GluecksLogger;
+import praktikum08.model.Model;
 import praktikum08.view.ChatView;
-import praktikum08.model.Transmitter;
 
 /**
  *
@@ -22,9 +22,9 @@ public class CommandConnect implements ActionListener, Runnable
   private static final Logger lg = GluecksLogger.getLogger();
 
   ChatView view;
-  Transmitter model;
+  Model model;
 
-  public CommandConnect(ChatView view, Transmitter model)
+  public CommandConnect(ChatView view, Model model)
   {
     this.view = view;
     this.model = model;

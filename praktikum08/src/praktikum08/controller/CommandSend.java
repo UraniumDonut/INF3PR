@@ -9,10 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.List;
-import praktikum08.model.GraphicModel;
+import praktikum08.model.Model;
 import praktikum08.model.Shape;
 import praktikum08.view.ChatView;
-import praktikum08.model.Transmitter;
 
 /**
  *
@@ -20,13 +19,11 @@ import praktikum08.model.Transmitter;
  */
 public class CommandSend implements MouseMotionListener, MouseListener{
     private final ChatView view;
-    private final Transmitter trans_model;
-    private final GraphicModel graphic_model;
+    private final Model model;
     
-    public CommandSend(ChatView view, Transmitter trans_model, GraphicModel graphic_model){
+    public CommandSend(ChatView view, Model model){
         this.view = view;
-        this.trans_model = trans_model;
-        this.graphic_model = graphic_model;
+        this.model = model;
     }
     
    public void registerEvents()
@@ -39,7 +36,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   public void mouseDragged(MouseEvent e)
   {
     Point p = e.getPoint();
-    graphic_model.addPoint(p);
+    model.addPoint(p);
     view.getGraphicViewer().drawLine(p);
     
   }
@@ -59,7 +56,7 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   {
     Point p = e.getPoint();
     view.getGraphicViewer().repaint();
-    graphic_model.createShape(p);
+    model.createShape(p);
     view.getGraphicViewer().resetPoint();
     view.getGraphicViewer().drawLine(p);
   }
@@ -67,9 +64,9 @@ public class CommandSend implements MouseMotionListener, MouseListener{
   @Override
   public void mouseReleased(MouseEvent e)
   {
-    List<Shape> shapes = graphic_model.getShapes();
+    List<Shape> shapes = model.getShapes();
     Shape last = shapes.get(shapes.size() - 1);
-    trans_model.send(last);
+    model.send(last);
   }
 
   @Override

@@ -6,13 +6,12 @@
 package praktikum08;
 
 import praktikum08.view.ChatView;
-import praktikum08.model.Transmitter;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import praktikum08.controller.CommandConnect;
 import praktikum08.controller.CommandSend;
 import praktikum08.controller.ReceiveAdapter;
-import praktikum08.model.GraphicModel;
+import praktikum08.model.Model;
 
 /**
  *
@@ -22,16 +21,15 @@ public class Start
 {
   public Start()
   {
-    Transmitter trans_model = new Transmitter();
-    GraphicModel graphic_model = new GraphicModel();
+    Model model = new Model();
     ChatView view = new ChatView();
-    view.getGraphicViewer().initView(graphic_model);
-    ReceiveAdapter ra = new ReceiveAdapter(view, trans_model, graphic_model);
-    CommandConnect cc = new CommandConnect(view, trans_model);
-    CommandSend cs = new CommandSend(view, trans_model, graphic_model);
+    view.getGraphicViewer().initView(model);
+    ReceiveAdapter ra = new ReceiveAdapter(view, model);
+    CommandConnect cc = new CommandConnect(view, model);
+    CommandSend cs = new CommandSend(view, model);
     cc.registerEvents();
     cs.registerEvents();
-    trans_model.addSubscriber(ra);
+    model.addSubscriber(ra);
     view.setVisible(true);
   }
 

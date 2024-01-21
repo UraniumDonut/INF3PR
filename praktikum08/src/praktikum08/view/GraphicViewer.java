@@ -10,7 +10,7 @@ import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.util.List;
 import javax.swing.JComponent;
-import praktikum08.model.GraphicModel;
+import praktikum08.model.Model;
 
 /**
  *
@@ -19,14 +19,14 @@ import praktikum08.model.GraphicModel;
 public class GraphicViewer extends JComponent
 {
 
-  private GraphicModel model;
+  private Model model;
   private Line2D.Float line;
   private Point lastPoint = null;
   public GraphicViewer()
   {
   }
 
-  public void initView(GraphicModel model)
+  public void initView(Model model)
   {
     this.model = model;
     this.line = new Line2D.Float();
@@ -36,6 +36,9 @@ public class GraphicViewer extends JComponent
     Graphics2D g2 = (Graphics2D)this.getGraphics();
     if(lastPoint != null){
       g2.draw(new Line2D.Float(lastPoint, p));
+    }
+    else{
+      g2.draw(new Line2D.Float(p,p));
     }
     lastPoint = p;
   }
@@ -57,20 +60,18 @@ public class GraphicViewer extends JComponent
     {
       List<Point> points = s.getPoints();
       Point pointBefore = null;
-      Point pointNow;
-      for (int i = 0; i < points.size(); i++)
+      for (Point p:points)
       {
-        if (i == 0)
+        if (pointBefore == null)
         {
           //do nothing
-          pointBefore = points.get(i);
+          pointBefore = p;
         }
         else
         {
-          pointNow = points.get(i);
-          line = new Line2D.Float(pointBefore, pointNow);
+          line = new Line2D.Float(pointBefore, p);
           g2.draw(line);
-          pointBefore = pointNow;
+          pointBefore = p;
         }
       }
     });
